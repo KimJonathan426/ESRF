@@ -30,3 +30,51 @@ class Player(db.Model):
     secondary=player_teams,
     back_populates='players_on_team'
     )
+
+
+    def to_dict_no_team(self):
+        return {
+            'id': self.id,
+            'player_name': self.player_name,
+            'player_image': self.player_image,
+            'position': self.position,
+            'team': self.team,
+            'bio': self.bio,
+            'recent_news': self.recent_news,
+            'field_goal_made': self.field_goal_made,
+            'field_goal_attempted': self.field_goal_attempted,
+            'free_throw_made': self.free_throw_made,
+            'free_throw_attempted': self.free_throw_attempted,
+            'three_point_made': self.three_point_made,
+            'assists': self.assists,
+            'rebounds': self.rebounds,
+            'steals': self.steals,
+            'blocks': self.blocks,
+            'turnovers': self.turnovers,
+            'points': self.points,
+            'fantasy_total': self.fantasy_total,
+        }
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'player_name': self.player_name,
+            'player_image': self.player_image,
+            'position': self.position,
+            'team': self.team,
+            'bio': self.bio,
+            'recent_news': self.recent_news,
+            'field_goal_made': self.field_goal_made,
+            'field_goal_attempted': self.field_goal_attempted,
+            'free_throw_made': self.free_throw_made,
+            'free_throw_attempted': self.free_throw_attempted,
+            'three_point_made': self.three_point_made,
+            'assists': self.assists,
+            'rebounds': self.rebounds,
+            'steals': self.steals,
+            'blocks': self.blocks,
+            'turnovers': self.turnovers,
+            'points': self.points,
+            'fantasy_total': self.fantasy_total,
+            'team_list': [team.to_dict_for_player() for team in self.teams_with_player]
+        }

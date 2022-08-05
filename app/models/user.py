@@ -26,6 +26,12 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def to_dict_leagues_and_teams(self):
+        return {
+            'user_leagues': [league.to_dict_league_info() for league in self.user_leagues],
+            'user_teams': [team.to_dict_for_user() for team in self.user_teams]
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
