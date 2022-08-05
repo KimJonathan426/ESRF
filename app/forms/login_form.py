@@ -1,13 +1,15 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
+from sqlalchemy import func
 from app.models import User
 
 
 def user_exists(form, field):
     # Checking if user exists
     email = field.data
-    user = User.query.filter(User.email == email).first()
+    print('email lowercase', func.lower(email))
+    user = User.query.filter(func.lower(User.email) == func.lower(email)).first()
     if not user:
         raise ValidationError('Email provided not found.')
 
@@ -16,7 +18,7 @@ def password_matches(form, field):
     # Checking if password matches
     password = field.data
     email = form.data['email']
-    user = User.query.filter(User.email == email).first()
+    user = User.query.filter(func.lower(User.email) == func.lower(email)).first()
     if not user:
         raise ValidationError('No such user exists.')
     if not user.check_password(password):
