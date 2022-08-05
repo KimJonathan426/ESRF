@@ -9,7 +9,7 @@ class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'), nullable=False)
     team_owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    team_name = db.Column(db.String(40), nullable=False)
+    team_name = db.Column(db.String(30), nullable=False)
     team_abre = db.Column(db.String(4), nullable=False)
     team_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Default-Team-Logo.png')
     fantasy_total = db.Column(db.Integer, nullable=True, default=0)
