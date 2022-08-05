@@ -236,7 +236,7 @@ def seed_teams_and_players():
     league1_team2 = Team(
         league_id=1,
         team_owner_id=2,
-        team_name="Giannis Jontantetokounmpo",
+        team_name="Giannis Jontantetokounmpos",
         team_abre='GiJo',
         team_image='https://esrf.s3.amazonaws.com/Team-Jontantetokounmpo.jpg',
         players_on_team=[league1_player1, league1_player2, league1_player6, league1_player7, league1_player10]
@@ -245,7 +245,7 @@ def seed_teams_and_players():
     league1_team3 = Team(
         league_id=1,
         team_owner_id=3,
-        team_name="LeGOAT",
+        team_name="LeGOATs",
         team_abre='BRON',
         team_image='https://esrf.s3.amazonaws.com/Team-LeGOAT.png',
         players_on_team=[league1_player2, league1_player4, league1_player7, league1_player9, league1_player10]
@@ -253,7 +253,7 @@ def seed_teams_and_players():
 
     league1_team4 = Team(
         league_id=1,
-        team_owner_id=5,
+        team_owner_id=4,
         team_name="Chungstas",
         team_abre='LUKA',
         team_image='https://esrf.s3.amazonaws.com/Team-Chungstas.PNG',
@@ -262,7 +262,7 @@ def seed_teams_and_players():
 
     league1_team5 = Team(
         league_id=1,
-        team_owner_id=4,
+        team_owner_id=5,
         team_name="Inspirational Labbits",
         team_abre='STEF',
         team_image='https://esrf.s3.amazonaws.com/Team-Labbit.jpg',
@@ -272,7 +272,7 @@ def seed_teams_and_players():
     league1_team6 = Team(
         league_id=1,
         team_owner_id=6,
-        team_name="Lynnsanity",
+        team_name="Super Lintendos",
         team_abre='LIN',
         team_image='https://esrf.s3.amazonaws.com/Team-Lynnsanity.png',
         players_on_team=[league1_player3, league1_player5, league1_player8, league1_player9, league1_player10]

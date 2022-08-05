@@ -9,10 +9,10 @@ def seed_users():
         username='Jontan', email='Jontan@gmail.com', password='password')
     abel = User(
         username='abeltesfa', email='abeltesfa@hotmail.com', password='password')
-    eddie = User(
-        username='labbit', email='LiveLaoLove@email.com', password='password')
     david = User(
         username='dvchung00', email='dvchung@yahoo.com', password='password')
+    eddie = User(
+        username='labbit', email='LiveLaoLove@email.com', password='password')
     lynn = User(
         username='lynnsanity', email='lynning@aol.com', password='password')
 
@@ -20,8 +20,8 @@ def seed_users():
     db.session.add(demo)
     db.session.add(jontan)
     db.session.add(abel)
-    db.session.add(eddie)
     db.session.add(david)
+    db.session.add(eddie)
     db.session.add(lynn)
 
     db.session.commit()
