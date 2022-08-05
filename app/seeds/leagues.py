@@ -4,7 +4,7 @@ def seed_leagues():
     jadel = League(
         owner_id=1,
         league_name='J.A.D.E.L. (Jade League)',
-        league_image='https://esrf.s3.amazonaws.com/Demo-League-Logo.jpg',
+        league_image='https://esrf.s3.amazonaws.com/JADEL-League-Logo.PNG',
         team_limit=6,
         team_player_limit=5,
         start_date='15/Aug/2022 11:00',
@@ -14,7 +14,7 @@ def seed_leagues():
     nba_finals_2028 = League(
         owner_id=2,
         league_name='2028 Warriors vs Cavs NBA Finals',
-        league_image='https://esrf.s3.amazonaws.com/Demo-League-Logo.jpg',
+        league_image='https://esrf.s3.amazonaws.com/NBA-Finals-League-Logo.PNG',
         team_limit=2,
         team_player_limit=5,
         start_date='15/Aug/2022 11:00',
