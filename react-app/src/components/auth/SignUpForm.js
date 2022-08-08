@@ -8,13 +8,13 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password === confirmedPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
@@ -34,8 +34,8 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+  const updateConfirmedPassword = (e) => {
+    setConfirmedPassword(e.target.value);
   };
 
   if (user) {
@@ -77,12 +77,12 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Confirmed Password</label>
         <input
           type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
+          name='confirmed_password'
+          onChange={updateConfirmedPassword}
+          value={confirmedPassword}
           required={true}
         ></input>
       </div>
