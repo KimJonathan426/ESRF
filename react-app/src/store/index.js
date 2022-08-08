@@ -5,7 +5,7 @@ import LeaguesReducer from './league';
 
 const rootReducer = combineReducers({
   session,
-  league: LeaguesReducer,
+  leagues: LeaguesReducer,
 });
 
 

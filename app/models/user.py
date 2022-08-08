@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
     def to_dict_leagues_and_teams(self):
         return {
             'user_leagues': [league.to_dict_league_info() for league in self.user_leagues],
-            'user_teams': [team.to_dict_for_user() for team in self.user_teams]
+            'user_teams': [team.to_dict_no_players() for team in self.user_teams]
         }
 
     def to_dict(self):

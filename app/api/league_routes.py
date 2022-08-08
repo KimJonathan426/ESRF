@@ -8,4 +8,5 @@ league_routes = Blueprint('leagues', __name__)
 @login_required
 def leagues():
     leagues = League.query.all()
-    return [league.to_dict() for league in leagues]
+    print('leagues', leagues)
+    return {'leagueList': [league.to_dict() for league in leagues]}

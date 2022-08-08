@@ -26,7 +26,7 @@ const LeaguesReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_LEAGUES:
             const newState1 = {};
-            action.leagues.forEach(league => {
+            action.leagues.leagueList.forEach(league => {
                 newState1[league.id] = league;
             })
             return newState1

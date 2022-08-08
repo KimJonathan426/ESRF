@@ -22,15 +22,6 @@ class Team(db.Model):
     back_populates='teams_with_player'
     )
 
-    def to_dict_for_user(self):
-        return {
-            'id': self.id,
-            'league_id': self.league_id,
-            'team_name': self.team_name,
-            'team_abre': self.team_abre,
-            'team_image': self.team_image,
-            'fantasy_total': self.fantasy_total
-        }
 
     def to_dict_for_player(self):
         return {
@@ -38,6 +29,19 @@ class Team(db.Model):
             'team_name': self.team_name,
             'team_abre': self.team_abre,
         }
+
+
+    def to_dict_no_players(self):
+        return {
+            'id': self.id,
+            'league_id': self.league_id,
+            'team_owner_id': self.team_owner_id,
+            'team_name': self.team_name,
+            'team_abre': self.team_abre,
+            'team_image': self.team_image,
+            'fantasy_total': self.fantasy_total
+        }
+
 
     def to_dict(self):
         return {
