@@ -2,9 +2,11 @@
 const GET_LEAGUES = 'league/GET_LEAGUES';
 const GET_SINGLE_LEAGUE = 'league/GET_SINGLE_LEAGUE';
 
-// Create
-const ADD_LEAGUE = 'league/ADD_LEAGUE'
+// Create and Edit
+const ADD_LEAGUE = 'league/ADD_LEAGUE';
 
+// Delete
+const DELETE_LEAGUE = 'league/DELETE_LEAGUE';
 
 // Thunk Action Creators
 const actionGetLeagues = (leagues) => ({
@@ -20,6 +22,11 @@ const actionGetSingleLeague = (league) => ({
 const actionAddLeague = (league) => ({
     type: ADD_LEAGUE,
     league
+})
+
+const actionDeleteLeague = (leagueId) => ({
+    type: DELETE_LEAGUE,
+    leagueId
 })
 
 
@@ -114,7 +121,7 @@ export const editLeagueScoring = (payload) => async (dispatch) => {
         const league = await response.json();
         dispatch(actionAddLeague(league));
         return league;
-    }
+    };
 }
 
 export const editLeagueStart = (leagueId, start_date, start_time) => async (dispatch) => {
@@ -131,6 +138,17 @@ export const editLeagueStart = (leagueId, start_date, start_time) => async (disp
         const league = await response.json();
         dispatch(actionAddLeague(league));
         return league;
+    }
+}
+
+export const deleteLeague = (leagueId) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/delete`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        dispatch(actionDeleteLeague(leagueId));
+        return leagueId
     }
 }
 
@@ -151,7 +169,11 @@ const LeaguesReducer = (state = {}, action) => {
         case ADD_LEAGUE:
             const newState3 = { ...state };
             newState3[action.league.id] = action.league;
-            return newState3
+            return newState3;
+        case DELETE_LEAGUE:
+            const newState4 = { ...state };
+            delete newState4[action.leagueId];
+            return newState4;
         default:
             return state;
     }
