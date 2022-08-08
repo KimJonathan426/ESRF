@@ -62,6 +62,61 @@ export const addLeague = (league_name, team_limit, team_player_limit) => async (
     }
 }
 
+export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/edit/base/${leagueId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            league_name
+        })
+    });
+
+    if (response.ok) {
+        const league = await response.json();
+        dispatch(actionAddLeague(league))
+        return league
+    }
+}
+
+export const editLeagueScoring = (payload) => async (dispatch) => {
+    const leagueId = payload.leagueId;
+    const field_goal_made_weight = payload.field_goal_made_weight;
+    const field_goal_attempted_weight =payload.field_goal_attempted_weight;
+    const free_throw_made_weight = payload.free_throw_made_weight;
+    const free_throw_attempted_weight = payload.free_throw_attempted_weight;
+    const three_point_made_weight = payload.three_point_made_weight;
+    const assists_weight = payload.assists_weight;
+    const rebounds_weight = payload.rebounds_weight;
+    const steals_weight = payload.steals_weight;
+    const blocks_weight = payload.blocks_weight;
+    const turnovers_weight = payload.turnovers_weight;
+    const points_weight = payload.points_weight;
+
+    const response = await fetch(`/api/leagues/edit/scoring/${leagueId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            field_goal_made_weight,
+            field_goal_attempted_weight,
+            free_throw_made_weight,
+            free_throw_attempted_weight,
+            three_point_made_weight,
+            assists_weight,
+            rebounds_weight,
+            steals_weight,
+            blocks_weight,
+            turnovers_weight,
+            points_weight
+        })
+    })
+
+    if (response.ok) {
+        const league = await response.json();
+        dispatch(actionAddLeague(league))
+        return league
+    }
+}
+
 
 // League Reducer
 const LeaguesReducer = (state = {}, action) => {

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
+import LeagueEditForm from '../LeagueEditForm';
+import LeagueScoringForm from '../LeagueScoringForm';
 
 const LeagueHome = () => {
     const dispatch = useDispatch();
@@ -18,6 +20,8 @@ const LeagueHome = () => {
         league ?
             <div>
                 Welcome to the {league.league_name} Page!
+                <LeagueEditForm currentLeagueName={league.league_name} leagueId={leagueId} />
+                <LeagueScoringForm currentLeague={league}/>
             </div>
             :
             <h3> Loading... </h3>
