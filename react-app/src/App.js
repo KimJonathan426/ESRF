@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import LeagueList from './components/LeagueList';
+import LeagueHome from './components/LeagueHome';
 import { authenticate } from './store/session';
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/leagues' exact={true} >
           <LeagueList />
+        </ProtectedRoute>
+        <ProtectedRoute path='/leagues/:leagueId' exact={true} >
+          <LeagueHome />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>

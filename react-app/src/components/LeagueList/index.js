@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { getAllLeagues } from '../../store/league';
 
 const LeagueList = () => {
@@ -18,7 +19,7 @@ const LeagueList = () => {
             <div>
                 {leagueList.map(league => (
                     <div key={league.id}>
-                        {league.league_name}
+                        <Link to='/leagues/:leagueId'>{league.league_name}</Link>
                     </div>
                 ))}
             </div>
