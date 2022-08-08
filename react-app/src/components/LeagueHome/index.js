@@ -13,7 +13,6 @@ const LeagueHome = () => {
         dispatch(getSingleLeague(leagueId));
     }, [dispatch, leagueId])
 
-    console.log('single league', league)
 
     return (
         league ?

@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import LeagueList from './components/LeagueList';
 import LeagueHome from './components/LeagueHome';
+import BaseLeagueForm from './components/BaseLeagueForm';
 import { authenticate } from './store/session';
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          <BaseLeagueForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
