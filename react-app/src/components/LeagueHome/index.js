@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
 import LeagueEditForm from '../LeagueEditForm';
 import LeagueScoringForm from '../LeagueScoringForm';
+import LeagueStartForm from '../LeagueStartForm';
 
 const LeagueHome = () => {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const LeagueHome = () => {
                 Welcome to the {league.league_name} Page!
                 <LeagueEditForm currentLeagueName={league.league_name} leagueId={leagueId} />
                 <LeagueScoringForm currentLeague={league}/>
+                <LeagueStartForm leagueId={leagueId} />
             </div>
             :
             <h3> Loading... </h3>

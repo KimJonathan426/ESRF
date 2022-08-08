@@ -73,8 +73,8 @@ export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
 
     if (response.ok) {
         const league = await response.json();
-        dispatch(actionAddLeague(league))
-        return league
+        dispatch(actionAddLeague(league));
+        return league;
     }
 }
 
@@ -108,12 +108,29 @@ export const editLeagueScoring = (payload) => async (dispatch) => {
             turnovers_weight,
             points_weight
         })
-    })
+    });
 
     if (response.ok) {
         const league = await response.json();
-        dispatch(actionAddLeague(league))
-        return league
+        dispatch(actionAddLeague(league));
+        return league;
+    }
+}
+
+export const editLeagueStart = (leagueId, start_date, start_time) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/edit/start/${leagueId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            start_date,
+            start_time
+        })
+    });
+
+    if (response.ok) {
+        const league = await response.json();
+        dispatch(actionAddLeague(league));
+        return league;
     }
 }
 
