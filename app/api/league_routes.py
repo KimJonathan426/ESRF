@@ -41,7 +41,7 @@ def create_league():
         return league.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/edit/base/<int:leagueId>', methods=['PUT'])
+@league_routes.route('/<int:leagueId>/edit/base', methods=['PUT'])
 @login_required
 def edit_base(leagueId):
     form = LeagueEditForm()
@@ -56,7 +56,7 @@ def edit_base(leagueId):
         return editedLeague.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/edit/scoring/<int:leagueId>', methods=['PUT'])
+@league_routes.route('/<int:leagueId>/edit/scoring', methods=['PUT'])
 @login_required
 def edit_scoring(leagueId):
     form = LeagueScoringForm()
@@ -82,13 +82,14 @@ def edit_scoring(leagueId):
         return editedLeague.to_dict()
     return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/edit/start/<int:leagueId>')
+@league_routes.route('/<int:leagueId>/edit/start', methods=['PUT'])
 @login_required
 def edit_start(leagueId):
     form = LeagueStartForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
         editedLeague = League.query.get(leagueId)
 
         editedLeague.start_date = form.data['start_date']
@@ -98,3 +99,13 @@ def edit_start(leagueId):
 
         return editedLeague.to_dict()
     return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/delete', methods=['DELETE'])
+@login_required
+def delete_league(leagueId):
+    deleted_league = League.query.get(leagueId)
+
+    db.session.delete(deleted_league)
+    db.session.commit()
+
+    return 'Deleted Successfully'

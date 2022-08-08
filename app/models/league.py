@@ -31,8 +31,8 @@ class League(db.Model):
     createdAt = db.Column(DateTime(timezone=True), server_default=func.now())
 
     league_owner = db.relationship('User', back_populates='user_leagues')
-    league_teams = db.relationship('Team', back_populates='team_league')
-    league_players = db.relationship('Player', back_populates='player_league')
+    league_teams = db.relationship('Team', back_populates='team_league', cascade="all, delete")
+    league_players = db.relationship('Player', back_populates='player_league', cascade="all, delete")
 
 
     def to_dict_league_info(self):
