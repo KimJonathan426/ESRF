@@ -23,10 +23,11 @@ def username_exists(form, field):
 
 def password_checker(form, field):
     # Checking if confirmed password matches password field
-    confirmed_password = field.data
+    confirmed_password = form.data['confirmedPassword']
     password = form.data['password']
     if (confirmed_password != password):
         raise ValidationError('Password and Confirmed Password field do not match.')
+
 
 class SignUpForm(FlaskForm):
     username = StringField(

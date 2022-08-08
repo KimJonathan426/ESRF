@@ -14,11 +14,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === confirmedPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    const data = await dispatch(signUp(username, email, password, confirmedPassword));
+
+    if (data) {
+      setErrors(data)
     }
   };
 
