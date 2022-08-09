@@ -48,6 +48,25 @@ export const addPlayer = (league_id, player_name, position, team, bio) => async 
     }
 }
 
+export const editPlayerInfo = (playerId, player_name, position, team, bio) => async (dispatch) => {
+    const response = await fetch(`/api/players/edit/${playerId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            player_name,
+            position,
+            team,
+            bio
+        })
+    });
+
+    if (response.ok) {
+        const player = await response.json();
+        dispatch(actionAddPlayer(player));
+        return player;
+    }
+}
+
 
 // Player Reducer
 const PlayersReducer = (state = {}, action) => {
