@@ -5,7 +5,7 @@ def seed_teams_and_players():
         league_id=1,
         player_name='Jiannis Antetokounmpo',
         player_image='https://esrf.s3.amazonaws.com/Player-Jkim.png',
-        position='PG',
+        position='PF',
         team='Budget Bucks',
         bio='Jiannis (#34), a 6\'11" power forward, attended The University of Maryland before joining the big league. \
                 Jiannis averaged 34 points, 11.2 assists, 14.9 rebounds, and 11 blocks per game.'
