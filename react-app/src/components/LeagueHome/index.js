@@ -7,6 +7,7 @@ import LeagueEditForm from '../LeagueEditForm';
 import LeagueScoringForm from '../LeagueScoringForm';
 import LeagueStartForm from '../LeagueStartForm';
 import PlayerList from '../PlayerList';
+import PlayerForm from '../PlayerForm';
 
 const LeagueHome = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const LeagueHome = () => {
                 <LeagueStartForm leagueId={leagueId} />
                 <DeleteLeagueModal leagueId={leagueId}/>
                 <PlayerList leagueId={leagueId}/>
+                <PlayerForm leagueId={leagueId} />
             </div>
             :
             <h3> Loading... </h3>

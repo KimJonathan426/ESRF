@@ -28,17 +28,17 @@ export const getAllPlayers = (leagueId) => async (dispatch) => {
     }
 }
 
-export const addPlayer = (leagueId, player_name, position, team, bio) => async (dispatch) => {
-    const response = await fetch(`/api/player/new`, {
+export const addPlayer = (league_id, player_name, position, team, bio) => async (dispatch) => {
+    const response = await fetch('/api/players/new', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: {
-            leagueId,
+        body: JSON.stringify({
+            league_id,
             player_name,
             position,
             team,
             bio
-        }
+        })
     });
 
     if (response.ok) {

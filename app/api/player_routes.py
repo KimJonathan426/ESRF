@@ -18,12 +18,10 @@ def league_players(leagueId):
 def add_player():
     form = PlayerForm()
 
-    print('leagueId from request data', request.form.get('leagueId'))
-
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         player = Player(
-            league_id = request.form.get('leagueId'),
+            league_id = form.data['league_id'],
             player_name = form.data['player_name'],
             position = form.data['position'],
             team = form.data['team'],

@@ -4,7 +4,7 @@ import { addPlayer } from "../../store/player"
 
 const PlayerForm = ({ leagueId }) => {
     const [playerName, setPlayerName] = useState('');
-    const [position, setPosition] = useState('No Option Chosen');
+    const [position, setPosition] = useState('None');
     const [team, setTeam] = useState('');
     const [bio, setBio] = useState('');
 
@@ -36,15 +36,6 @@ const PlayerForm = ({ leagueId }) => {
         };
     };
 
-    const options = [
-        { value: 'No Option Chosen', label: 'Select Position (Required)...' },
-        { value: 'PG', label: 'Point Guard (PG)' },
-        { value: 'SG', label: 'Shooting Guard (SG)' },
-        { value: 'SF', label: 'Small Forward (SF)' },
-        { value: 'PF', label: 'Power Forward (PF)' },
-        { value: 'C', label: 'Center (C)' }
-    ]
-
 
     return (
         <form onSubmit={handleSubmit}>
@@ -57,9 +48,14 @@ const PlayerForm = ({ leagueId }) => {
                 maxLength='50' /><br />
 
             <label>Position</label>
-            <select
-                options={options}
-                onChange={updatePosition} />
+            <select name='position' onChange={updatePosition}>
+                <option value='None'>--Select Position (Required)--</option>
+                <option value='PG'>Point Guard (PG)</option>
+                <option value='SG'>Shooting Guard (SG)</option>
+                <option value='SF'>Small Forward (SF)</option>
+                <option value='PF'>Power Forward (PF)</option>
+                <option value='C'>Center (C)</option>
+            </select>
 
             <label>Team</label>
             <input
@@ -67,6 +63,7 @@ const PlayerForm = ({ leagueId }) => {
                 onChange={updateTeam}
                 placeholder='Team Name (Optional)'
                 maxLength='40' /><br />
+
             <label>Biography</label>
             <textarea
                 value={bio}
