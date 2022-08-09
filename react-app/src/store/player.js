@@ -4,6 +4,9 @@ const GET_PLAYERS = 'player/GET_PLAYERS';
 // Create and Edit
 const ADD_PLAYER = 'player/ADD_PLAYER';
 
+// Delete
+const DELETE_PLAYER = 'player/DELETE_PLAYER';
+
 
 // Thunk Action Creators
 const actionGetPlayers = (players) => ({
@@ -14,6 +17,11 @@ const actionGetPlayers = (players) => ({
 const actionAddPlayer = (player) => ({
     type: ADD_PLAYER,
     player
+})
+
+const actionDeletePlayer = (playerId) => ({
+    type: DELETE_PLAYER,
+    playerId
 })
 
 
@@ -67,6 +75,17 @@ export const editPlayerInfo = (playerId, player_name, position, team, bio) => as
     }
 }
 
+export const deletePlayer = (playerId) => async (dispatch) => {
+    const response = await fetch(`/api/players/${playerId}/delete`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        dispatch(actionDeletePlayer(playerId));
+        return playerId;
+    }
+}
+
 
 // Player Reducer
 const PlayersReducer = (state = {}, action) => {
@@ -81,6 +100,10 @@ const PlayersReducer = (state = {}, action) => {
             const newState2 = { ...state };
             newState2[action.player.id] = action.player;
             return newState2;
+        case DELETE_PLAYER:
+            const newState3 = { ...state };
+            delete newState3[action.playerId];
+            return newState3;
         default:
             return state;
     }
