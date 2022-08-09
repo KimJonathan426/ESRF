@@ -5,19 +5,23 @@ import { addPlayer, getAllPlayers } from "../../store/player";
 
 const RequiredPlayerCreation = () => {
     const dispatch = useDispatch();
-    const playerCount = useSelector(state => state.players)
-    const { leagueId } = useParams()
+    const players = useSelector(state => state.players);
+    const { leagueId } = useParams();
 
     const [playerName, setPlayerName] = useState('');
     const [position, setPosition] = useState('None');
     const [team, setTeam] = useState('');
     const [bio, setBio] = useState('');
-    const [count, setCount] = useState(Object.values(playerCount).length + 1);
+
+    let playerCount = Object.values(players).length + 1;
 
     useEffect(() => {
-        dispatch(getAllPlayers(leagueId))
-    }, [dispatch])
+        async function fetchPlayers() {
+            const response = await dispatch(getAllPlayers(leagueId))
+        }
 
+        fetchPlayers();
+    }, [dispatch])
 
     const updatePlayerName = (e) => {
         setPlayerName(e.target.value);
@@ -41,13 +45,28 @@ const RequiredPlayerCreation = () => {
         const createdPlayer = await dispatch(addPlayer(league_id, player_name, position, team, bio));
 
         if (createdPlayer) {
-            console.log('success');
+            if (playerCount <= 10) {
+                setPlayerName('');
+                setPosition('');
+                setTeam('');
+                setBio('');
+
+                const option = document.getElementById('reset');
+                option.selected = true;
+            }
         };
     };
 
 
     return (
         <>
+            {playerCount === 1 && (
+                <>
+                    <div> Start your league by creating your players...</div>
+                    <div>Create at least 10 players to be considered an official League!</div>
+                </>
+            )}
+            <div>Player {playerCount} of 10</div>
             <form onSubmit={handleSubmit}>
                 <label>Player Name</label>
                 <input
@@ -59,7 +78,7 @@ const RequiredPlayerCreation = () => {
 
                 <label>Position</label>
                 <select name='position' onChange={updatePosition}>
-                    <option value='None'>--Select Position (Required)--</option>
+                    <option id='reset' value='None'>--Select Position (Required)--</option>
                     <option value='PG'>Point Guard (PG)</option>
                     <option value='SG'>Shooting Guard (SG)</option>
                     <option value='SF'>Small Forward (SF)</option>
