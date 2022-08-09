@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.player_form import PlayerForm
+from app.forms.edit_player_form import EditPlayerForm
 from app.models import db, Player
 
 player_routes = Blueprint('players', __name__)
@@ -32,4 +33,23 @@ def add_player():
         db.session.commit()
 
         return player.to_dict()
+    return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@player_routes.route('/edit/<int:playerId>', methods=['PUT'])
+@login_required
+def edit_player(playerId):
+    form = EditPlayerForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        editedPlayer = Player.query.get(playerId)
+
+        editedPlayer.player_name = form.data['player_name']
+        editedPlayer.position = form.data['position']
+        editedPlayer.team = form.data['team']
+        editedPlayer.bio = form.data['bio']
+
+        db.session.commit()
+
+        return editedPlayer.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
