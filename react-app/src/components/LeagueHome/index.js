@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
-import DeleteLeague from '../DeleteLeague';
+import DeleteLeagueModal from '../DeleteLeagueModal';
 import LeagueEditForm from '../LeagueEditForm';
 import LeagueScoringForm from '../LeagueScoringForm';
 import LeagueStartForm from '../LeagueStartForm';
@@ -25,7 +25,7 @@ const LeagueHome = () => {
                 <LeagueEditForm currentLeagueName={league.league_name} leagueId={leagueId} />
                 <LeagueScoringForm currentLeague={league}/>
                 <LeagueStartForm leagueId={leagueId} />
-                <DeleteLeague leagueId={leagueId}/>
+                <DeleteLeagueModal leagueId={leagueId}/>
             </div>
             :
             <h3> Loading... </h3>
