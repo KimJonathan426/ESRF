@@ -32,7 +32,7 @@ const BaseLeagueForm = () => {
         const createdLeague = await dispatch(addLeague(league_name, team_limit, team_player_limit));
 
         if (createdLeague) {
-            console.log('success!');
+            history.push(`/leagues/${createdLeague.id}/players/new`);
         };
     };
 
