@@ -11,3 +11,9 @@ def league_players(leagueId):
     players = Player.query.filter_by(league_id=leagueId).all()
     print('players', players)
     return {'playerList': [player.to_dict() for player in players]}
+
+# @player_routes.route('/new', methods=['POST'])
+# @login_required
+# def add_player():
+#     leagueId = request.form.get('leagueId')
+#     print('leagueId', leagueId)

@@ -29,10 +29,11 @@ export const getAllPlayers = (leagueId) => async (dispatch) => {
 }
 
 export const addPlayer = (leagueId, player_name, position, team, bio) => async (dispatch) => {
-    const response = await fetch(`/api/players/league/${leagueId}`, {
+    const response = await fetch(`/api/player/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: {
+            leagueId,
             player_name,
             position,
             team,
