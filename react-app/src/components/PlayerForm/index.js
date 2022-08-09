@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { addPlayer } from "../../store/player"
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPlayer } from "../../store/player";
 
 const PlayerForm = ({ leagueId }) => {
     const [playerName, setPlayerName] = useState('');

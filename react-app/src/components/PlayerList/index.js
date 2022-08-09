@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPlayers } from "../../store/player";
 import PlayerModal from "../PlayerModal";
 import EditPlayerModal from "../EditPlayerModal";
+import DeletePlayerModal from "../DeletePlayerModal";
 
 const PlayerList = ({ leagueId }) => {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const PlayerList = ({ leagueId }) => {
                     <div key={player.id}>
                         <PlayerModal player={player} />
                         <EditPlayerModal player={player} />
+                        <DeletePlayerModal playerId={player.id} />
                     </div>
                 ))}
             </div>

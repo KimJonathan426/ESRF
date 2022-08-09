@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { addLeague } from "../../store/league"
 
 const BaseLeagueForm = () => {
@@ -7,6 +8,7 @@ const BaseLeagueForm = () => {
     const [teamLimit, setTeamLimit] = useState(2);
     const [teamPlayerLimit, setTeamPlayerLimit] = useState(5);
 
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const updateLeagueName = (e) => {

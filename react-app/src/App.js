@@ -10,6 +10,7 @@ import User from './components/User';
 import LeagueList from './components/LeagueList';
 import LeagueHome from './components/LeagueHome';
 import BaseLeagueForm from './components/BaseLeagueForm';
+import RequiredPlayerCreation from './components/RequiredPlayerCreation';
 import { authenticate } from './store/session';
 
 function App() {
@@ -45,6 +46,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/leagues/new' exact={true} >
+          <BaseLeagueForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
+          <RequiredPlayerCreation />
+        </ProtectedRoute>
         <ProtectedRoute path='/leagues' exact={true} >
           <LeagueList />
         </ProtectedRoute>
@@ -54,7 +61,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
           <Link to='/leagues'>Leagues Page</Link>
-          <BaseLeagueForm />
+          <Link to='/leagues/new'>Create League</Link>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
