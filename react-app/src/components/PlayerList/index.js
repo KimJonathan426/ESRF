@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPlayers } from "../../store/player";
+import PlayerModal from "../PlayerModal";
 
 const PlayerList = ({ leagueId }) => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const PlayerList = ({ leagueId }) => {
             <div>
                 {playerList.map(player => (
                     <div key={player.id}>
-                        {player.player_name}
+                        <PlayerModal player={player} />
                     </div>
                 ))}
             </div>
