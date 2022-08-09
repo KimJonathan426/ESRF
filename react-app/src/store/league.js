@@ -32,7 +32,7 @@ const actionDeleteLeague = (leagueId) => ({
 
 // Thunks
 export const getAllLeagues = () => async (dispatch) => {
-    const response = await fetch('api/leagues/');
+    const response = await fetch('/api/leagues/');
 
     if (response.ok) {
         const leagues = await response.json();
@@ -148,7 +148,7 @@ export const deleteLeague = (leagueId) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(actionDeleteLeague(leagueId));
-        return leagueId
+        return leagueId;
     }
 }
 

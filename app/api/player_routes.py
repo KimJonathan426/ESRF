@@ -53,3 +53,13 @@ def edit_player(playerId):
 
         return editedPlayer.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@player_routes.route('/<int:playerId>/delete', methods=['DELETE'])
+@login_required
+def delete_player(playerId):
+    deleted_player = Player.query.get(playerId)
+
+    db.session.delete(deleted_player)
+    db.session.commit()
+
+    return 'Deleted Successfully'
