@@ -35,6 +35,7 @@ class Player(db.Model):
     def to_dict_no_team(self):
         return {
             'id': self.id,
+            'league_id': self.league_id,
             'player_name': self.player_name,
             'player_image': self.player_image,
             'position': self.position,
@@ -58,6 +59,7 @@ class Player(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'league_id': self.league_id,
             'player_name': self.player_name,
             'player_image': self.player_image,
             'position': self.position,
