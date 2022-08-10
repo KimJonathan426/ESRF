@@ -14,6 +14,7 @@ const RequiredPlayerCreation = () => {
     const [position, setPosition] = useState('None');
     const [team, setTeam] = useState('');
     const [bio, setBio] = useState('');
+    const [stateLoaded, setStateLoaded] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [imageTab, setImageTab] = useState(false);
 
@@ -22,7 +23,11 @@ const RequiredPlayerCreation = () => {
 
     useEffect(() => {
         async function fetchPlayers() {
-            await dispatch(getAllPlayers(leagueId))
+            const response = await dispatch(getAllPlayers(leagueId))
+
+            if (response) {
+                setStateLoaded(true)
+            }
         }
 
         fetchPlayers();
@@ -87,80 +92,83 @@ const RequiredPlayerCreation = () => {
                 timeLeft -= 1;
             }, 1000);
         }
-    }, [imageTab, redirect]);
+    }, [imageTab, redirect, history, leagueId]);
 
     return (
-        <div>
-            {playerCount <= 10 ? (
-                <>
-                    {playerCount === 1 && (
-                        <>
-                            <div> Start your league by creating your players...</div>
-                            <div>Create at least 10 players to be considered an official League!</div>
-                        </>
-                    )}
-                    <div>Player {playerCount} of 10</div>
-                    <form onSubmit={handleSubmit}>
-                        <label>Player Name</label>
-                        <input
-                            value={playerName}
-                            onChange={updatePlayerName}
-                            placeholder='Player Name (Required)'
-                            required
-                            maxLength='50' /><br />
-
-                        <label>Position</label>
-                        <select name='position' onChange={updatePosition}>
-                            <option id='reset' value='None'>--Select Position (Required)--</option>
-                            <option value='PG'>Point Guard (PG)</option>
-                            <option value='SG'>Shooting Guard (SG)</option>
-                            <option value='SF'>Small Forward (SF)</option>
-                            <option value='PF'>Power Forward (PF)</option>
-                            <option value='C'>Center (C)</option>
-                        </select>
-
-                        <label>Team</label>
-                        <input
-                            value={team}
-                            onChange={updateTeam}
-                            placeholder='Team Name (Optional)'
-                            maxLength='40' /><br />
-
-                        <label>Biography</label>
-                        <textarea
-                            value={bio}
-                            onChange={updateBio}
-                            placeholder='Share information about your player to the league... (Optional)'
-                            maxLength='1000' /><br />
-
-                        <button type='submit'>Next Player</button>
-                    </form>
-                </>
-            )
-                : imageTab ? (
+        stateLoaded ?
+            <div>
+                {playerCount <= 10 ? (
                     <>
-                        <div>Optional - Add Player Images</div>
-                        {playerList.map(player => (
-                            <div key={player.id}>
-                                <PlayerImageUpload playerId={player.id} />
-                            </div>
-                        ))}
-                        <button onClick={handleFinish}>Finish</button>
-                    </>
-                ) : (
-                    <>
-                        <div>Your league is all set!</div>
+                        {playerCount === 1 && (
+                            <>
+                                <div> Start your league by creating your players...</div>
+                                <div>Create at least 10 players to be considered an official League!</div>
+                            </>
+                        )}
+                        <div>Player {playerCount} of 10</div>
+                        <form onSubmit={handleSubmit}>
+                            <label>Player Name</label>
+                            <input
+                                value={playerName}
+                                onChange={updatePlayerName}
+                                placeholder='Player Name (Required)'
+                                required
+                                maxLength='50' /><br />
 
-                        {redirect ? (
-                            <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'></span></div>
-                        )
-                            : (
-                                <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
-                            )}
+                            <label>Position</label>
+                            <select name='position' onChange={updatePosition}>
+                                <option id='reset' value='None'>--Select Position (Required)--</option>
+                                <option value='PG'>Point Guard (PG)</option>
+                                <option value='SG'>Shooting Guard (SG)</option>
+                                <option value='SF'>Small Forward (SF)</option>
+                                <option value='PF'>Power Forward (PF)</option>
+                                <option value='C'>Center (C)</option>
+                            </select>
+
+                            <label>Team</label>
+                            <input
+                                value={team}
+                                onChange={updateTeam}
+                                placeholder='Team Name (Optional)'
+                                maxLength='40' /><br />
+
+                            <label>Biography</label>
+                            <textarea
+                                value={bio}
+                                onChange={updateBio}
+                                placeholder='Share information about your player to the league... (Optional)'
+                                maxLength='1000' /><br />
+
+                            <button type='submit'>Next Player</button>
+                        </form>
                     </>
                 )
-            }
-        </div>
+                    : imageTab ? (
+                        <>
+                            <div>Optional - Add Player Images</div>
+                            {playerList.map(player => (
+                                <div key={player.id}>
+                                    <PlayerImageUpload playerId={player.id} />
+                                </div>
+                            ))}
+                            <button onClick={handleFinish}>Finish</button>
+                        </>
+                    ) : (
+                        <>
+                            <div>Your league is all set!</div>
+
+                            {redirect ? (
+                                <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'></span></div>
+                            )
+                                : (
+                                    <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
+                                )}
+                        </>
+                    )
+                }
+            </div>
+            :
+            <h3>Loading...</h3>
     )
 }
 
