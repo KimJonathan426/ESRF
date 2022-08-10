@@ -60,7 +60,7 @@ def delete_player():
     totalPlayers = int(request.form.get('totalPlayers'))
 
     if (totalPlayers <= 10):
-        return {'error': 'Cannot delete player - League must have a minimum of 10 players...'}, 400
+        return {'errors': 'Cannot delete player, league must have a minimum of 10 players.'}, 400
 
     deleted_player = Player.query.get(request.form.get('playerId'))
 

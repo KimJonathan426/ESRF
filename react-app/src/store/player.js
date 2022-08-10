@@ -92,8 +92,8 @@ export const deletePlayer = (formData) => async (dispatch) => {
         const playerId = await response.json();
         dispatch(actionDeletePlayer(playerId));
     } else {
-        const error = await response.json();
-        return error;
+        const errors = await response.json();
+        return errors;
     }
 }
 

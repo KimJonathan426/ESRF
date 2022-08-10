@@ -15,6 +15,7 @@ const RequiredPlayerCreation = () => {
     const [team, setTeam] = useState('');
     const [bio, setBio] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const [imageTab, setImageTab] = useState(false);
 
     let playerCount = Object.values(players).length + 1;
 
@@ -53,7 +54,6 @@ const RequiredPlayerCreation = () => {
         const createdPlayer = await dispatch(addPlayer(league_id, player_name, position, team, bio));
 
         if (createdPlayer) {
-            console.log('playerCount', playerCount)
             if (playerCount <= 9) {
                 setPlayerName('');
                 setPosition('');
