@@ -97,7 +97,7 @@ export const editPlayerStats = (payload) => async (dispatch) => {
     const turnovers = payload.turnovers;
     const points = payload.points;
 
-    const response = await fetch(`/api/players/${playerId}/edit/stats`, {
+    const response = await fetch(`/api/players/edit/${playerId}/stats`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

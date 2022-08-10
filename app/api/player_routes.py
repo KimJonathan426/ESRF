@@ -5,6 +5,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 from app.forms.player_form import PlayerForm
 from app.forms.edit_player_form import EditPlayerForm
+from app.forms.edit_player_stat_form import EditPlayerStatForm
 from app.models import db, Player
 
 player_routes = Blueprint('players', __name__)
@@ -55,6 +56,33 @@ def edit_player(playerId):
 
         return editedPlayer.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@player_routes.route('/edit/<int:playerId>/stats', methods=['PUT'])
+@login_required
+def edit_player_stats(playerId):
+    form = EditPlayerStatForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        editedPlayer = Player.query.get(playerId)
+
+        editedPlayer.recent_news = form.data['recent_news']
+        editedPlayer.field_goal_made = form.data['field_goal_made']
+        editedPlayer.field_goal_attempted = form.data['field_goal_attempted']
+        editedPlayer.free_throw_made = form.data['free_throw_made']
+        editedPlayer.free_throw_attempted = form.data['free_throw_attempted']
+        editedPlayer.three_point_made = form.data['three_point_made']
+        editedPlayer.assists = form.data['assists']
+        editedPlayer.rebounds = form.data['rebounds']
+        editedPlayer.steals = form.data['steals']
+        editedPlayer.blocks = form.data['blocks']
+        editedPlayer.turnovers = form.data['turnovers']
+        editedPlayer.points = form.data['points']
+
+        db.session.commit()
+
+        return editedPlayer.to_dict()
+    return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
 
 @player_routes.route('/delete', methods=['DELETE'])
 @login_required
