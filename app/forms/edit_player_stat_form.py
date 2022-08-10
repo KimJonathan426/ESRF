@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField
+from wtforms import StringField, IntegerField
 from wtforms.validators import ValidationError
 from app.models import Player
 
 class EditPlayerStatForm(FlaskForm):
+    recent_news = StringField('recent news')
     field_goal_made = IntegerField('field goal made')
     field_goal_attempted = IntegerField('field goal attempted')
     free_throw_made = IntegerField('free throw made')

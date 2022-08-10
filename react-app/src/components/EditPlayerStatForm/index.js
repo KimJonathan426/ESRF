@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editPlayerStats } from "../../store/league";
+import { editPlayerStats } from "../../store/player";
 
 const EditPlayerStatForm = ({ currentPlayer }) => {
     const [recentNews, setRecentNews] = useState(currentPlayer.recent_news);
@@ -66,12 +66,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
         const free_throw_made = freeThrowMade;
         const free_throw_attempted = freeThrowAttempted;
         const three_point_made = threePointMade;
-        const assists = assists;
-        const rebounds = rebounds;
-        const steals = steals;
-        const blocks = blocks;
-        const turnovers = turnovers;
-        const points = points;
 
         const payload = {
             playerId,
@@ -109,7 +103,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={fieldGoalMade}
                 onChange={updateFieldGoalMade}
-                required
                 min='-1000'
                 max='1000' />
             <label>Field Goal Attempted (FGA)</label>
@@ -117,7 +110,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={fieldGoalAttempted}
                 onChange={updateFieldGoalAttempted}
-                required
                 min='-1000'
                 max='1000' />
             <label>Free Throw Made (FTM)</label>
@@ -125,7 +117,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={freeThrowMade}
                 onChange={updateFreeThrowMade}
-                required
                 min='-1000'
                 max='1000' />
             <label>Free Throw Attempted (FTA)</label>
@@ -133,7 +124,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={freeThrowAttempted}
                 onChange={updateFreeThrowAttempted}
-                required
                 min='-1000'
                 max='1000' />
             <label>Three Pointers Made (3PM)</label>
@@ -141,7 +131,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={threePointMade}
                 onChange={updateThreePointMade}
-                required
                 min='-1000'
                 max='1000' />
             <label>Assists (AST)</label>
@@ -149,7 +138,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={assists}
                 onChange={updateAssists}
-                required
                 min='-1000'
                 max='1000' />
             <label>Rebounds (REB)</label>
@@ -157,7 +145,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={rebounds}
                 onChange={updateRebounds}
-                required
                 min='-1000'
                 max='1000' />
             <label>Steals (STL)</label>
@@ -165,7 +152,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={steals}
                 onChange={updateSteals}
-                required
                 min='-1000'
                 max='1000' />
             <label>Blocks (BLK)</label>
@@ -173,7 +159,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={blocks}
                 onChange={updateBlocks}
-                required
                 min='-1000'
                 max='1000' />
             <label>Turnovers (TO)</label>
@@ -181,7 +166,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={turnovers}
                 onChange={updateTurnovers}
-                required
                 min='-1000'
                 max='1000' />
             <label>Points (PTS)</label>
@@ -189,7 +173,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={points}
                 onChange={updatePoints}
-                required
                 min='-1000'
                 max='1000' />
 
