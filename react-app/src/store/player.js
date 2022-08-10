@@ -1,11 +1,14 @@
 // Read
-const GET_PLAYERS = 'player/GET_PLAYERS';
+const GET_PLAYERS = 'players/GET_PLAYERS';
 
 // Create and Edit
-const ADD_PLAYER = 'player/ADD_PLAYER';
+const ADD_PLAYER = 'players/ADD_PLAYER';
 
 // Delete
-const DELETE_PLAYER = 'player/DELETE_PLAYER';
+const DELETE_PLAYER = 'players/DELETE_PLAYER';
+
+// Clear
+const CLEAR_PLAYERS = 'players/CLEAR_PLAYERS';
 
 
 // Thunk Action Creators
@@ -22,6 +25,10 @@ const actionAddPlayer = (player) => ({
 const actionDeletePlayer = (playerId) => ({
     type: DELETE_PLAYER,
     playerId
+})
+
+export const clearPlayers = () => ({
+    type: CLEAR_PLAYERS
 })
 
 
@@ -104,6 +111,9 @@ const PlayersReducer = (state = {}, action) => {
             const newState3 = { ...state };
             delete newState3[action.playerId];
             return newState3;
+        case CLEAR_PLAYERS:
+            const clearState = {};
+            return clearState;
         default:
             return state;
     }
