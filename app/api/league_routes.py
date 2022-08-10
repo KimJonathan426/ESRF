@@ -41,7 +41,7 @@ def create_league():
         return league.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/<int:leagueId>/edit/base', methods=['PUT'])
+@league_routes.route('/edit/<int:leagueId>/base', methods=['PUT'])
 @login_required
 def edit_base(leagueId):
     form = LeagueEditForm()
@@ -56,7 +56,7 @@ def edit_base(leagueId):
         return editedLeague.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/<int:leagueId>/edit/scoring', methods=['PUT'])
+@league_routes.route('/edit/<int:leagueId>/scoring', methods=['PUT'])
 @login_required
 def edit_scoring(leagueId):
     form = LeagueScoringForm()
@@ -82,7 +82,7 @@ def edit_scoring(leagueId):
         return editedLeague.to_dict()
     return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/<int:leagueId>/edit/start', methods=['PUT'])
+@league_routes.route('/edit/<int:leagueId>/start', methods=['PUT'])
 @login_required
 def edit_start(leagueId):
     form = LeagueStartForm()
@@ -100,7 +100,7 @@ def edit_start(leagueId):
         return editedLeague.to_dict()
     return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
 
-@league_routes.route('/<int:leagueId>/delete', methods=['DELETE'])
+@league_routes.route('/delete/<int:leagueId>', methods=['DELETE'])
 @login_required
 def delete_league(leagueId):
     deleted_league = League.query.get(leagueId)

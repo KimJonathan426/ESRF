@@ -70,7 +70,7 @@ export const addLeague = (league_name, team_limit, team_player_limit) => async (
 }
 
 export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
-    const response = await fetch(`/api/leagues/${leagueId}/edit/base}`, {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/base}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -99,7 +99,7 @@ export const editLeagueScoring = (payload) => async (dispatch) => {
     const turnovers_weight = payload.turnovers_weight;
     const points_weight = payload.points_weight;
 
-    const response = await fetch(`/api/leagues/${leagueId}/edit/scoring`, {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/scoring`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -125,7 +125,7 @@ export const editLeagueScoring = (payload) => async (dispatch) => {
 }
 
 export const editLeagueStart = (leagueId, start_date, start_time) => async (dispatch) => {
-    const response = await fetch(`/api/leagues/${leagueId}/edit/start`, {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/start`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -142,7 +142,7 @@ export const editLeagueStart = (leagueId, start_date, start_time) => async (disp
 }
 
 export const deleteLeague = (leagueId) => async (dispatch) => {
-    const response = await fetch(`/api/leagues/${leagueId}/delete`, {
+    const response = await fetch(`/api/leagues/delete/${leagueId}`, {
         method: 'DELETE',
     });
 
