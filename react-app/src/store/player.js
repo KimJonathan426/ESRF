@@ -82,14 +82,18 @@ export const editPlayerInfo = (playerId, player_name, position, team, bio) => as
     }
 }
 
-export const deletePlayer = (playerId) => async (dispatch) => {
-    const response = await fetch(`/api/players/${playerId}/delete`, {
+export const deletePlayer = (formData) => async (dispatch) => {
+    const response = await fetch(`/api/players/delete`, {
         method: 'DELETE',
+        body: formData
     });
 
     if (response.ok) {
+        const playerId = await response.json();
         dispatch(actionDeletePlayer(playerId));
-        return playerId;
+    } else {
+        const error = await response.json();
+        return error;
     }
 }
 

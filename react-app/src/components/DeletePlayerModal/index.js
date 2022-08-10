@@ -3,12 +3,21 @@ import { useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { deletePlayer } from '../../store/player';
 
-const DeletePlayerModal = ({ playerId }) => {
+const DeletePlayerModal = ({ totalPlayers, playerId }) => {
     const [showModal, setShowModal] = useState(false);
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
     const onDelete = async () => {
-        await dispatch(deletePlayer(playerId));
+        const formData = new FormData();
+        formData.append('totalPlayers', totalPlayers);
+        formData.append('playerId', playerId);
+
+        const response = await dispatch(deletePlayer(formData));
+
+        if (response) {
+            setError(response.error);
+        }
     }
 
     return (
@@ -16,6 +25,9 @@ const DeletePlayerModal = ({ playerId }) => {
             <button onClick={() => setShowModal(true)}>Delete Player</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
+                    {error && (
+                        <div>{error}</div>
+                    )}
                     <div>
                         <h2>Delete Confirmation</h2>
                     </div>

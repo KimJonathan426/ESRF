@@ -24,7 +24,7 @@ const PlayerList = ({ leagueId }) => {
                     <div key={player.id}>
                         <PlayerModal player={player} />
                         <EditPlayerModal player={player} />
-                        <DeletePlayerModal playerId={player.id} />
+                        <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />
                     </div>
                 ))}
             </div>

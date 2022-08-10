@@ -54,12 +54,17 @@ def edit_player(playerId):
         return editedPlayer.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
 
-@player_routes.route('/<int:playerId>/delete', methods=['DELETE'])
+@player_routes.route('/delete', methods=['DELETE'])
 @login_required
-def delete_player(playerId):
-    deleted_player = Player.query.get(playerId)
+def delete_player():
+    totalPlayers = int(request.form.get('totalPlayers'))
+
+    if (totalPlayers <= 10):
+        return {'error': 'Cannot delete player - League must have a minimum of 10 players...'}, 400
+
+    deleted_player = Player.query.get(request.form.get('playerId'))
 
     db.session.delete(deleted_player)
     db.session.commit()
 
-    return 'Deleted Successfully'
+    return request.form.get('playerId')
