@@ -82,6 +82,47 @@ export const editPlayerInfo = (playerId, player_name, position, team, bio) => as
     }
 }
 
+export const editPlayerStats = (payload) => async (dispatch) => {
+    const playerId = payload.playerId;
+    const recent_news = payload.recent_news;
+    const field_goal_made = payload.field_goal_made;
+    const field_goal_attempted =payload.field_goal_attempted;
+    const free_throw_made = payload.free_throw_made;
+    const free_throw_attempted = payload.free_throw_attempted;
+    const three_point_made = payload.three_point_made;
+    const assists = payload.assists;
+    const rebounds = payload.rebounds;
+    const steals = payload.steals;
+    const blocks = payload.blocks;
+    const turnovers = payload.turnovers;
+    const points = payload.points;
+
+    const response = await fetch(`/api/players/${playerId}/edit/stats`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            recent_news,
+            field_goal_made,
+            field_goal_attempted,
+            free_throw_made,
+            free_throw_attempted,
+            three_point_made,
+            assists,
+            rebounds,
+            steals,
+            blocks,
+            turnovers,
+            points
+        })
+    });
+
+    if (response.ok) {
+        const player = await response.json();
+        dispatch(actionAddPlayer(player));
+        return player;
+    };
+}
+
 export const deletePlayer = (formData) => async (dispatch) => {
     const response = await fetch(`/api/players/delete`, {
         method: 'DELETE',
