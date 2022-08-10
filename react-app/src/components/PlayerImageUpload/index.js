@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPlayer } from '../../store/player';
+import { actionAddPlayer } from '../../store/player';
 import ErrorModal from '../ErrorModal';
 import './PlayerImageUpload.css'
 
@@ -32,7 +32,7 @@ const PlayerImageUpload = ({ playerId }) => {
 
         if (imageUploadPlayer && imageUploadPlayer.errors === undefined) {
             setImageLoading(false);
-            dispatch(addPlayer(imageUploadPlayer))
+            dispatch(actionAddPlayer(imageUploadPlayer))
         }
         else if (imageUploadPlayer.errors) {
             errorsArray.push(imageUploadPlayer.errors)
@@ -57,7 +57,6 @@ const PlayerImageUpload = ({ playerId }) => {
             <ErrorModal hideModal={() => setShowModal(false)} showModal={showModal} validationErrors={errors} />
             <div>
 
-                <label htmlFor="user-post-file">Choose photo</label>
                 <input
                     id="user-post-file"
                     type="file"

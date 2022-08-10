@@ -85,7 +85,7 @@ def upload_player_image(playerId):
     image = request.files["image"]
 
     if not allowed_file(image.filename):
-        return {"errors": "Invalid filetype, jpg, jpeg, png, pdf only."}, 400
+        return {"errors": "Invalid filetype, jpg, jpeg, png, gif only."}, 400
 
     image.filename = get_unique_filename(image.filename)
 

@@ -17,7 +17,7 @@ const actionGetPlayers = (players) => ({
     players
 })
 
-const actionAddPlayer = (player) => ({
+export const actionAddPlayer = (player) => ({
     type: ADD_PLAYER,
     player
 })

@@ -27,6 +27,7 @@ const RequiredPlayerCreation = () => {
 
             if (response) {
                 setStateLoaded(true)
+                setImageTab(true)
             }
         }
 
@@ -80,7 +81,7 @@ const RequiredPlayerCreation = () => {
 
     useEffect(() => {
         if (!imageTab && redirect) {
-            let timeLeft = 5;
+            let timeLeft = 4;
             let timer = setInterval(() => {
                 if (timeLeft <= 0) {
                     clearInterval(timer);
@@ -148,6 +149,8 @@ const RequiredPlayerCreation = () => {
                             <div>Optional - Add Player Images</div>
                             {playerList.map(player => (
                                 <div key={player.id}>
+                                    <img src={player.player_image}></img>
+                                    <div>{player.player_name}</div>
                                     <PlayerImageUpload playerId={player.id} />
                                 </div>
                             ))}
@@ -158,7 +161,7 @@ const RequiredPlayerCreation = () => {
                             <div>Your league is all set!</div>
 
                             {redirect ? (
-                                <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'></span></div>
+                                <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'>5</span></div>
                             )
                                 : (
                                     <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
