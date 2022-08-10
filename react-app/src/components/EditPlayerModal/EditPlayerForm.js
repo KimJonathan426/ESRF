@@ -31,7 +31,7 @@ const EditPlayerForm = ({ player }) => {
             const option = document.getElementById('C');
             option.setAttribute('selected', '');
         }
-    }, [])
+    }, [player.position])
 
     const updatePlayerName = (e) => {
         setPlayerName(e.target.value);

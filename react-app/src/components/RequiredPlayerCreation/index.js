@@ -1,8 +1,8 @@
-import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { addPlayer, getAllPlayers } from "../../store/player";
+import PlayerImageUpload from "../PlayerImageUpload";
 
 const RequiredPlayerCreation = () => {
     const history = useHistory();
@@ -17,20 +17,17 @@ const RequiredPlayerCreation = () => {
     const [redirect, setRedirect] = useState(false);
     const [imageTab, setImageTab] = useState(false);
 
-    let playerCount = Object.values(players).length + 1;
+    const playerList = Object.values(players);
+    let playerCount = playerList.length + 1;
 
     useEffect(() => {
         async function fetchPlayers() {
-            const response = await dispatch(getAllPlayers(leagueId))
+            await dispatch(getAllPlayers(leagueId))
         }
 
         fetchPlayers();
 
-        if (playerCount > 9) {
-            setRedirect(true);
-        }
-
-    }, [dispatch])
+    }, [dispatch, leagueId])
 
     const updatePlayerName = (e) => {
         setPlayerName(e.target.value);
@@ -64,22 +61,33 @@ const RequiredPlayerCreation = () => {
                 option.selected = true;
             }
             else if (playerCount > 9) {
-                let timeLeft = 5;
-                let timer = setInterval(() => {
-                    if (timeLeft <= 0){
-                        clearInterval(timer);
-                        setRedirect(true);
-                        history.push(`/leagues/${leagueId}`);
-                    } else {
-                        document.getElementById('timer').innerHTML = timeLeft;
-                    }
-                    timeLeft -= 1;
-                }, 1000)
-
+                setImageTab(true);
             }
         };
     };
 
+    const handleFinish = (e) => {
+        e.preventDefault();
+
+        setImageTab(false);
+        setRedirect(true);
+    }
+
+    useEffect(() => {
+        if (!imageTab && redirect) {
+            let timeLeft = 5;
+            let timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    setRedirect(false);
+                    history.push(`/leagues/${leagueId}`);
+                } else {
+                    document.getElementById('timer').innerHTML = timeLeft;
+                }
+                timeLeft -= 1;
+            }, 1000);
+        }
+    }, [imageTab, redirect]);
 
     return (
         <div>
@@ -125,20 +133,30 @@ const RequiredPlayerCreation = () => {
                             placeholder='Share information about your player to the league... (Optional)'
                             maxLength='1000' /><br />
 
-                        <button type='submit'>Create Player</button>
+                        <button type='submit'>Next Player</button>
                     </form>
                 </>
             )
-                : (
+                : imageTab ? (
+                    <>
+                        <div>Optional - Add Player Images</div>
+                        {playerList.map(player => (
+                            <div key={player.id}>
+                                <PlayerImageUpload playerId={player.id} />
+                            </div>
+                        ))}
+                        <button onClick={handleFinish}>Finish</button>
+                    </>
+                ) : (
                     <>
                         <div>Your league is all set!</div>
 
-                        {!redirect ? (
+                        {redirect ? (
                             <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'></span></div>
                         )
-                    : (
-                        <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
-                    )}
+                            : (
+                                <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
+                            )}
                     </>
                 )
             }
