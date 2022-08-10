@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPlayers } from "../../store/player";
+import { getAllPlayers, clearPlayers } from "../../store/player";
 import PlayerModal from "../PlayerModal";
 import EditPlayerModal from "../EditPlayerModal";
 import DeletePlayerModal from "../DeletePlayerModal";
@@ -12,6 +12,8 @@ const PlayerList = ({ leagueId }) => {
 
     useEffect(() => {
         dispatch(getAllPlayers(leagueId))
+
+        return () => dispatch(clearPlayers())
     }, [dispatch, leagueId])
 
 
