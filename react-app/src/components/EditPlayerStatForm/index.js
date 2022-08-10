@@ -103,77 +103,77 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 type='number'
                 value={fieldGoalMade}
                 onChange={updateFieldGoalMade}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Field Goal Attempted (FGA)</label>
             <input
                 type='number'
                 value={fieldGoalAttempted}
                 onChange={updateFieldGoalAttempted}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Free Throw Made (FTM)</label>
             <input
                 type='number'
                 value={freeThrowMade}
                 onChange={updateFreeThrowMade}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Free Throw Attempted (FTA)</label>
             <input
                 type='number'
                 value={freeThrowAttempted}
                 onChange={updateFreeThrowAttempted}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Three Pointers Made (3PM)</label>
             <input
                 type='number'
                 value={threePointMade}
                 onChange={updateThreePointMade}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Assists (AST)</label>
             <input
                 type='number'
                 value={assists}
                 onChange={updateAssists}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Rebounds (REB)</label>
             <input
                 type='number'
                 value={rebounds}
                 onChange={updateRebounds}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Steals (STL)</label>
             <input
                 type='number'
                 value={steals}
                 onChange={updateSteals}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Blocks (BLK)</label>
             <input
                 type='number'
                 value={blocks}
                 onChange={updateBlocks}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Turnovers (TO)</label>
             <input
                 type='number'
                 value={turnovers}
                 onChange={updateTurnovers}
-                min='-1000'
+                min='0'
                 max='1000' />
             <label>Points (PTS)</label>
             <input
                 type='number'
                 value={points}
                 onChange={updatePoints}
-                min='-1000'
+                min='0'
                 max='1000' />
 
             <button type='submit'>Save Changes</button>

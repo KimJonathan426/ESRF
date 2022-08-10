@@ -149,7 +149,7 @@ const RequiredPlayerCreation = () => {
                             <div>Optional - Add Player Images</div>
                             {playerList.map(player => (
                                 <div key={player.id}>
-                                    <img src={player.player_image}></img>
+                                    <img src={player.player_image} alt='player'></img>
                                     <div>{player.player_name}</div>
                                     <PlayerImageUpload playerId={player.id} />
                                 </div>

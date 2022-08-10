@@ -2,11 +2,15 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { addLeague } from "../../store/league"
+import ErrorModal from '../ErrorModal';
 
 const BaseLeagueForm = () => {
     const [leagueName, setLeagueName] = useState('');
     const [teamLimit, setTeamLimit] = useState(2);
     const [teamPlayerLimit, setTeamPlayerLimit] = useState(5);
+    const [showModal, setShowModal] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -25,26 +29,32 @@ const BaseLeagueForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const errors = [];
+
         const league_name = leagueName;
         const team_limit = teamLimit;
         const team_player_limit = teamPlayerLimit;
 
         const createdLeague = await dispatch(addLeague(league_name, team_limit, team_player_limit));
 
-        if (createdLeague) {
+        if (createdLeague && createdLeague.errors === undefined) {
             history.push(`/leagues/${createdLeague.id}/players/new`);
-        };
+        }
+        else if (createdLeague.errors) {
+            errors.push(createdLeague.errors)
+            setValidationErrors(errors)
+            setShowModal(true)
+        }
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            <ErrorModal hideModal={() => setShowModal(false)} showErrorModal={showModal} validationErrors={validationErrors} />
             <label>League Name</label>
             <input
                 value={leagueName}
                 onChange={updateLeagueName}
-                placeholder='League Name (Required)'
-                required
-                maxLength='50' /><br />
+                placeholder='League Name (Required)' /><br />
 
             <fieldset>
                 <legend>Number of Teams</legend>

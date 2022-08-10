@@ -8,7 +8,6 @@ import LeagueScoringForm from '../LeagueScoringForm';
 import LeagueStartForm from '../LeagueStartForm';
 import PlayerList from '../PlayerList';
 import PlayerForm from '../PlayerForm';
-import EditPlayerStatSheet from '../EditPlayerStatSheet';
 
 const LeagueHome = () => {
     const dispatch = useDispatch();

@@ -67,6 +67,10 @@ export const addLeague = (league_name, team_limit, team_player_limit) => async (
         dispatch(actionAddLeague(league));
         return league;
     }
+    else {
+        const errors = await response.json();
+        return errors
+    }
 }
 
 export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
@@ -88,7 +92,7 @@ export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
 export const editLeagueScoring = (payload) => async (dispatch) => {
     const leagueId = payload.leagueId;
     const field_goal_made_weight = payload.field_goal_made_weight;
-    const field_goal_attempted_weight =payload.field_goal_attempted_weight;
+    const field_goal_attempted_weight = payload.field_goal_attempted_weight;
     const free_throw_made_weight = payload.free_throw_made_weight;
     const free_throw_attempted_weight = payload.free_throw_attempted_weight;
     const three_point_made_weight = payload.three_point_made_weight;
