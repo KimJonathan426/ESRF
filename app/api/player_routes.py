@@ -82,7 +82,7 @@ def edit_player_stats(playerId):
         db.session.commit()
 
         return editedPlayer.to_dict()
-    return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @player_routes.route('/delete', methods=['DELETE'])
 @login_required

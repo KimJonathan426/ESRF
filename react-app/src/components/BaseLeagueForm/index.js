@@ -9,7 +9,7 @@ const BaseLeagueForm = () => {
     const [leagueName, setLeagueName] = useState('');
     const [teamLimit, setTeamLimit] = useState(2);
     const [teamPlayerLimit, setTeamPlayerLimit] = useState(5);
-    const [showModal, setShowModal] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
 
 
@@ -62,9 +62,9 @@ const BaseLeagueForm = () => {
             history.push(`/leagues/${createdLeague.id}/players/new`);
         }
         else if (createdLeague.errors) {
-            errors.push(...createdLeague.errors)
-            setValidationErrors(errors)
-            setShowModal(true)
+            errors.push(...createdLeague.errors);
+            setValidationErrors(errors);
+            setShowErrorModal(true);
         }
     };
 
@@ -83,7 +83,7 @@ const BaseLeagueForm = () => {
                     </div>
                     <div className='create-league-form-container'>
                         <form className='create-league-form' onSubmit={handleSubmit}>
-                            <ErrorModal hideModal={() => setShowModal(false)} showErrorModal={showModal} validationErrors={validationErrors} />
+                            <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
                             <div className='league-name-container'>
                                 <label>League Name</label>
                                 <input

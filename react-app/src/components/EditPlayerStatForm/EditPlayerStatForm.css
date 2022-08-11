@@ -1,0 +1,77 @@
+.player-stat-info {
+    display: flex;
+    flex-direction: row;
+    width: 130px;
+    height: 50px;
+}
+
+.player-stat-image {
+    width: 30px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.player-stat-name {
+    box-sizing: border-box;
+    display: flex;
+    justify-items: flex-start;
+    width: 100px;
+    height: 45px;
+    margin-top: 5px;
+    overflow: auto;
+}
+
+.player-stat-name > div {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.stat-form-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 1240px;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+
+.recent-news-container {
+    height: 50px;
+    margin: 0px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#recent-news {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-shadow: none;
+    width: 250px;
+    height: 50px;
+
+}
+
+.stat-form-container > input {
+    text-align: center;
+    padding: 0px;
+    width: 67px;
+    height: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-right: 1px solid black;
+    border-radius: 0px;
+}
+
+.save-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    height: 30px;
+}
+
+.white {
+    min-width: 1240px;
+    background-color: white;
+}

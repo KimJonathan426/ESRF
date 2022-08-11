@@ -1,0 +1,93 @@
+.stat-sheet-title {
+    font-size: 24px;
+    text-decoration: underline;
+    text-align: center;
+    min-width: 1240px;
+}
+
+.stat-column{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 30px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.stat-column > span {
+    min-width: fit-content;
+}
+
+.stat-sheet {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    min-width: 1240px;
+    height: fit-content;
+    margin-bottom: 100px;
+}
+
+#player-column {
+    position: relative;
+    left: 43px;
+}
+
+#recent-news-column {
+    position: relative;
+    left: 167px;
+}
+
+#fgm-column {
+    position: relative;
+    left: 261px;
+}
+
+#fga-column {
+    position: relative;
+    left: 297px;
+}
+
+#ftm-column {
+    position: relative;
+    left: 335px;
+}
+
+#fta-column {
+    position: relative;
+    left: 373px;
+}
+
+#three-column {
+    position: relative;
+    left: 411px;
+}
+
+#ast-column {
+    position: relative;
+    left: 449px;
+}
+
+#reb-column {
+    position: relative;
+    left: 490px;
+}
+
+#stl-column {
+    position: relative;
+    left: 531px;
+}
+
+#blk-column {
+    position: relative;
+    left: 571px;
+}
+
+#to-column {
+    position: relative;
+    left: 615px;
+}
+
+#pts-column {
+    position: relative;
+    left: 660px;
+}

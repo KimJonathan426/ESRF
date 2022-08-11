@@ -123,8 +123,15 @@ export const editPlayerStats = (payload) => async (dispatch) => {
     if (response.ok) {
         const player = await response.json();
         dispatch(actionAddPlayer(player));
-        return player;
-    };
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export const deletePlayer = (formData) => async (dispatch) => {

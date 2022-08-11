@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPlayerStats } from "../../store/player";
+import $ from 'jquery';
+import ErrorModal from "../ErrorModal";
+import './EditPlayerStatForm.css';
 
 const EditPlayerStatForm = ({ currentPlayer }) => {
     const [recentNews, setRecentNews] = useState(currentPlayer.recent_news);
@@ -15,6 +18,8 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
     const [blocks, setBlocks] = useState(currentPlayer.blocks);
     const [turnovers, setTurnovers] = useState(currentPlayer.turnovers);
     const [points, setPoints] = useState(currentPlayer.points);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -58,6 +63,9 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('e', e)
+        console.log('e.target', e.target)
+        console.log('e.target.id', e.target.id)
 
         const playerId = currentPlayer.id;
         const recent_news = recentNews;
@@ -83,101 +91,117 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
             points
         }
 
-        const editedPlayer = await dispatch(editPlayerStats(payload));
+        const errors = await dispatch(editPlayerStats(payload));
 
-        if (editedPlayer) {
-            console.log('success!');
-        };
+        if (errors) {
+            setValidationErrors(errors);
+            setShowErrorModal(true);
+        }
+        else {
+            $(`#${currentPlayer.id}`).fadeOut(100).fadeIn(600);
+        }
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>Recent News</label>
-            <textarea
-                value={recentNews}
-                onChange={updateRecentNews}
-                placeholder='How did the player perform?'
-                maxLength='1000' />
-            <label>Field Goal Made (FGM)</label>
-            <input
-                type='number'
-                value={fieldGoalMade}
-                onChange={updateFieldGoalMade}
-                min='0'
-                max='1000' />
-            <label>Field Goal Attempted (FGA)</label>
-            <input
-                type='number'
-                value={fieldGoalAttempted}
-                onChange={updateFieldGoalAttempted}
-                min='0'
-                max='1000' />
-            <label>Free Throw Made (FTM)</label>
-            <input
-                type='number'
-                value={freeThrowMade}
-                onChange={updateFreeThrowMade}
-                min='0'
-                max='1000' />
-            <label>Free Throw Attempted (FTA)</label>
-            <input
-                type='number'
-                value={freeThrowAttempted}
-                onChange={updateFreeThrowAttempted}
-                min='0'
-                max='1000' />
-            <label>Three Pointers Made (3PM)</label>
-            <input
-                type='number'
-                value={threePointMade}
-                onChange={updateThreePointMade}
-                min='0'
-                max='1000' />
-            <label>Assists (AST)</label>
-            <input
-                type='number'
-                value={assists}
-                onChange={updateAssists}
-                min='0'
-                max='1000' />
-            <label>Rebounds (REB)</label>
-            <input
-                type='number'
-                value={rebounds}
-                onChange={updateRebounds}
-                min='0'
-                max='1000' />
-            <label>Steals (STL)</label>
-            <input
-                type='number'
-                value={steals}
-                onChange={updateSteals}
-                min='0'
-                max='1000' />
-            <label>Blocks (BLK)</label>
-            <input
-                type='number'
-                value={blocks}
-                onChange={updateBlocks}
-                min='0'
-                max='1000' />
-            <label>Turnovers (TO)</label>
-            <input
-                type='number'
-                value={turnovers}
-                onChange={updateTurnovers}
-                min='0'
-                max='1000' />
-            <label>Points (PTS)</label>
-            <input
-                type='number'
-                value={points}
-                onChange={updatePoints}
-                min='0'
-                max='1000' />
+    $(function () {
+        let focusedElement;
+        $(document).on('focus', 'input', function () {
+            focusedElement = this.select();
+        });
+    });
 
-            <button type='submit'>Save Changes</button>
-        </form>
+
+    return (
+        <>
+            <form className='stat-form-container' onSubmit={handleSubmit}>
+                <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
+                <div className='player-stat-info'>
+                    <div>
+                        <img className='player-stat-image' src={currentPlayer.player_image} alt='player' />
+                    </div>
+                    <div className='player-stat-name'>
+                        <div>
+                            {currentPlayer.player_name}
+                        </div>
+                    </div>
+                </div>
+                <div className='recent-news-container'>
+                    <textarea
+                        id='recent-news'
+                        value={recentNews}
+                        onChange={updateRecentNews}
+
+                        placeholder='How did the player perform?' />
+                </div>
+
+                <input
+                    id='fgm'
+                    type='number'
+                    value={fieldGoalMade}
+                    onChange={updateFieldGoalMade} />
+
+                <input
+                    id='fga'
+                    type='number'
+                    value={fieldGoalAttempted}
+                    onChange={updateFieldGoalAttempted} />
+
+                <input
+                    id='ftm'
+                    type='number'
+                    value={freeThrowMade}
+                    onChange={updateFreeThrowMade} />
+
+                <input
+                    id='fta'
+                    type='number'
+                    value={freeThrowAttempted}
+                    onChange={updateFreeThrowAttempted} />
+
+                <input
+                    id='three-point'
+                    type='number'
+                    value={threePointMade}
+                    onChange={updateThreePointMade} />
+
+                <input
+                    id='ast'
+                    type='number'
+                    value={assists}
+                    onChange={updateAssists} />
+
+                <input
+                    id='reb'
+                    type='number'
+                    value={rebounds}
+                    onChange={updateRebounds} />
+
+                <input
+                    id='stl'
+                    type='number'
+                    value={steals}
+                    onChange={updateSteals} />
+
+                <input
+                    id='blk'
+                    type='number'
+                    value={blocks}
+                    onChange={updateBlocks} />
+
+                <input
+                    id='to'
+                    type='number'
+                    value={turnovers}
+                    onChange={updateTurnovers} />
+
+                <input
+                    id='pts'
+                    type='number'
+                    value={points}
+                    onChange={updatePoints} />
+
+                <button className='save-btn' type='submit'>Save</button>
+            </form>
+        </>
     )
 }
 
