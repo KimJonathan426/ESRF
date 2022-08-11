@@ -36,14 +36,14 @@ const PlayerImageUpload = ({ playerId }) => {
         }
         else if (imageUploadPlayer.errors) {
             errorsArray.push(imageUploadPlayer.errors)
+            setErrors(errorsArray)
+            setShowModal(true);
             setImageLoading(false);
         }
         else {
             errorsArray.push('Unknown error, please refresh and try again.')
-        }
-        if (errorsArray.length) {
             setErrors(errorsArray)
-            return setShowModal(true);
+            setShowModal(true);
         }
     }
 
@@ -54,19 +54,21 @@ const PlayerImageUpload = ({ playerId }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <ErrorModal hideModal={() => setShowModal(false)} showModal={showModal} validationErrors={errors} />
-            <div>
+            <ErrorModal hideModal={() => setShowModal(false)} showErrorModal={showModal} validationErrors={errors} />
+            <div className='player-image-upload-container'>
 
+                <label className="player-image-label" htmlFor="player-image-file">Update Player Photo</label>
                 <input
-                    id="user-post-file"
+                    className='player-image-edit-input'
+                    id="player-image-file"
                     type="file"
                     accept="image/*"
                     onChange={updateImage}
                 />
 
-                {imageLoading ? <div className="user-profile-right">Uploading...</div>
+                {imageLoading ? <div>Uploading...</div>
                     :
-                    <button type="submit">Upload</button>
+                    <button className='upload-btn' type="submit">Upload</button>
                 }
             </div>
         </form>
