@@ -1,0 +1,43 @@
+.error-modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    min-height: 150px;
+    width: 500px;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.error-modal-header {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.error-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-right: 40px;
+    color: #797B7D;
+}
+
+.error-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.continue {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-top: 1px solid #797B7D;
+    color: #CF4119;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}

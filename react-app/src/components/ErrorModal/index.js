@@ -6,21 +6,21 @@ function ErrorModal({ hideModal, showErrorModal, validationErrors }) {
     <>
       {showErrorModal && (
         <Modal onClose={hideModal}>
-          <div>
+          <div className='error-modal-container'>
             <div>
-              <h2>Error</h2>
+              <h3 className='error-modal-header'>Error</h3>
             </div>
             <div>
-              <ul>
+              <ul className='error-list'>
                 {
                   validationErrors.map(error => (
                     <li key={error}>{error}</li>
                   ))
                 }
               </ul>
-                <div>
-                  <button onClick={hideModal}>Continue</button>
-                </div>
+            </div>
+            <div className='error-btn-container'>
+              <button className='continue' onClick={hideModal}>Continue</button>
             </div>
           </div>
         </Modal>
