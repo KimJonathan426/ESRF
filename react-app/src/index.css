@@ -4,6 +4,29 @@ body {
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    margin: 0px;
+}
+
+.page-outer {
+    width: 100%;
+    background-color: #edeef0;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+    min-height: 100vh;
+}
+
+.page-spacer {
+    width: 100%;
+    height: 44px;
+}
+
+.page-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 textarea {
