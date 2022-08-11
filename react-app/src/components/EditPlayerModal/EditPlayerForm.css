@@ -1,0 +1,96 @@
+
+
+.edit-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 700px;
+    height: 550px;
+}
+
+.edit-player-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.edit-player-image-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.edit-player-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #797B7D ;
+    border-radius: 50%;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 10px;
+    border: 1px solid rgb(220, 221, 223);
+}
+
+.edit-player-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    min-height: 30px;
+    height: fit-content;
+    border-right: 1px solid rgb(220, 221, 223);
+    border-bottom: 1px solid #f1f2f3;
+}
+
+.edit-player-row > div {
+    display: flex;
+    width: 50%;
+}
+
+.edit-input-field {
+    justify-content: flex-end;
+    margin-right: 20px;
+    padding: 10px 0px;
+}
+
+.edit-label {
+    justify-content: flex-start;
+    margin-left: 20px;
+    padding: 10px 0px;
+    align-items: center;
+    color: #797B7D;
+    font-size: 12px;
+    border-right: 1px solid rgb(220, 221, 223);
+}
+
+.edit-input-field > input,
+.edit-input-field > select {
+    box-sizing: border-box;
+    height: 25px;
+    width: 200px;
+}
+
+.edit-input-field > textarea {
+    width: 300px;
+    height: 100px;
+}
+
+.edit-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}

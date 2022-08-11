@@ -6,9 +6,9 @@ class Player(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'), nullable=False)
-    player_name = db.Column(db.String(50), nullable=False)
+    player_name = db.Column(db.String(40), nullable=False)
     player_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Empty-Player-Image.png')
-    position = db.Column(db.String(30), nullable=False)
+    position = db.Column(db.String(20), nullable=False)
     team = db.Column(db.String(40), nullable=True)
     bio = db.Column(db.String(1000), nullable=True)
     recent_news = db.Column(db.String(1000), nullable=True)

@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { editPlayerInfo } from '../../store/player';
+import ErrorModal from "../ErrorModal";
+import PlayerImageUpload from '../PlayerImageUpload';
 
-const EditPlayerForm = ({ player }) => {
+const EditPlayerForm = ({ player, setShowModal }) => {
     const [playerName, setPlayerName] = useState(player.player_name);
     const [position, setPosition] = useState(player.position);
     const [team, setTeam] = useState(player.team);
     const [bio, setBio] = useState(player.bio);
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [showErrorModal, setShowErrorModal] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -49,53 +53,95 @@ const EditPlayerForm = ({ player }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const errors = [];
         const playerId = player.id;
         const player_name = playerName;
 
         const editedPlayer = await dispatch(editPlayerInfo(playerId, player_name, position, team, bio));
 
-        if (editedPlayer) {
-            console.log('Successfully Edited');
-        };
+        if (editedPlayer && editedPlayer.errors === undefined) {
+            setShowModal(false);
+        } else if (editedPlayer.errors) {
+            errors.push(...editedPlayer.errors);
+            setValidationErrors(errors);
+            setShowErrorModal(true);
+        }
     };
+
+    const hideModal = (e) => {
+        e.preventDefault()
+
+        setShowModal(false);
+    }
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Player Name</label>
-            <input
-                value={playerName}
-                onChange={updatePlayerName}
-                placeholder='Player Name (Required)'
-                required
-                maxLength='50' /><br />
+        <div className='edit-player-container'>
+            <div className='edit-player-image-container'>
+                <img className='edit-player-image' src={player.player_image} alt='player'></img>
+                <PlayerImageUpload playerId={player.id} />
+            </div>
+            <form className='edit-player-form' onSubmit={handleSubmit}>
+                <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
+                <div className='edit-container'>
+                    <div className='edit-player-row gray'>
+                        <div className='edit-label'>
+                            <label>Player Name</label>
+                        </div>
+                        <div className='edit-input-field'>
+                            <input
+                                value={playerName}
+                                onChange={updatePlayerName}
+                                placeholder='Player Name (Required)' />
+                        </div>
+                    </div>
 
-            <label>Position</label>
-            <select name='position' onChange={updatePosition}>
-                <option id='None' value='None'>--Select Position (Required)--</option>
-                <option id='PG' value='PG'>Point Guard (PG)</option>
-                <option id='SG' value='SG'>Shooting Guard (SG)</option>
-                <option id='SF' value='SF'>Small Forward (SF)</option>
-                <option id='PF' value='PF'>Power Forward (PF)</option>
-                <option id='C' value='C'>Center (C)</option>
-            </select>
+                    <div className='edit-player-row'>
+                        <div className='edit-label'>
+                            <label>Position</label>
+                        </div>
+                        <div className='edit-input-field'>
+                            <select name='position' onChange={updatePosition}>
+                                <option id='PG' value='PG'>Point Guard (PG)</option>
+                                <option id='SG' value='SG'>Shooting Guard (SG)</option>
+                                <option id='SF' value='SF'>Small Forward (SF)</option>
+                                <option id='PF' value='PF'>Power Forward (PF)</option>
+                                <option id='C' value='C'>Center (C)</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <label>Team</label>
-            <input
-                value={team}
-                onChange={updateTeam}
-                placeholder='Team Name (Optional)'
-                maxLength='40' /><br />
+                    <div className='edit-player-row gray'>
+                        <div className='edit-label'>
+                            <label>Team</label>
+                        </div>
+                        <div className='edit-input-field'>
+                            <input
+                                value={team}
+                                onChange={updateTeam}
+                                placeholder='Team Name (Optional)' />
+                        </div>
+                    </div>
 
-            <label>Biography</label>
-            <textarea
-                value={bio}
-                onChange={updateBio}
-                placeholder='Share information about your player to the league... (Optional)'
-                maxLength='1000' /><br />
+                    <div className='edit-player-row'>
+                        <div className='edit-label'>
+                            <label>Biography</label>
+                        </div>
+                        <div className='edit-input-field'>
+                            <textarea
+                                value={bio}
+                                onChange={updateBio}
+                                placeholder='Share information about your player to the league... (Optional)' />
+                        </div>
+                    </div>
+                </div>
 
-            <button type='submit'>Save Changes</button>
-        </form>
+                <div className='edit-btns'>
+                    <button className='save-btn' type='submit'>Save Changes</button>
+                    <button className='cancel-btn' onClick={hideModal}>Cancel Changes</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

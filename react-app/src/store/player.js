@@ -80,6 +80,10 @@ export const editPlayerInfo = (playerId, player_name, position, team, bio) => as
         dispatch(actionAddPlayer(player));
         return player;
     }
+    else {
+        const errors = await response.json();
+        return errors
+    }
 }
 
 export const editPlayerStats = (payload) => async (dispatch) => {
