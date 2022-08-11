@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, RadioField
-from wtforms.validators import DataRequired, Length, NumberRange, ValidationError
-from app.models import League
+from wtforms.validators import DataRequired, Length, ValidationError
+
 
 def team_limit_range(form, field):
     # Checking if team limit is one of the choices. (Should always be but incase of SQL injections)

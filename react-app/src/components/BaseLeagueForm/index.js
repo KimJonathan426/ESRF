@@ -41,7 +41,7 @@ const BaseLeagueForm = () => {
             history.push(`/leagues/${createdLeague.id}/players/new`);
         }
         else if (createdLeague.errors) {
-            errors.push(createdLeague.errors)
+            errors.push(...createdLeague.errors)
             setValidationErrors(errors)
             setShowModal(true)
         }
