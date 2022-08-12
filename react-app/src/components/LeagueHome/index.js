@@ -28,7 +28,7 @@ const LeagueHome = () => {
 
                     <div>
                         Welcome to the {league.league_name} Page!
-                        <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} />
+                        <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} leagueImage={league.league_image} />
                         <LeagueScoringForm currentLeague={league} />
                         <LeagueStartForm leagueId={leagueId} />
                         <DeleteLeagueModal leagueId={leagueId} />

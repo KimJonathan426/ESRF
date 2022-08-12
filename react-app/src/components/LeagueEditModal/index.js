@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import LeagueEditForm from './LeagueEditForm';
 import './LeagueEditForm.css'
 
-function LeagueEditFormModal({ currentLeagueName, leagueId }) {
+function LeagueEditFormModal({ currentLeagueName, leagueId, leagueImage }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ function LeagueEditFormModal({ currentLeagueName, leagueId }) {
       <button onClick={() => setShowModal(true)} className='edit-btn'>Edit League</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LeagueEditForm setShowModal={setShowModal} currentLeagueName={currentLeagueName} leagueId={leagueId} />
+          <LeagueEditForm setShowModal={setShowModal} currentLeagueName={currentLeagueName} leagueId={leagueId} leagueImage={leagueImage} />
         </Modal>
       )}
     </>

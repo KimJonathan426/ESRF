@@ -19,7 +19,7 @@ const actionGetSingleLeague = (league) => ({
     league
 })
 
-const actionAddLeague = (league) => ({
+export const actionAddLeague = (league) => ({
     type: ADD_LEAGUE,
     league
 })

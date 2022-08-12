@@ -1,19 +1,65 @@
-.edit-league-name-container {
+.edit-league-image-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin: 30px 0px;
+}
+
+.edit-league-image-container > img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #797B7D ;
+    border-radius: 10%;
+}
+
+.edit-league-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 600px;
-    height: 200px;
+    height: 110px;
 }
 
-.edit-league-name {
+.edit-league-header {
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid rgb(220, 221, 223);
     font-size: 24px;
     font-weight: 500;
-    position: relative;
-    top: 20px;
 }
 
-.edit-league-name-container > input {
-    width: 250px;
+.edit-league-name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid rgb(220, 221, 223);
+    border-bottom: 1px solid rgb(220, 221, 223);
+}
+
+.edit-league-name-container > label {
+    display: flex;
+    width: 50%;
+}
+
+.edit-league-name-input {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    margin-right: 20px;
+}
+
+.edit-league-name-input > input {
+    box-sizing: border-box;
+    height: 25px;
+    padding: 7px 12px;
 }

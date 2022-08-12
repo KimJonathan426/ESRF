@@ -77,6 +77,9 @@ const EditPlayerForm = ({ player, setShowModal }) => {
 
     return (
         <div className='edit-player-container'>
+            <div className='edit-player-header'>
+                Player Info
+            </div>
             <div className='edit-player-image-container'>
                 <img className='edit-player-image' src={player.player_image} alt='player'></img>
                 <PlayerImageUpload playerId={player.id} />
