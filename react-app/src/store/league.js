@@ -74,7 +74,7 @@ export const addLeague = (league_name, team_limit, team_player_limit) => async (
 }
 
 export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
-    const response = await fetch(`/api/leagues/edit/${leagueId}/base}`, {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/base`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -85,8 +85,15 @@ export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
     if (response.ok) {
         const league = await response.json();
         dispatch(actionAddLeague(league));
-        return league;
-    }
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export const editLeagueScoring = (payload) => async (dispatch) => {
