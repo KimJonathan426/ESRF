@@ -1,0 +1,19 @@
+.edit-league-name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+}
+
+.edit-league-name {
+    font-size: 24px;
+    font-weight: 500;
+    position: relative;
+    top: 20px;
+}
+
+.edit-league-name-container > input {
+    width: 250px;
+}

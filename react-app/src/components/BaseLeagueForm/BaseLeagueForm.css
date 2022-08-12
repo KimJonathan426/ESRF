@@ -20,6 +20,10 @@
     color: white;
 }
 
+.create-league-title-text {
+    min-width: 340px;
+}
+
 .logo-wrapper {
     display: inline-block;
     overflow: hidden;

@@ -77,7 +77,7 @@ const BaseLeagueForm = () => {
                         <div className='logo-wrapper'>
                             <img className='create-league-logo' src='https://esrf.s3.amazonaws.com/Default-League-Logo.jpg' alt='league logo' />
                         </div>
-                        <div>
+                        <div className='create-league-title-text'>
                             Create Your Fantasy <br /> Basketball League
                         </div>
                     </div>
@@ -89,7 +89,8 @@ const BaseLeagueForm = () => {
                                 <input
                                     value={leagueName}
                                     onChange={updateLeagueName}
-                                    placeholder='League Name (Required)' />
+                                    placeholder='League Name (Required)'
+                                    maxLength='30' />
                             </div>
 
                             <div className='team-number-container'>

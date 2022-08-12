@@ -63,9 +63,6 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('e', e)
-        console.log('e.target', e.target)
-        console.log('e.target.id', e.target.id)
 
         const playerId = currentPlayer.id;
         const recent_news = recentNews;
@@ -103,9 +100,8 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
     };
 
     $(function () {
-        let focusedElement;
         $(document).on('focus', 'input', function () {
-            focusedElement = this.select();
+            this.select();
         });
     });
 
@@ -129,7 +125,7 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                         id='recent-news'
                         value={recentNews}
                         onChange={updateRecentNews}
-
+                        maxLength='1000'
                         placeholder='How did the player perform?' />
                 </div>
 
@@ -199,7 +195,7 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                     value={points}
                     onChange={updatePoints} />
 
-                <button className='save-btn' type='submit'>Save</button>
+                <button className='save-btn save-stat' type='submit'>Save</button>
             </form>
         </>
     )

@@ -19,6 +19,8 @@
     height: 45px;
     margin-top: 5px;
     overflow: auto;
+    font-size: 12px;
+    color: rgb(22, 22, 22);
 }
 
 .player-stat-name > div {
@@ -64,7 +66,7 @@
     border-radius: 0px;
 }
 
-.save-btn {
+.save-stat {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 0px;

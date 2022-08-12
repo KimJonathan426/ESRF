@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
 import DeleteLeagueModal from '../DeleteLeagueModal';
-import LeagueEditForm from '../LeagueEditForm';
+import LeagueEditModal from '../LeagueEditModal';
 import LeagueScoringForm from '../LeagueScoringForm';
 import LeagueStartForm from '../LeagueStartForm';
 import PlayerList from '../PlayerList';
@@ -22,15 +22,21 @@ const LeagueHome = () => {
 
     return (
         league ?
-            <div>
-                Welcome to the {league.league_name} Page!
-                <LeagueEditForm currentLeagueName={league.league_name} leagueId={leagueId} />
-                <LeagueScoringForm currentLeague={league}/>
-                <LeagueStartForm leagueId={leagueId} />
-                <DeleteLeagueModal leagueId={leagueId}/>
-                <PlayerList leagueId={leagueId}/>
-                <PlayerForm leagueId={leagueId} />
-                <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+            <div className='page-outer'>
+                <div className='page-spacer'></div>
+                <div className='page-container'>
+
+                    <div>
+                        Welcome to the {league.league_name} Page!
+                        <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} />
+                        <LeagueScoringForm currentLeague={league} />
+                        <LeagueStartForm leagueId={leagueId} />
+                        <DeleteLeagueModal leagueId={leagueId} />
+                        <PlayerList leagueId={leagueId} />
+                        <PlayerForm leagueId={leagueId} />
+                        <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+                    </div>
+                </div>
             </div>
             :
             <h3> Loading... </h3>
