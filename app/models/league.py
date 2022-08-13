@@ -17,6 +17,7 @@ class League(db.Model):
     team_player_limit = db.Column(db.Integer, nullable=False)
     start_date = db.Column(db.String(11), nullable=True)
     start_time = db.Column(db.String(11), nullable=True)
+    start_standard = db.Column(DateTime(timezone=True), nullable=True)
     field_goal_made_weight = db.Column(db.Integer, nullable=True, default=2)
     field_goal_attempted_weight = db.Column(db.Integer, nullable=True, default=-1)
     free_throw_made_weight = db.Column(db.Integer, nullable=True, default=1)
