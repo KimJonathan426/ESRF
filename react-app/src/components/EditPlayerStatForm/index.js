@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPlayerStats } from "../../store/player";
 import $ from 'jquery';
@@ -99,11 +99,19 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
         }
     };
 
-    $(function () {
-        $(document).on('focus', 'input', function () {
-            this.select();
+    useEffect(() => {
+        $(function () {
+            $(document).on('focus', 'input', function () {
+                this.select();
+            });
         });
-    });
+
+        return () => {
+            $(function () {
+                $(document).off();
+            });
+        }
+    }, [])
 
 
     return (
@@ -130,66 +138,77 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                 </div>
 
                 <input
+                    className='select-all'
                     id='fgm'
                     type='number'
                     value={fieldGoalMade}
                     onChange={updateFieldGoalMade} />
 
                 <input
+                    className='select-all'
                     id='fga'
                     type='number'
                     value={fieldGoalAttempted}
                     onChange={updateFieldGoalAttempted} />
 
                 <input
+                    className='select-all'
                     id='ftm'
                     type='number'
                     value={freeThrowMade}
                     onChange={updateFreeThrowMade} />
 
                 <input
+                    className='select-all'
                     id='fta'
                     type='number'
                     value={freeThrowAttempted}
                     onChange={updateFreeThrowAttempted} />
 
                 <input
+                    className='select-all'
                     id='three-point'
                     type='number'
                     value={threePointMade}
                     onChange={updateThreePointMade} />
 
                 <input
+                    className='select-all'
                     id='ast'
                     type='number'
                     value={assists}
                     onChange={updateAssists} />
 
                 <input
+                    className='select-all'
                     id='reb'
                     type='number'
                     value={rebounds}
                     onChange={updateRebounds} />
 
                 <input
+                    className='select-all'
                     id='stl'
                     type='number'
                     value={steals}
                     onChange={updateSteals} />
 
                 <input
+                    className='select-all'
                     id='blk'
                     type='number'
                     value={blocks}
                     onChange={updateBlocks} />
 
                 <input
+                    className='select-all'
                     id='to'
                     type='number'
                     value={turnovers}
                     onChange={updateTurnovers} />
 
                 <input
+                    className='select-all'
                     id='pts'
                     type='number'
                     value={points}
