@@ -8,7 +8,7 @@ class League(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    league_name = db.Column(db.String(30), nullable=False)
+    league_name = db.Column(db.String(40), nullable=False)
     league_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Default-League-Logo.jpg')
     league_note_title = db.Column(db.String(40), nullable=True, default='Fantasy Basketball!')
     league_note = db.Column(db.String(1000), nullable=True, default='Welcome to your ESRF basketball league. \

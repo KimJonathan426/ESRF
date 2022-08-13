@@ -1,8 +1,9 @@
-"""create_leagues_teams_players_table
+"""create leagues teams players table
 
-Revision ID: 52596f987234
+
+Revision ID: 8056458a55c7
 Revises: ffdc0a98111c
-Create Date: 2022-08-05 16:04:45.762445
+Create Date: 2022-08-12 22:35:54.160758
 
 """
 from alembic import op
@@ -10,7 +11,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '52596f987234'
+revision = '8056458a55c7'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -21,7 +22,7 @@ def upgrade():
     op.create_table('leagues',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('league_name', sa.String(length=50), nullable=False),
+    sa.Column('league_name', sa.String(length=40), nullable=False),
     sa.Column('league_image', sa.String(length=500), nullable=True),
     sa.Column('league_note_title', sa.String(length=40), nullable=True),
     sa.Column('league_note', sa.String(length=1000), nullable=True),
@@ -29,6 +30,7 @@ def upgrade():
     sa.Column('team_player_limit', sa.Integer(), nullable=False),
     sa.Column('start_date', sa.String(length=11), nullable=True),
     sa.Column('start_time', sa.String(length=11), nullable=True),
+    sa.Column('start_standard', sa.DateTime(timezone=True), nullable=True),
     sa.Column('field_goal_made_weight', sa.Integer(), nullable=True),
     sa.Column('field_goal_attempted_weight', sa.Integer(), nullable=True),
     sa.Column('free_throw_made_weight', sa.Integer(), nullable=True),
@@ -47,9 +49,9 @@ def upgrade():
     op.create_table('players',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('league_id', sa.Integer(), nullable=False),
-    sa.Column('player_name', sa.String(length=50), nullable=False),
+    sa.Column('player_name', sa.String(length=40), nullable=False),
     sa.Column('player_image', sa.String(length=500), nullable=True),
-    sa.Column('position', sa.String(length=30), nullable=False),
+    sa.Column('position', sa.String(length=20), nullable=False),
     sa.Column('team', sa.String(length=40), nullable=True),
     sa.Column('bio', sa.String(length=1000), nullable=True),
     sa.Column('recent_news', sa.String(length=1000), nullable=True),

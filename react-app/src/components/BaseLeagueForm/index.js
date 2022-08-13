@@ -90,7 +90,7 @@ const BaseLeagueForm = () => {
                                     value={leagueName}
                                     onChange={updateLeagueName}
                                     placeholder='League Name (Required)'
-                                    maxLength='30' />
+                                    maxLength='40' />
                             </div>
 
                             <div className='team-number-container'>

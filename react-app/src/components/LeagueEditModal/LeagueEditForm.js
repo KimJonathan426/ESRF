@@ -54,7 +54,7 @@ const LeagueEditForm = ({ setShowModal, currentLeagueName, leagueId, leagueImage
                             value={leagueName}
                             onChange={updateLeagueName}
                             placeholder='League Name (Required)'
-                            maxLength='30' />
+                            maxLength='40' />
                     </div>
                 </div>
                 <div>
