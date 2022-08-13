@@ -109,99 +109,121 @@ const LeagueScoringForm = ({ setShowModal, currentLeague }) => {
             <div className='edit-scoring-header'>Scoring</div>
             <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
             <div className='edit-scoring-fields'>
-                <div className='edit-scoring-fgm scoring-row'>
-                    <label className='edit-label'>Field Goal Made (FGM)</label>
-                    <div>
+                <div className='scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Field Goal Made (FGM)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={fieldGoalMadeWeight}
                             onChange={updateFieldGoalMadeWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-fga scoring-row'>
-                    <label className='edit-label'>Field Goal Attempted (FGA)</label>
-                    <div>
+                <div className='scoring-row'>
+                    <div className='edit-label scoring-label'>
+                        <label>Field Goal Attempted (FGA)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={fieldGoalAttemptedWeight}
                             onChange={updateFieldGoalAttemptedWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-ftm scoring-row'>
-                    <label className='edit-label'>Free Throw Made (FTM)</label>
-                    <div>
+                <div className='scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Free Throw Made (FTM)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={freeThrowMadeWeight}
                             onChange={updateFreeThrowMadeWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-fta scoring-row'>
-                    <label className='edit-label'>Free Throw Attempted (FTA)</label>
-                    <div>
+                <div className='scoring-row'>
+                    <div className='edit-label scoring-label'>
+                        <label>Free Throw Attempted (FTA)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={freeThrowAttemptedWeight}
                             onChange={updateFreeThrowAttemptedWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-three scoring-row'>
-                    <label className='edit-label'>Three Pointers Made (3PM)</label>
-                    <div>
+                <div className='scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Three Pointers Made (3PM)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={threePointMadeWeight}
                             onChange={updateThreePointMadeWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-ast scoring-row'>
-                    <label className='edit-label'>Assists (AST)</label>
-                    <div>
+                <div className='scoring-row'>
+                    <div className='edit-label scoring-label'>
+                        <label>Assists (AST)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={assistsWeight}
                             onChange={updateAssistsWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-reb scoring-row'>
-                    <label className='edit-label'>Rebounds (REB)</label>
-                    <div>
+                <div className='scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Rebounds (REB)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={reboundsWeight}
                             onChange={updateReboundsWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-stl scoring-row'>
-                    <label className='edit-label'>Steals (STL)</label>
-                    <div>
+                <div className='scoring-row'>
+                    <div className='edit-label scoring-label'>
+                        <label>Steals (STL)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={stealsWeight}
                             onChange={updateStealsWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-blk scoring-row'>
-                    <label className='edit-label'>Blocks (BLK)</label>
-                    <div>
+                <div className='scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Blocks (BLK)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={blocksWeight}
                             onChange={updateBlocksWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-to scoring-row'>
-                    <label className='edit-label'>Turnovers (TO)</label>
-                    <div>
+                <div className='scoring-row'>
+                    <div className='edit-label scoring-label'>
+                        <label>Turnovers (TO)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={turnoversWeight}
                             onChange={updateTurnoversWeight} />
                     </div>
                 </div>
-                <div className='edit-scoring-pts scoring-row'>
-                    <label className='edit-label'>Points (PTS)</label>
-                    <div>
+                <div className='edit-scoring-pts scoring-row gray'>
+                    <div className='edit-label scoring-label'>
+                        <label>Points (PTS)</label>
+                    </div>
+                    <div className='edit-scoring-input'>
                         <input
                             type='number'
                             value={pointsWeight}

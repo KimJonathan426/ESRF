@@ -26,14 +26,18 @@
 
 }
 
-.scoring-row > label {
+.scoring-label {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     width: 50%;
+    height: 100%;
     padding: 10px 0px;
     margin-left: 20px;
     border-right: 1px solid rgb(220, 221, 223);
 }
 
-.scoring-row > div {
+.edit-scoring-input {
     display: flex;
     justify-content: flex-end;
     height: 25px;
@@ -42,7 +46,7 @@
     margin-right: 20px;
 }
 
-.scoring-row > div > input {
+.edit-scoring-input > input {
     width: 45px;
     text-align: right;
 }
@@ -51,4 +55,8 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+}
+
+.edit-scoring-pts {
+    border-bottom: 1px solid rgb(220, 221, 223);
 }
