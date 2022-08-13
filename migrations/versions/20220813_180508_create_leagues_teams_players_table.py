@@ -1,9 +1,8 @@
 """create leagues teams players table
 
-
-Revision ID: 8056458a55c7
+Revision ID: 50399dc5293b
 Revises: ffdc0a98111c
-Create Date: 2022-08-12 22:35:54.160758
+Create Date: 2022-08-13 18:05:08.484177
 
 """
 from alembic import op
@@ -11,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8056458a55c7'
+revision = '50399dc5293b'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -30,7 +29,7 @@ def upgrade():
     sa.Column('team_player_limit', sa.Integer(), nullable=False),
     sa.Column('start_date', sa.String(length=11), nullable=True),
     sa.Column('start_time', sa.String(length=11), nullable=True),
-    sa.Column('start_standard', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('start_standard', sa.DateTime(), nullable=True),
     sa.Column('field_goal_made_weight', sa.Integer(), nullable=True),
     sa.Column('field_goal_attempted_weight', sa.Integer(), nullable=True),
     sa.Column('free_throw_made_weight', sa.Integer(), nullable=True),
