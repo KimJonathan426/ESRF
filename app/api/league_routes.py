@@ -82,7 +82,7 @@ def edit_scoring(leagueId):
         db.session.commit()
 
         return editedLeague.to_dict()
-    return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @league_routes.route('/edit/<int:leagueId>/start', methods=['PUT'])
 @login_required
@@ -100,7 +100,7 @@ def edit_start(leagueId):
         db.session.commit()
 
         return editedLeague.to_dict()
-    return {'errors:': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @league_routes.route('/delete/<int:leagueId>', methods=['DELETE'])
 @login_required

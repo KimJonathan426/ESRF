@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
 import DeleteLeagueModal from '../DeleteLeagueModal';
 import LeagueEditModal from '../LeagueEditModal';
-import LeagueScoringForm from '../LeagueScoringForm';
+import LeagueScoringForm from '../LeagueScoringModal';
 import LeagueStartForm from '../LeagueStartForm';
 import PlayerList from '../PlayerList';
 import PlayerForm from '../PlayerForm';
