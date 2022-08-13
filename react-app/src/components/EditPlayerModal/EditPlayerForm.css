@@ -77,6 +77,7 @@
     box-sizing: border-box;
     height: 25px;
     width: 200px;
+    text-align: right;
 }
 
 .edit-input-field > textarea {
