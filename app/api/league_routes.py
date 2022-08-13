@@ -91,11 +91,12 @@ def edit_start(leagueId):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-
+        print('formDATA##################', form.data)
         editedLeague = League.query.get(leagueId)
 
         editedLeague.start_date = form.data['start_date']
         editedLeague.start_time = form.data['start_time']
+        editedLeague.start_standard = form.data['start_standard']
 
         db.session.commit()
 

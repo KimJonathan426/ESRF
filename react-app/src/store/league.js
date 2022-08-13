@@ -89,11 +89,11 @@ export const editLeagueBase = (leagueId, league_name) => async (dispatch) => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-          return data.errors;
+            return data.errors;
         }
-      } else {
+    } else {
         return ['An error occurred. Please try again.']
-      }
+    }
 }
 
 export const editLeagueScoring = (payload) => async (dispatch) => {
@@ -135,27 +135,37 @@ export const editLeagueScoring = (payload) => async (dispatch) => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-          return data.errors;
+            return data.errors;
         }
-      } else {
+    } else {
         return ['An error occurred. Please try again.']
-      }
+    }
 }
 
-export const editLeagueStart = (leagueId, start_date, start_time) => async (dispatch) => {
+export const editLeagueStart = (leagueId, start_date, start_time, start_standard) => async (dispatch) => {
     const response = await fetch(`/api/leagues/edit/${leagueId}/start`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             start_date,
-            start_time
+            start_time,
+            start_standard
         })
     });
+
+    console.log('response', response)
 
     if (response.ok) {
         const league = await response.json();
         dispatch(actionAddLeague(league));
-        return league;
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
 

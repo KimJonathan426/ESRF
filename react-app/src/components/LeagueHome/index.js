@@ -5,7 +5,7 @@ import { getSingleLeague } from '../../store/league';
 import DeleteLeagueModal from '../DeleteLeagueModal';
 import LeagueEditModal from '../LeagueEditModal';
 import LeagueScoringForm from '../LeagueScoringModal';
-import LeagueStartForm from '../LeagueStartForm';
+import LeagueStartFormModal from '../LeagueStartFormModal';
 import PlayerList from '../PlayerList';
 import PlayerForm from '../PlayerForm';
 
@@ -30,7 +30,7 @@ const LeagueHome = () => {
                         Welcome to the {league.league_name} Page!
                         <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} leagueImage={league.league_image} />
                         <LeagueScoringForm currentLeague={league} />
-                        <LeagueStartForm leagueId={leagueId} />
+                        <LeagueStartFormModal leagueId={leagueId} />
                         <DeleteLeagueModal leagueId={leagueId} />
                         <PlayerList leagueId={leagueId} />
                         <PlayerForm leagueId={leagueId} />
