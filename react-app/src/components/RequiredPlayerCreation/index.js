@@ -177,7 +177,9 @@ const RequiredPlayerCreation = () => {
                         )
                             : imageTab ? (
                                 <>
-                                    <div className='first-title'>Optional - Add Player Images</div>
+                                    <div className='first-title'>Optional - Add Player Images
+                                        <button className='required-player-btn finish-btn' onClick={handleFinish}>Finish</button>
+                                    </div>
                                     {playerList.map(player => (
                                         <div className='required-player-image-container' key={player.id}>
                                             <div>
@@ -185,22 +187,23 @@ const RequiredPlayerCreation = () => {
                                                     <img className='player-card-background' src='https://esrf.s3.amazonaws.com/Player-Card-Background.png' alt='player card background'></img>
                                                 </div>
                                                 <img className='player-card-image' src={player.player_image} alt='player'></img>
-                                                <div>{player.player_name}</div>
+                                                <div className='player-card-name'>{player.player_name}</div>
                                             </div>
-                                            <PlayerImageUpload playerId={player.id} />
+                                            <div className='required-player-image-component'>
+                                                <PlayerImageUpload playerId={player.id} />
+                                            </div>
                                         </div>
                                     ))}
-                                    <button className='required-player-btn' onClick={handleFinish}>Finish</button>
                                 </>
                             ) : (
                                 <>
-                                    <div>Your league is all set!</div>
+                                    <div className='first-title'>Your league is all set!</div>
 
                                     {redirect ? (
-                                        <div id='countdown'>You will be redirected to your leagues home page in... <span id='timer'>5</span></div>
+                                        <div className='first-title' id='countdown'>You will be redirected to your leagues home page in... <span id='timer'>5</span></div>
                                     )
                                         : (
-                                            <div>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
+                                            <div className='first-title'>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>
                                         )}
                                 </>
                             )
