@@ -41,11 +41,57 @@
 .home-league-logo {
     width: 600px;
     position: relative;
-    left: -190px;
+    left: -200px;
     top: -10px;
 }
 
 .home-title {
     position: relative;
-    left: -30px;
+    left: -40px;
+}
+
+.home-action-boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 138px;
+    margin: 20px 0px;
+}
+
+.action-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    width: 360px;
+    padding: 24px 10px;
+    border-radius: 10px;
+    color: #6c6d6f;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.join-box {
+    margin-left: 10px;
+}
+
+.home-link-btns {
+    width: 340px;
+    margin-bottom: 10px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0px 18px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    background-color: #06c;
+    color: #fff;
+    font-weight: 600;
+    transition: all .25s ease-in-out;
+    cursor: pointer;
+}
+
+.home-link-btns:hover {
+    background-color: rgb(0, 77, 155);
 }

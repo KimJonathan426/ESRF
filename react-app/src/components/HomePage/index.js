@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getMyLeagues } from '../../store/league';
 import './HomePage.css';
 
@@ -29,11 +30,17 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className='home-action-boxes'>
-                        <div className='action-box create-box'>
-                            test
+                        <div className='action-box'>
+                            <Link to='/leagues/new'>
+                                <button className='home-link-btns'>Create a League</button>
+                            </Link>
+                            You're the league manager here. Set up a private <br /> league to play with your family and friends!
                         </div>
-                        <div className='action box join-box'>
-                            test 2
+                        <div className='action-box join-box'>
+                            <Link to='/leagues'>
+                                <button className='home-link-btns'>Join a Public League</button>
+                            </Link>
+                            Hop into one of our public leagues and we will find people for you to play with!
                         </div>
                     </div>
                 </div>
