@@ -20,6 +20,25 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
     const [points, setPoints] = useState(currentPlayer.points);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+        if (recentNews !== currentPlayer.recent_news || Number(fieldGoalMade) !== currentPlayer.field_goal_made
+            || Number(fieldGoalAttempted) !== currentPlayer.field_goal_attempted || Number(freeThrowMade) !== currentPlayer.free_throw_made
+            || Number(freeThrowAttempted) !== currentPlayer.free_throw_attempted || Number(threePointMade) !== currentPlayer.three_point_made
+            || Number(assists) !== currentPlayer.assists || Number(rebounds) !== currentPlayer.rebounds
+            || Number(steals) !== currentPlayer.steals || Number(blocks) !== currentPlayer.blocks
+            || Number(turnovers) !== currentPlayer.turnovers || Number(points) !== currentPlayer.points) {
+            setDisabled(false);
+        } else {
+            setDisabled(true)
+        }
+    }, [recentNews, currentPlayer.recent_news, fieldGoalMade, currentPlayer.field_goal_made,
+        fieldGoalAttempted, currentPlayer.field_goal_attempted, freeThrowMade, currentPlayer.free_throw_made,
+        freeThrowAttempted, currentPlayer.free_throw_attempted, threePointMade, currentPlayer.three_point_made,
+        assists, currentPlayer.assists, rebounds, currentPlayer.rebounds,
+        steals, currentPlayer.steals, blocks, currentPlayer.blocks,
+        turnovers, currentPlayer.turnovers, points, currentPlayer.points])
 
     const dispatch = useDispatch();
 
@@ -214,7 +233,7 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
                     value={points}
                     onChange={updatePoints} />
 
-                <button className='save-btn save-stat' type='submit'>Save</button>
+                <button disabled={disabled} className={disabled ? 'disabled-btn save-stat' : 'save-btn save-stat'} type='submit'>Save</button>
             </form>
         </>
     )
