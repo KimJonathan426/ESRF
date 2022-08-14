@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, NavLink } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
 import DeleteLeagueModal from '../DeleteLeagueModal';
 import LeagueEditModal from '../LeagueEditModal';
 import LeagueScoringForm from '../LeagueScoringModal';
 import LeagueStartFormModal from '../LeagueStartFormModal';
 import PlayerList from '../PlayerList';
-import PlayerForm from '../PlayerForm';
 
 const LeagueHome = () => {
     const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const LeagueHome = () => {
                         <LeagueStartFormModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
                         <DeleteLeagueModal leagueId={leagueId} />
                         <PlayerList leagueId={leagueId} />
-                        <PlayerForm leagueId={leagueId} />
+                        <NavLink to={`/leagues/${leagueId}/players/new`}>Create a Player</NavLink>
                         <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
                     </div>
                 </div>

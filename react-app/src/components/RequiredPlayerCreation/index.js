@@ -54,7 +54,7 @@ const RequiredPlayerCreation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(position)
+
         const errors = [];
 
         const league_id = leagueId;

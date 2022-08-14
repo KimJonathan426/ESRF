@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { addPlayer } from "../../store/player";
+import ErrorModal from "../ErrorModal";
 
-const PlayerForm = ({ leagueId }) => {
+const PlayerForm = () => {
+    const { leagueId } = useParams();
     const [playerName, setPlayerName] = useState('');
-    const [position, setPosition] = useState('None');
+    const [position, setPosition] = useState('');
     const [team, setTeam] = useState('');
     const [bio, setBio] = useState('');
+    const [madePlayer, setMadePlayer] = ('');
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -26,53 +32,67 @@ const PlayerForm = ({ leagueId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const errors = [];
+
         const league_id = leagueId;
         const player_name = playerName;
 
         const createdPlayer = await dispatch(addPlayer(league_id, player_name, position, team, bio));
 
-        if (createdPlayer) {
-            console.log('success');
-        };
+        if (createdPlayer && createdPlayer.errors === undefined) {
+            setMadePlayer(createdPlayer);
+        } else if (createdPlayer.errors) {
+            errors.push(...createdPlayer.errors);
+            setValidationErrors(errors);
+            setShowErrorModal(true);
+        }
     };
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Player Name</label>
-            <input
-                value={playerName}
-                onChange={updatePlayerName}
-                placeholder='Player Name (Required)'
-                required
-                maxLength='50' /><br />
+        <div className='page-outer'>
+            <div className='page-spacer'></div>
+            <div className='page-container'>
+                <div className='player-form-container'>
+                    <form onSubmit={handleSubmit}>
+                        <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
+                        <label>Player Name</label>
+                        <input
+                            value={playerName}
+                            onChange={updatePlayerName}
+                            placeholder='Player Name (Required)'
+                            required
+                            maxLength='50' /><br />
 
-            <label>Position</label>
-            <select name='position' onChange={updatePosition}>
-                <option value='None'>--Select Position (Required)--</option>
-                <option value='PG'>Point Guard (PG)</option>
-                <option value='SG'>Shooting Guard (SG)</option>
-                <option value='SF'>Small Forward (SF)</option>
-                <option value='PF'>Power Forward (PF)</option>
-                <option value='C'>Center (C)</option>
-            </select>
+                        <label>Position</label>
+                        <select name='position' onChange={updatePosition}>
+                            <option>-- Select Position (Required) --</option>
+                            <option value='PG'>Point Guard (PG)</option>
+                            <option value='SG'>Shooting Guard (SG)</option>
+                            <option value='SF'>Small Forward (SF)</option>
+                            <option value='PF'>Power Forward (PF)</option>
+                            <option value='C'>Center (C)</option>
+                        </select>
 
-            <label>Team</label>
-            <input
-                value={team}
-                onChange={updateTeam}
-                placeholder='Team Name (Optional)'
-                maxLength='40' /><br />
+                        <label>Team</label>
+                        <input
+                            value={team}
+                            onChange={updateTeam}
+                            placeholder='Team Name (Optional)'
+                            maxLength='40' /><br />
 
-            <label>Biography</label>
-            <textarea
-                value={bio}
-                onChange={updateBio}
-                placeholder='Share information about your player to the league... (Optional)'
-                maxLength='1000' /><br />
+                        <label>Biography</label>
+                        <textarea
+                            value={bio}
+                            onChange={updateBio}
+                            placeholder='Share information about your player to the league... (Optional)'
+                            maxLength='1000' /><br />
 
-            <button type='submit'>Create Player</button>
-        </form>
+                        <button type='submit'>Create Player</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 

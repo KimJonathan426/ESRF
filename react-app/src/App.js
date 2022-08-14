@@ -13,6 +13,7 @@ import BaseLeagueForm from './components/BaseLeagueForm';
 import RequiredPlayerCreation from './components/RequiredPlayerCreation';
 import { authenticate } from './store/session';
 import EditPlayerStatSheet from './components/EditPlayerStatSheet';
+import PlayerForm from './components/PlayerForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function App() {
         <ProtectedRoute path='/leagues/new' exact={true} >
           <BaseLeagueForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
+        <ProtectedRoute path='/leagues/:leagueId/required-players/new' exact={true} >
           <RequiredPlayerCreation />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues' exact={true} >
@@ -58,6 +59,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId' exact={true} >
           <LeagueHome />
+        </ProtectedRoute>
+        <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
+          <PlayerForm />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/edit/stats' exact={true} >
           <EditPlayerStatSheet />
