@@ -1,25 +1,44 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { editLeagueScoring } from "../../store/league"
 import ErrorModal from "../ErrorModal";
 import './LeagueScoringForm.css';
 
 const LeagueScoringForm = ({ setShowModal, currentLeague }) => {
-    const [fieldGoalMadeWeight, setFieldGoalMadeWeight] = useState(currentLeague.field_goal_made_weight);
-    const [fieldGoalAttemptedWeight, setFieldGoalAttemptedWeight] = useState(currentLeague.field_goal_attempted_weight);
-    const [freeThrowMadeWeight, setFreeThrowMadeWeight] = useState(currentLeague.free_throw_made_weight);
-    const [freeThrowAttemptedWeight, setFreeThrowAttemptedWeight] = useState(currentLeague.free_throw_attempted_weight);
-    const [threePointMadeWeight, setThreePointMadeWeight] = useState(currentLeague.three_point_made_weight);
-    const [assistsWeight, setAssistsWeight] = useState(currentLeague.assists_weight);
-    const [reboundsWeight, setReboundsWeight] = useState(currentLeague.rebounds_weight);
-    const [stealsWeight, setStealsWeight] = useState(currentLeague.steals_weight);
-    const [blocksWeight, setBlocksWeight] = useState(currentLeague.blocks_weight);
-    const [turnoversWeight, setTurnoversWeight] = useState(currentLeague.turnovers_weight);
-    const [pointsWeight, setPointsWeight] = useState(currentLeague.points_weight);
+    const [fieldGoalMadeWeight, setFieldGoalMadeWeight] = useState(`${currentLeague.field_goal_made_weight}`);
+    const [fieldGoalAttemptedWeight, setFieldGoalAttemptedWeight] = useState(`${currentLeague.field_goal_attempted_weight}`);
+    const [freeThrowMadeWeight, setFreeThrowMadeWeight] = useState(`${currentLeague.free_throw_made_weight}`);
+    const [freeThrowAttemptedWeight, setFreeThrowAttemptedWeight] = useState(`${currentLeague.free_throw_attempted_weight}`);
+    const [threePointMadeWeight, setThreePointMadeWeight] = useState(`${currentLeague.three_point_made_weight}`);
+    const [assistsWeight, setAssistsWeight] = useState(`${currentLeague.assists_weight}`);
+    const [reboundsWeight, setReboundsWeight] = useState(`${currentLeague.rebounds_weight}`);
+    const [stealsWeight, setStealsWeight] = useState(`${currentLeague.steals_weight}`);
+    const [blocksWeight, setBlocksWeight] = useState(`${currentLeague.blocks_weight}`);
+    const [turnoversWeight, setTurnoversWeight] = useState(`${currentLeague.turnovers_weight}`);
+    const [pointsWeight, setPointsWeight] = useState(`${currentLeague.points_weight}`);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (Number(fieldGoalMadeWeight) !== currentLeague.field_goal_made_weight
+            || Number(fieldGoalAttemptedWeight) !== currentLeague.field_goal_attempted_weight || Number(freeThrowMadeWeight) !== currentLeague.free_throw_made_weight
+            || Number(freeThrowAttemptedWeight) !== currentLeague.free_throw_attempted_weight || Number(threePointMadeWeight) !== currentLeague.three_point_made_weight
+            || Number(assistsWeight) !== currentLeague.assists_weight || Number(reboundsWeight) !== currentLeague.rebounds_weight
+            || Number(stealsWeight) !== currentLeague.steals_weight || Number(blocksWeight) !== currentLeague.blocks_weight
+            || Number(turnoversWeight) !== currentLeague.turnovers_weight || Number(pointsWeight) !== currentLeague.points_weight) {
+            setDisabled(false);
+        } else {
+            setDisabled(true)
+        }
+    }, [fieldGoalMadeWeight, currentLeague.field_goal_made_weight,
+        fieldGoalAttemptedWeight, currentLeague.field_goal_attempted_weight, freeThrowMadeWeight, currentLeague.free_throw_made_weight,
+        freeThrowAttemptedWeight, currentLeague.free_throw_attempted_weight, threePointMadeWeight, currentLeague.three_point_made_weight,
+        assistsWeight, currentLeague.assists_weight, reboundsWeight, currentLeague.rebounds_weight,
+        stealsWeight, currentLeague.steals_weight, blocksWeight, currentLeague.blocks_weight,
+        turnoversWeight, currentLeague.turnovers_weight, pointsWeight, currentLeague.points_weight])
 
     const updateFieldGoalMadeWeight = (e) => {
         setFieldGoalMadeWeight(e.target.value);
@@ -232,7 +251,7 @@ const LeagueScoringForm = ({ setShowModal, currentLeague }) => {
                 </div>
             </div>
             <div className='edit-scoring-btns'>
-                <button className='save-btn' type='submit'>Save Changes</button>
+                <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
                 <button className='cancel-btn' onClick={hideModal}>Cancel Changes</button>
             </div>
         </form>
