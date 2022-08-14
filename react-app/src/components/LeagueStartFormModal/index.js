@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import LeagueStartForm from './LeagueStartForm';
 import './LeagueStartForm.css'
 
-function LeagueStartFormModal({ leagueId }) {
+function LeagueStartFormModal({ leagueId, leagueDate, leagueTime }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -11,7 +11,7 @@ function LeagueStartFormModal({ leagueId }) {
             <button onClick={() => setShowModal(true)} className='edit-btn'>Edit Start Date</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <LeagueStartForm setShowModal={setShowModal} leagueId={leagueId} />
+                    <LeagueStartForm setShowModal={setShowModal} leagueId={leagueId} leagueDate={leagueDate} leagueTime={leagueTime} />
                 </Modal>
             )}
         </>

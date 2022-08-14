@@ -151,3 +151,19 @@ select:focus {
     font-size: 12px;
     border-right: 1px solid rgb(220, 221, 223);
 }
+
+.disabled-btn {
+    height: 40px;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 50px;
+    font-size: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+    background-color: transparent;
+    border: 1px solid #cbccce;
+    color: #cbccce;
+    cursor: not-allowed;
+}

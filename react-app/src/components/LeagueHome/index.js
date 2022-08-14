@@ -19,7 +19,6 @@ const LeagueHome = () => {
         dispatch(getSingleLeague(leagueId));
     }, [dispatch, leagueId])
 
-
     return (
         league ?
             <div className='page-outer'>
@@ -30,7 +29,7 @@ const LeagueHome = () => {
                         Welcome to the {league.league_name} Page!
                         <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} leagueImage={league.league_image} />
                         <LeagueScoringForm currentLeague={league} />
-                        <LeagueStartFormModal leagueId={leagueId} />
+                        <LeagueStartFormModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
                         <DeleteLeagueModal leagueId={leagueId} />
                         <PlayerList leagueId={leagueId} />
                         <PlayerForm leagueId={leagueId} />
