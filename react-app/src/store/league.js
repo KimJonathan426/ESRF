@@ -41,6 +41,16 @@ export const getAllLeagues = () => async (dispatch) => {
     }
 }
 
+export const getMyLeagues = (ownerId) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/owner/${ownerId}`);
+
+    if (response.ok) {
+        const leagues = await response.json();
+        dispatch(actionGetLeagues(leagues));
+        return leagues;
+    }
+}
+
 export const getSingleLeague = (leagueId) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}`);
 

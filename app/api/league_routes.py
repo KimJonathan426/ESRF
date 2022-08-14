@@ -23,6 +23,12 @@ def single_league(leagueId):
     league = League.query.get(leagueId)
     return league.to_dict()
 
+@league_routes.route('/owner/<int:ownerId>')
+@login_required
+def my_league(ownerId):
+    leagues = League.query.filter_by(owner_id=ownerId).all()
+    return {'leagueList': [league.to_dict() for league in leagues]}
+
 @league_routes.route('/new', methods=['POST'])
 @login_required
 def create_league():
