@@ -19,8 +19,11 @@ const LeagueList = ({ sessionUser }) => {
                 {leagueList ?
                     <div>
                         {leagueList.map(league => (
-                            <div key={league.id}>
-                                <Link to={`/leagues/${league.id}`}>{league.league_name}</Link>
+                            <div key={league.id} className='my-league'>
+                                <Link to={`/leagues/${league.id}`}>
+                                    <div className='home-league-info'>{league.league_name}</div>
+                                    <img className='my-leagues-logo' src={`${league.league_image}`} alt='league-logo' />
+                                </Link>
                             </div>
                         ))}
                     </div>

@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from flask_wtf.csrf import validate_csrf
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
+from random import sample
 from app.forms.base_league_form import BaseLeagueForm
 from app.forms.league_edit_form import LeagueEditForm
 from app.forms.league_scoring_form import LeagueScoringForm
@@ -33,6 +34,17 @@ def my_leagues(ownerId):
 @login_required
 def public_leagues(userId):
     leagues = League.query.filter(League.owner_id!=userId).all()
+
+    random_leagues = []
+    if (len(leagues) > 11):
+        random = sample(range(0, len(leagues)), 10)
+
+        for index in random:
+            random_leagues.append(leagues[index])
+
+    if (random_leagues):
+        return {'leagueList': [league.to_dict() for league in random_leagues]}
+
     return {'leagueList': [league.to_dict() for league in leagues]}
 
 @league_routes.route('/new', methods=['POST'])
