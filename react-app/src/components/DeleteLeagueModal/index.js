@@ -13,7 +13,7 @@ const DeleteLeagueModal = ({ leagueId }) => {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Delete League</button>
+            <button className='delete-btn' onClick={() => setShowModal(true)}>Delete League</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>

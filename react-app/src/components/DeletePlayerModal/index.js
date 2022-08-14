@@ -31,7 +31,7 @@ const DeletePlayerModal = ({ totalPlayers, playerId }) => {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Delete Player</button>
+            <button className='delete-btn' onClick={() => setShowModal(true)}>Delete Player</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div className='delete-modal-container'>

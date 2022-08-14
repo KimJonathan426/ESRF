@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getAllPlayers, clearPlayers } from "../../store/player";
 import PlayerModal from "../PlayerModal";
 import EditPlayerModal from "../EditPlayerModal";
 import DeletePlayerModal from "../DeletePlayerModal";
+import './PlayerList.css';
 
-const PlayerList = ({ leagueId }) => {
+const PlayerList = () => {
+    const { leagueId } = useParams();
     const dispatch = useDispatch();
     const players = useSelector(state => state.players);
     const playerList = Object.values(players);
@@ -18,18 +21,70 @@ const PlayerList = ({ leagueId }) => {
 
 
     return (
-        playerList ?
-            <div>
-                {playerList.map(player => (
-                    <div key={player.id}>
-                        <PlayerModal player={player} />
-                        <EditPlayerModal player={player} />
-                        <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />
+        <div className='page-outer'>
+            <div className='page-spacer'></div>
+            <div className='page-container'>
+                {playerList ?
+                    <div className='free-agents-container'>
+                        <table className='free-agents-table'>
+                            <tr className='player-column-headers'>
+                                <th className='column-1'>PLAYERS</th>
+                                <th className='column-2'>STATS</th>
+                                <th className='column-3'>FANTASY PTS</th>
+                            </tr>
+                            <tr className='player-column-sub-headers'>
+                                <th className='sub-column-1'>PLAYER</th>
+                                <th className='sub-column-2'>
+                                    <td className='sub-column-2-columns'>FGM</td>
+                                    <td className='sub-column-2-columns'>FGA</td>
+                                    <td className='sub-column-2-columns'>FTM</td>
+                                    <td className='sub-column-2-columns'>FTA</td>
+                                    <td className='sub-column-2-columns'>3PM</td>
+                                    <td className='sub-column-2-columns'>AST</td>
+                                    <td className='sub-column-2-columns'>REB</td>
+                                    <td className='sub-column-2-columns'>STL</td>
+                                    <td className='sub-column-2-columns'>BLK</td>
+                                    <td className='sub-column-2-columns'>TO</td>
+                                    <td className='sub-column-2-columns'>PTS</td>
+                                </th>
+                                <th className='sub-column-3'>TOT</th>
+                            </tr>
+                        </table>
+                        {/* <div className='player-column-headers'>
+                            <div>PLAYERS</div>
+                            <div>STATS</div>
+                            <div>FANTASY PTS</div>
+                        </div> */}
+                        {/* <div className='player-column-sub-headers'>
+                            <div>PLAYER</div>
+                            <div className='stat-sub-headers'>
+                                <div>FGM</div>
+                                <div>FGA</div>
+                                <div>FTM</div>
+                                <div>FTA</div>
+                                <div>3PM</div>
+                                <div>AST</div>
+                                <div>REB</div>
+                                <div>STL</div>
+                                <div>BLK</div>
+                                <div>TO</div>
+                                <div>PTS</div>
+                            </div>
+                            <div>FANTASY PTS</div>
+                        </div> */}
+                        {playerList.map(player => (
+                            <tr key={player.id} className='individual-player-row'>
+                                <PlayerModal player={player} />
+                                <EditPlayerModal player={player} />
+                                <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />
+                            </tr>
+                        ))}
                     </div>
-                ))}
+                    :
+                    <h3>Loading...</h3>
+                }
             </div>
-            :
-            <h3>Loading...</h3>
+        </div>
     )
 }
 
