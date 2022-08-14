@@ -11,8 +11,17 @@ const EditPlayerForm = ({ player, setShowModal }) => {
     const [bio, setBio] = useState(player.bio);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (playerName !== player.player_name || position !== player.position || team !== player.team || bio !== player.bio) {
+            setDisabled(false);
+        } else {
+            setDisabled(true)
+        }
+    }, [playerName, player.player_name, position, player.position, team, player.team, bio, player.bio])
 
     useEffect(() => {
         if (player.position === 'PG') {
@@ -140,7 +149,7 @@ const EditPlayerForm = ({ player, setShowModal }) => {
                 </div>
 
                 <div className='edit-btns'>
-                    <button className='save-btn' type='submit'>Save Changes</button>
+                    <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
                     <button className='cancel-btn' onClick={hideModal}>Cancel Changes</button>
                 </div>
             </form>
