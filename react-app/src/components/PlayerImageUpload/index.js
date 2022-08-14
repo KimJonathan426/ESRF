@@ -57,10 +57,10 @@ const PlayerImageUpload = ({ playerId }) => {
             <ErrorModal hideModal={() => setShowModal(false)} showErrorModal={showModal} validationErrors={errors} />
             <div className='player-image-upload-container'>
 
-                <label className="player-image-label" htmlFor="player-image-file">Update Player Photo</label>
+                <label className="player-image-label" htmlFor={`player-image-file-${playerId}`}>Update Player Photo</label>
                 <input
                     className='player-image-edit-input'
-                    id="player-image-file"
+                    id={`player-image-file-${playerId}`}
                     type="file"
                     accept="image/*"
                     onChange={updateImage}

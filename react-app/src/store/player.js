@@ -60,6 +60,9 @@ export const addPlayer = (league_id, player_name, position, team, bio) => async 
         const player = await response.json();
         dispatch(actionAddPlayer(player));
         return player;
+    } else {
+        const errors = await response.json();
+        return errors
     }
 }
 
@@ -127,11 +130,11 @@ export const editPlayerStats = (payload) => async (dispatch) => {
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
-          return data.errors;
+            return data.errors;
         }
-      } else {
+    } else {
         return ['An error occurred. Please try again.']
-      }
+    }
 }
 
 export const deletePlayer = (formData) => async (dispatch) => {

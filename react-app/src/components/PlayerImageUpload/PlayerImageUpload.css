@@ -4,6 +4,7 @@
     align-items: center;
     padding: 10px 0px;
     border: 1px solid rgb(220, 221, 223);
+    background-color: white;
 }
 
 .player-image-edit-input {

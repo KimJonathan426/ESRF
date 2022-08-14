@@ -153,8 +153,6 @@ export const editLeagueStart = (leagueId, start_date, start_time, start_standard
         })
     });
 
-    console.log('response', response)
-
     if (response.ok) {
         const league = await response.json();
         dispatch(actionAddLeague(league));
