@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { authenticate } from './store/session';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -11,9 +12,9 @@ import LeagueList from './components/LeagueList';
 import LeagueHome from './components/LeagueHome';
 import BaseLeagueForm from './components/BaseLeagueForm';
 import RequiredPlayerCreation from './components/RequiredPlayerCreation';
-import { authenticate } from './store/session';
 import EditPlayerStatSheet from './components/EditPlayerStatSheet';
 import PlayerForm from './components/PlayerForm';
+import HomePage from './components/HomePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -67,9 +68,7 @@ function App() {
           <EditPlayerStatSheet />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-          <Link to='/leagues'>Leagues Page</Link>
-          <Link to='/leagues/new'>Create League</Link>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
