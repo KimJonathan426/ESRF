@@ -1,0 +1,88 @@
+.settings-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 1264px;
+    height: fit-content;
+    padding: 16px 12px 45px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.top-accent {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 1264px;
+    background-color: #cf4119;
+    padding: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.settings-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #151617;
+    line-height: 32px;
+    vertical-align: top;
+    margin-bottom: 25px;
+}
+
+.settings-sub-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+    color: #2B2C2D;
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 21px;
+    margin-bottom: 10px;
+}
+
+.settings-sub-title > div {
+    position: relative;
+    top: 2px;
+}
+
+.league-settings-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.settings-labels {
+    min-width: 50%;
+    text-align: left;
+    border-top: 1px solid rgb(220, 221, 223);
+    border-right: 1px solid rgb(220, 221, 223);
+    border-bottom: 1px solid rgb(220, 221, 223);
+}
+
+.settings-labels > div {
+    box-sizing: border-box;
+    padding: 4px 4px 3px 12px;
+    font-size: 12px;
+    line-height: 18px;
+    height: 28px;
+    color: #797B7D;
+    border-bottom: 1px solid #f1f2f3;
+}
+
+.settings-info {
+    min-width: 50%;
+    text-align: left;
+    border-top: 1px solid rgb(220, 221, 223);
+    border-bottom: 1px solid rgb(220, 221, 223);
+}
+
+.settings-info > div {
+    box-sizing: border-box;
+    padding: 4px 4px 3px 12px;
+    font-size: 12px;
+    line-height: 18px;
+    height: 28px;
+    color: #797B7D;
+    border-bottom: 1px solid #f1f2f3;
+}

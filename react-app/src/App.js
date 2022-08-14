@@ -6,8 +6,6 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import LeagueList from './components/LeagueList';
 import LeagueHome from './components/LeagueHome';
 import BaseLeagueForm from './components/BaseLeagueForm';
@@ -15,6 +13,7 @@ import RequiredPlayerCreation from './components/RequiredPlayerCreation';
 import EditPlayerStatSheet from './components/EditPlayerStatSheet';
 import PlayerForm from './components/PlayerForm';
 import HomePage from './components/HomePage';
+import LeagueSettings from './components/LeagueSettings';
 
 function App() {
   const dispatch = useDispatch();
@@ -43,12 +42,6 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
         <ProtectedRoute path='/leagues/new' exact={true} >
           <BaseLeagueForm />
         </ProtectedRoute>
@@ -60,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId' exact={true} >
           <LeagueHome />
+        </ProtectedRoute>
+        <ProtectedRoute path='/leagues/:leagueId/settings' exact={true} >
+          <LeagueSettings />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
           <PlayerForm />

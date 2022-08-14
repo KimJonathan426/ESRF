@@ -7,8 +7,6 @@ def seed_leagues():
         league_image='https://esrf.s3.amazonaws.com/JADEL-League-Logo.PNG',
         team_limit=6,
         team_player_limit=5,
-        start_date='15/Aug/2022',
-        start_time='11:00'
     )
 
     nba_finals_2028 = League(
@@ -17,8 +15,6 @@ def seed_leagues():
         league_image='https://esrf.s3.amazonaws.com/NBA-Finals-League-Logo.PNG',
         team_limit=2,
         team_player_limit=5,
-        start_date='15/Aug/2022',
-        start_time='11:00'
     )
 
     db.session.add(jadel)

@@ -26,9 +26,6 @@ const LeagueHome = () => {
 
                     <div>
                         Welcome to the {league.league_name} Page!
-                        <LeagueEditModal currentLeagueName={league.league_name} leagueId={leagueId} leagueImage={league.league_image} />
-                        <LeagueScoringForm currentLeague={league} />
-                        <LeagueStartFormModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
                         <DeleteLeagueModal leagueId={leagueId} />
                         <PlayerList leagueId={leagueId} />
                         <NavLink to={`/leagues/${leagueId}/players/new`}>Create a Player</NavLink>
