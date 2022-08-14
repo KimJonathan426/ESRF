@@ -141,7 +141,7 @@ const RequiredPlayerCreation = () => {
                                         <div className='player-position-container'>
                                             <label>Position</label>
                                             <select name='position' onChange={updatePosition}>
-                                                <option id='reset'>-- Select Position (Required) --</option>
+                                                <option id='reset' value=''>-- Select Position (Required) --</option>
                                                 <option value='PG'>Point Guard (PG)</option>
                                                 <option value='SG'>Shooting Guard (SG)</option>
                                                 <option value='SF'>Small Forward (SF)</option>
