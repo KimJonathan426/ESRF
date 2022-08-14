@@ -69,7 +69,7 @@ class League(db.Model):
             'blocks_weight': self.blocks_weight,
             'turnovers_weight': self.turnovers_weight,
             'points_weight': self.points_weight,
-            'teams': [team.to_dict_no_players() for team in self.league_teams],
-            'players': [player.to_dict() for player in self.league_players],
-            'owner_username': User.query.get(self.owner_id).username
+            'owner_username': User.query.get(self.owner_id).username,
+            # 'teams': [team.to_dict_no_players() for team in self.league_teams],
+            # 'players': [player.to_dict() for player in self.league_players],
         }

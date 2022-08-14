@@ -7,12 +7,15 @@ import './HomePage.css';
 
 const HomePage = () => {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user)
     const leagueState = useSelector(state => state.leagues)
     const myLeagues = Object.values(leagueState)
 
+    const ownerId = sessionUser.id
+
     useEffect(() => {
-        dispatch(getMyLeagues())
-    }, [dispatch])
+        dispatch(getMyLeagues(ownerId))
+    }, [dispatch, ownerId])
 
 
     return (
@@ -44,11 +47,23 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                {myLeagues.map(league => (
-                    <div key={league.id}>
-                        {league.league_name}
-                    </div>
-                ))}
+                {myLeagues ? (
+                    <>
+                        <div className='my-leagues-title'>My Leagues</div>
+                        <div className='my-leagues-container'>
+                            {myLeagues.map(league => (
+                                <div key={league.id} className='my-league'>
+                                    <Link to={`/leagues/${league.id}`}>
+                                        <img className='my-leagues-logo' src={`${league.league_image}`} alt='league-logo' />
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )
+                    :
+                    <h3>Loading...</h3>
+                }
             </div>
         </div>
     )
