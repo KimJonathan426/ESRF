@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { editLeagueBase } from "../../store/league";
 import ErrorModal from "../ErrorModal";
@@ -9,13 +9,21 @@ const LeagueEditForm = ({ setShowModal, currentLeagueName, leagueId, leagueImage
     const [leagueName, setLeagueName] = useState(currentLeagueName);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+        if (leagueName !== currentLeagueName) {
+            setDisabled(false);
+        } else {
+            setDisabled(true)
+        }
+    }, [leagueName, currentLeagueName])
 
     const dispatch = useDispatch();
 
     const updateLeagueName = (e) => {
         setLeagueName(e.target.value);
     }
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,7 +66,7 @@ const LeagueEditForm = ({ setShowModal, currentLeagueName, leagueId, leagueImage
                     </div>
                 </div>
                 <div>
-                    <button className='save-btn' type='submit'>Save Changes</button>
+                    <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
                     <button onClick={hideModal} className='cancel-btn'>Cancel Changes</button>
                 </div>
             </form>
