@@ -29,10 +29,10 @@ def my_leagues(ownerId):
     leagues = League.query.filter_by(owner_id=ownerId).all()
     return {'leagueList': [league.to_dict() for league in leagues]}
 
-@league_routes.route('/public/<int:ownerId>')
+@league_routes.route('/public/<int:userId>')
 @login_required
-def public_leagues(ownerId):
-    leagues = League.query.filter(League.owner_id!=ownerId).all()
+def public_leagues(userId):
+    leagues = League.query.filter(League.owner_id!=userId).all()
     return {'leagueList': [league.to_dict() for league in leagues]}
 
 @league_routes.route('/new', methods=['POST'])

@@ -1,28 +1,34 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllLeagues } from '../../store/league';
+import { getPublicLeagues } from '../../store/league';
 
-const LeagueList = () => {
+const LeagueList = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const leagues = useSelector(state => state.leagues);
     const leagueList = Object.values(leagues);
 
     useEffect(() => {
-        dispatch(getAllLeagues());
-    }, [dispatch])
+        dispatch(getPublicLeagues(sessionUser.id));
+    }, [dispatch, sessionUser.id])
 
     return (
-        leagueList ?
-            <div>
-                {leagueList.map(league => (
-                    <div key={league.id}>
-                        <Link to={`/leagues/${league.id}`}>{league.league_name}</Link>
+        <div className='page-outer'>
+            <div className='page-spacer'></div>
+            <div className='page-container'>
+                {leagueList ?
+                    <div>
+                        {leagueList.map(league => (
+                            <div key={league.id}>
+                                <Link to={`/leagues/${league.id}`}>{league.league_name}</Link>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                    :
+                    <h3>Loading...</h3>
+                }
             </div>
-            :
-            <h3>Loading...</h3>
+        </div>
     )
 }
 

@@ -18,7 +18,7 @@ import HomePage from './components/HomePage';
 
 function App() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.sessionUser);
+  const sessionUser = useSelector(state => state.session.user);
   const [loaded, setLoaded] = useState(false);
 
 
@@ -56,7 +56,7 @@ function App() {
           <RequiredPlayerCreation />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues' exact={true} >
-          <LeagueList />
+          <LeagueList sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId' exact={true} >
           <LeagueHome />
@@ -68,7 +68,7 @@ function App() {
           <EditPlayerStatSheet />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <HomePage />
+          <HomePage sessionUser={sessionUser} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

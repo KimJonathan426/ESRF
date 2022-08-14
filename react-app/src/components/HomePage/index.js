@@ -5,17 +5,14 @@ import { getMyLeagues } from '../../store/league';
 import './HomePage.css';
 
 
-const HomePage = () => {
+const HomePage = ({ sessionUser }) => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user)
     const leagueState = useSelector(state => state.leagues)
     const myLeagues = Object.values(leagueState)
 
-    const ownerId = sessionUser.id
-
     useEffect(() => {
-        dispatch(getMyLeagues(ownerId))
-    }, [dispatch, ownerId])
+        dispatch(getMyLeagues(sessionUser.id))
+    }, [dispatch, sessionUser.id])
 
 
     return (
