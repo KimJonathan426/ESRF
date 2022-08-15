@@ -70,3 +70,11 @@
 .edit-start-time {
     border-bottom: 1px solid rgb(220, 221, 223);
 }
+
+.schedule-btn {
+    width: 400px;
+    height: 32px;
+    font-size: 16px;
+    padding: 0px 18px;
+    text-transform: capitalize;
+}

@@ -1,0 +1,67 @@
+.league-home-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.league-home-main-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: 220px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.league-home-inner-box-main {
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    height: 50%;
+}
+
+.league-home-inner-box-1 {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+}
+
+.league-home-inner-box-1 > span {
+    width: 100%;
+    color: #222222;
+    font-size: 24px;
+    padding: 0px 0px 3px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.league-home-inner-box-2 {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-right: 4px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #6C6D6F;
+}
+
+.league-home-inner-box-2 > div > span {
+    display: inline-flex;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: normal;
+}
+
+.league-home-inner-box-schedule {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    background-color: red;
+}
