@@ -16,6 +16,6 @@ def player_limit_range(form, field):
         raise ValidationError('Number of players per team must be between 2 and 8 players.')
 
 class BaseLeagueForm(FlaskForm):
-    league_name = StringField('league name', validators=[DataRequired(message='League name is required.'), Length(max=40, message='League name cannot exceed 30 characters.')])
+    league_name = StringField('league name', validators=[DataRequired(message='League name is required.'), Length(max=40, message='League name cannot exceed 40 characters.')])
     team_limit = RadioField('team limit', validators=[DataRequired(message='Number of teams is required.'), team_limit_range], choices=[2, 3, 4, 5, 6, 7, 8, 9, 10])
     team_player_limit = RadioField('team player limit', validators=[DataRequired(message='Number of players per team is required.'), player_limit_range], choices=[2, 3, 4, 5, 6, 7, 8])
