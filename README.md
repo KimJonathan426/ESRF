@@ -36,16 +36,29 @@ _For a link to the ESRF wiki, click here: [Wiki](https://github.com/KimJonathan4
 ![Player List](https://user-images.githubusercontent.com/100963461/184639855-8de546da-7f58-431e-a3cb-09dc9f29b35c.png)
 
 
-## Technologies Used
-- React
-- Redux
-- NodeJS
-- Flask-SQLAlchemy
-- Python
-- AWS
-- PostgreSQL
-- Docker
-- Heroku
+## Frontend Overview
+### React
+ESRF's frontend is built off is open source javascript library.
+
+### Redux
+ESRF utilizes redux and its state management with constants, thunk actions, thunks, and reducers which allow for backend-frontend communication.
+
+### Javascript
+ESRF's frontend was written in javascript.
+
+
+## Backend Overview
+### Flask-SQLAlchemy
+ESRF utilized this web-application framework for its functionality primarily in creating web forms and managing ESRF's backend routes via blueprints and other rich functionality.
+
+### Python
+ESRF's backend was written in python.
+
+### AWS
+Amazon Web Services S3 allowed for convenient upload and storage for league and player photos.
+
+### PostgreSQL
+ESRF's database.
 
 
 ## Key Functionality
