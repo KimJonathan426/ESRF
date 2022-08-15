@@ -97,7 +97,7 @@ const LeagueHome = ({ sessionUser }) => {
                 </div>
             </div>
             :
-            league.owner_id === sessionUser.id ?
+            league?.owner_id === sessionUser.id ?
                 <div className='page-outer required-player-background'>
                     <div className='page-spacer'></div>
                     <div className='page-container'>
