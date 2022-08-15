@@ -46,7 +46,7 @@ const AboutPage = () => {
                             </div>
                             <div className='about-tech-container'>
                                 <h4>React/Redux</h4>
-                                <h4>NodeJS</h4>
+                                <h4>Javascript</h4>
                                 <h4>Flask-SQLAlchemy</h4>
                                 <h4>Python</h4>
                                 <h4>PostgreSQL</h4>
