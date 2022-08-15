@@ -6,7 +6,7 @@ from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename
 from app.forms.player_form import PlayerForm
 from app.forms.edit_player_form import EditPlayerForm
 from app.forms.edit_player_stat_form import EditPlayerStatForm
-from app.models import db, Player
+from app.models import db, Player, League
 
 player_routes = Blueprint('players', __name__)
 
@@ -64,19 +64,47 @@ def edit_player_stats(playerId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         editedPlayer = Player.query.get(playerId)
+        playersLeague = League.query.get(editedPlayer.league_id)
+
+        fgm = form.data['field_goal_made']
+        fga = form.data['field_goal_attempted']
+        ftm = form.data['free_throw_made']
+        fta = form.data['free_throw_attempted']
+        three = form.data['three_point_made']
+        ast = form.data['assists']
+        reb = form.data['rebounds']
+        stl = form.data['steals']
+        blk = form.data['blocks']
+        to = form.data['turnovers']
+        pts = form.data['points']
+
+        fgm_tot = fgm * playersLeague.field_goal_made_weight
+        fga_tot = fga * playersLeague.field_goal_attempted_weight
+        ftm_tot = ftm * playersLeague.free_throw_made_weight
+        fta_tot = fta * playersLeague.free_throw_attempted_weight
+        three_tot = three * playersLeague.three_point_made_weight
+        ast_tot = ast * playersLeague.assists_weight
+        reb_tot = reb * playersLeague.rebounds_weight
+        stl_tot = stl * playersLeague.steals_weight
+        blk_tot = blk * playersLeague.blocks_weight
+        to_tot = to * playersLeague.turnovers_weight
+        pts_tot = pts * playersLeague.points_weight
+
+        fantasy_total = fgm_tot + fga_tot + ftm_tot + fta_tot + three_tot + ast_tot + reb_tot + stl_tot + blk_tot + to_tot + pts_tot
 
         editedPlayer.recent_news = form.data['recent_news']
-        editedPlayer.field_goal_made = form.data['field_goal_made']
-        editedPlayer.field_goal_attempted = form.data['field_goal_attempted']
-        editedPlayer.free_throw_made = form.data['free_throw_made']
-        editedPlayer.free_throw_attempted = form.data['free_throw_attempted']
-        editedPlayer.three_point_made = form.data['three_point_made']
-        editedPlayer.assists = form.data['assists']
-        editedPlayer.rebounds = form.data['rebounds']
-        editedPlayer.steals = form.data['steals']
-        editedPlayer.blocks = form.data['blocks']
-        editedPlayer.turnovers = form.data['turnovers']
-        editedPlayer.points = form.data['points']
+        editedPlayer.field_goal_made = fgm
+        editedPlayer.field_goal_attempted = fga
+        editedPlayer.free_throw_made = ftm
+        editedPlayer.free_throw_attempted = fta
+        editedPlayer.three_point_made = three
+        editedPlayer.assists = ast
+        editedPlayer.rebounds = reb
+        editedPlayer.steals = stl
+        editedPlayer.blocks = blk
+        editedPlayer.turnovers = to
+        editedPlayer.points = pts
+        editedPlayer.fantasy_total = fantasy_total
 
         db.session.commit()
 
