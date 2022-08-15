@@ -27,19 +27,37 @@
     padding-top: 60px;
 }
 
-.about-me {
+.about-me-container {
+    display: flex;
+    justify-content: center;
     width: 100%;
+}
+
+.about-me {
+    display: flex;
+    width: 690px;
     height: 400px;
     margin-top: 50px;
     border-radius: 10px;
     background-color: white;
 }
 
+.about-image {
+    width: 360px;
+    margin: 20px;
+    border-radius: 10px;
+}
 
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .about-links {
     display: flex;
-    margin-top: 20px;
+    flex-direction: row;
     width: fit-content;
 }
 
@@ -50,11 +68,24 @@
     padding: 24px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
-    margin: 0px 10px 0px;
+    margin: 10px 10px 0px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
 .linked-in-link,
 .github-link {
     width: 100%;
+}
+
+.info-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+.about-tech-container {
+    text-align: center;
+    color: #606264;
 }
