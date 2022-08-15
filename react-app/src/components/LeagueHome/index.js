@@ -26,8 +26,6 @@ const LeagueHome = () => {
 
                     <div>
                         Welcome to the {league.league_name} Page!
-                        <DeleteLeagueModal leagueId={leagueId} />
-                        <PlayerList leagueId={leagueId} />
                         <NavLink to={`/leagues/${leagueId}/players/new`}>Create a Player</NavLink>
                         <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
                     </div>

@@ -1,4 +1,25 @@
 .delete-modal-container {
-    width: 100px;
-    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 175px;
+}
+
+.delete-confirm-header {
+    text-decoration: underline;
+}
+
+.delete-confirm-text {
+    position: relative;
+    top: -10px;
+}
+
+.delete-resize {
+    font-size: 16px;
+    margin: 0px 0px 10px 20px;
+    padding: 1px 25px;
+    height: 40px;
+    text-transform: capitalize;
 }

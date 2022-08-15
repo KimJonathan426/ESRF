@@ -36,17 +36,15 @@ const DeletePlayerModal = ({ totalPlayers, playerId }) => {
                 <Modal onClose={() => setShowModal(false)}>
                     <div className='delete-modal-container'>
                         <ErrorModal className='error-modal-container' hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
-                        <div>
+                        <div className='delete-confirm-header'>
                             <h2>Delete Confirmation</h2>
                         </div>
-                        <div>
-                            <div>Are you sure you want to remove this player?</div>
+                        <div className='delete-confirm-text'>
+                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> you want to remove this player?</div>
                         </div>
                         <div>
-                            <button onClick={onDelete}>Delete</button>
-                        </div>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className='delete-btn delete-resize' onClick={onDelete}>Delete</button>
+                            <button className='cancel-btn' onClick={() => setShowModal(false)}>Cancel</button>
                         </div>
                     </div>
                 </Modal>

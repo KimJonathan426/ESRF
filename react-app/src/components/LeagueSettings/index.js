@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
+import DeleteLeagueModal from "../DeleteLeagueModal";
 import LeagueEditFormModal from "../LeagueEditModal";
 import LeagueScoringModal from "../LeagueScoringModal";
 import LeagueStartFormModal from "../LeagueStartFormModal";
@@ -26,7 +27,11 @@ const LeagueSettings = () => {
                     <>
                         <div className='top-accent'></div>
                         <div className='settings-container'>
-                            <div className='settings-title'>League Settings</div>
+                            <div className='settings-title'>League Settings
+                                <Link to={`/leagues/${leagueId}`}>
+                                    <div className='back-btn'>⮨ Back</div>
+                                </Link>
+                            </div>
                             <div className='settings-sub-title'>
                                 <div>Basic Settings</div>
                                 <LeagueEditFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
@@ -87,6 +92,7 @@ const LeagueSettings = () => {
                                     <div className='gray'>{league.points_weight}</div>
                                 </div>
                             </div>
+                            <DeleteLeagueModal leagueId={leagueId} />
                         </div>
                     </>
                 )

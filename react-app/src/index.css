@@ -7,6 +7,10 @@ body {
     margin: 0px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .page-outer {
     width: 100%;
     background-color: #edeef0;
@@ -170,4 +174,10 @@ select:focus {
     border: 1px solid #cbccce;
     color: #cbccce;
     cursor: not-allowed;
+}
+
+.back-btn {
+    font-size: 12px;
+    margin-right: 10px;
+    color: black;
 }
