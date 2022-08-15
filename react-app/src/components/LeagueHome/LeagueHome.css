@@ -33,8 +33,8 @@
 
 .league-home-image {
     border-radius: 10px;
-    min-width: 876px;
-    max-height: 396px;
+    width: 876px;
+    height: 396px;
     object-fit: cover;
 }
 
