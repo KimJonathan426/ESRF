@@ -29,6 +29,7 @@ const LeagueHome = ({ sessionUser }) => {
                         <div className='league-home-main-box'>
                             <div className='league-home-inner-box-main'>
                                 <div className='league-home-inner-box-1'>
+                                    <div className='main-box-top-accent'></div>
                                     <span>{league.league_name}</span>
                                     <div className='league-navigation-links'>
                                         <div className='league-link-1'>
