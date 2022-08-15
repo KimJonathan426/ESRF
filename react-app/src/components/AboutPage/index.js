@@ -39,7 +39,7 @@ const AboutPage = () => {
                                     </a>
                                 </div>
                                 <div className='github-repo'>
-                                    <a href="https://github.com/KimJonathan426/AirBall-n-Brick" target='_blank'>
+                                    <a href="https://github.com/KimJonathan426" target='_blank'>
                                         <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
                                     </a>
                                 </div>
