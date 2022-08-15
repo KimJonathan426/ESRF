@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 import ErrorModal from '../ErrorModal';
 import './Auth.css';
 
@@ -14,6 +14,13 @@ const SignUpForm = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const demoEmail = 'demo@email.com';
+  const demoPassword = 'password';
+
+  const demoLogin = async (e) => {
+    await dispatch(login(demoEmail, demoPassword))
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -98,7 +105,8 @@ const SignUpForm = () => {
           </div>
           <div className='login-btn-container'>
             <button className='login-btn-resize' type='submit'>Sign Up</button>
-            <div>
+            <div className='login-signup'>
+              <div className='demo-login' onClick={demoLogin}>Demo Login</div>
               Already have an account?
               <Link to='/login'> Log-in Here</Link>
             </div>

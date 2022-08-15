@@ -11,9 +11,10 @@
     justify-content: space-between;
     align-items: center;
     width: 400px;
-    height: 450px;
+    height: 500px;
     border-radius: 10px;
     background-color: rgb(250, 135, 4);
+    font-weight: 500;
 }
 
 .login-input-container {
@@ -27,7 +28,7 @@
 
 .login-email-container {
     position: relative;
-    top: 100px;
+    top: 99px;
 }
 
 .login-password-container {
@@ -165,17 +166,17 @@
 
 .top-text {
     top: 300px;
-    right: -660px;
+    right: -700px;
 }
 
 .mid-text {
     top: 500px;
-    right: -660px;
+    right: -700px;
 }
 
 .bottom-text {
     top: 700px;
-    right: -660px;
+    right: -700px;
 }
 
 .login-btn-container {
@@ -186,4 +187,43 @@
 
 .signup-username-input {
     padding-top: 15px;
+}
+
+.logout-btn {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: 0;
+    background-color: transparent;
+    height: 28px;
+    line-height: 1;
+    padding: 0 12px;
+    border: 1px solid rgb(108, 109, 111, .48);
+    border-radius: 50px;
+    margin-left: 8px;
+    color: #6C6D6F;
+    transition: all .25s ease-in-out;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    border: 1px solid transparent;
+    background-color: rgba(135, 185, 235, 0.48);
+}
+
+.login-signup {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.demo-login {
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    color: black;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #edeef0;
+    margin-bottom: 10px;
 }

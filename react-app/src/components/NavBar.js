@@ -8,30 +8,20 @@ const NavBar = () => {
 
   return (
     sessionUser ?
-    <div className='navbar-outer'>
-      <nav className='navbar-container'>
-        <div>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </div>
-        <div>
-          <LogoutButton />
-        </div>
-      </nav>
-    </div>
-    :
-    null
+      <div className='navbar-outer'>
+        <nav className='navbar-container'>
+          <div className='home-logo'>
+            <NavLink to='/' exact={true} activeClassName='active'>
+              <img src='https://esrf.s3.amazonaws.com/Website-Logo.PNG' alt='website logo esrf' />
+            </NavLink>
+          </div>
+          <div>
+            <LogoutButton />
+          </div>
+        </nav>
+      </div>
+      :
+      null
   );
 }
 

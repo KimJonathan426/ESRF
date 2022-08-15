@@ -13,6 +13,12 @@ const LoginForm = () => {
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const demoEmail = 'demo@email.com';
+  const demoPassword = 'password';
+
+  const demoLogin = async (e) => {
+    await dispatch(login(demoEmail, demoPassword))
+  };
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -74,7 +80,8 @@ const LoginForm = () => {
           </div>
           <div className='login-btn-container'>
             <button className='login-btn-resize login-btn' type='submit'>Login</button>
-            <div>
+            <div className='login-signup'>
+            <div className='demo-login' onClick={demoLogin}>Demo Login</div>
               Don't have an account?
               <Link to='/sign-up'> Register Here</Link>
             </div>
