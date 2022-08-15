@@ -7,7 +7,7 @@ import './BaseLeagueForm.css'
 
 const BaseLeagueForm = () => {
     const [leagueName, setLeagueName] = useState('');
-    const [teamLimit, setTeamLimit] = useState(2);
+    const [teamLimit, setTeamLimit] = useState(3);
     const [teamPlayerLimit, setTeamPlayerLimit] = useState(5);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
@@ -103,7 +103,7 @@ const BaseLeagueForm = () => {
                                         id='team-limit-2'
                                         value={2}
                                         onChange={updateTeamLimit} />
-                                    <label id='team-2' className='choice' htmlFor='team-limit-2'>2</label>
+                                    <label id='team-2' className='team-options' htmlFor='team-limit-2'>2</label>
                                     <input
                                         name='team-limit'
                                         type='radio'
@@ -111,7 +111,7 @@ const BaseLeagueForm = () => {
                                         value={3}
                                         onChange={updateTeamLimit}
                                         defaultChecked />
-                                    <label id='team-3' className='team-options' htmlFor='team-limit-3'>3</label>
+                                    <label id='team-3' className='choice' htmlFor='team-limit-3'>3</label>
                                     <input
                                         name='team-limit'
                                         type='radio'
