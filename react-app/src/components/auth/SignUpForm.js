@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import ErrorModal from '../ErrorModal';
+import './Auth.css';
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('');
@@ -45,42 +46,66 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username} />
+    <div className='page-outer-white'>
+      <div className='signup-left-side'>
+        <div className='login-image-container'>
+          <img className='login-image' src='https://g.espncdn.com/lm-static/fba/images/fans-cheering.png'></img>
+          <div className='left-side-text-switch'><span>&nbsp; Welcome to Entert</span>ainment and Sports <span>Recreation</span>al Fantasy!</div>
+          <div className='right-side-text-switch top-text'>Compete against friends with ESRF Fantasy League Manager!</div>
+          <div className='right-side-text-switch mid-text' >Create a league with your family and friends!</div>
+          <div className='right-side-text-switch bottom-text'>Make fantasy a reality where you can be your own player!</div>
+        </div>
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email} />
+      <div className='login-right-side'></div>
+      <div className='login-container'>
+        <form className='login-form-container' onSubmit={onSignUp}>
+          <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
+          <div className='login-input-container signup-username-input'>
+            <label>Username</label>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              placeholder='Username (Required)'
+              value={username} />
+          </div>
+          <div className='login-input-container'>
+            <label>Email</label>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              placeholder='Email (Required)'
+              value={email} />
+          </div>
+          <div className='login-input-container'>
+            <label>Password</label>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              placeholder='Password (Required)'
+              value={password} />
+          </div>
+          <div className='login-input-container'>
+            <label>Confirmed Password</label>
+            <input
+              type='password'
+              name='confirmed_password'
+              onChange={updateConfirmedPassword}
+              placeholder='Confirmed Password (Required)'
+              value={confirmedPassword} />
+          </div>
+          <div className='login-btn-container'>
+            <button className='login-btn-resize' type='submit'>Sign Up</button>
+            <div>
+              Already have an account?
+              <Link to='/login'> Log-in Here</Link>
+            </div>
+          </div>
+        </form>
       </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password} />
-      </div>
-      <div>
-        <label>Confirmed Password</label>
-        <input
-          type='password'
-          name='confirmed_password'
-          onChange={updateConfirmedPassword}
-          value={confirmedPassword} />
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div >
   );
 };
 

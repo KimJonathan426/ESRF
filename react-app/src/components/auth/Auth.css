@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
     width: 400px;
-    height: 300px;
+    height: 450px;
     border-radius: 10px;
     background-color: rgb(250, 135, 4);
 }
@@ -21,8 +21,18 @@
     flex-direction: column;
 }
 
-.email-container {
-    margin-top: 10px;
+.login-input-container > input {
+    width: 275px;
+}
+
+.login-email-container {
+    position: relative;
+    top: 100px;
+}
+
+.login-password-container {
+    position: relative;
+    top: 8px;
 }
 
 .login-input-container > label {
@@ -41,6 +51,7 @@
     border-radius: 50px;
     line-height: 1;
     cursor: pointer;
+    width: 270px;
 }
 
 .login-left-side {
@@ -50,14 +61,25 @@
     top: 0px;
     min-height: 1200px;
     height: 100vh;
-}
-
-.login-left-side {
-    min-width: 630px;
+    min-width: 700px;
     width: 50vw;
     z-index: -1;
     background-color: white;
 }
+
+.signup-left-side {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    min-height: 1200px;
+    height: 100vh;
+    min-width: 700px;
+    width: 50vw;
+    z-index: -1;
+    background-color: black;
+}
+
 
 .login-image {
     width: 1000px;
@@ -68,9 +90,22 @@
 }
 
 .page-outer-black {
-    min-width: 1260px;
+    min-width: 1400px;
     width: 100vw;
     background-color: black;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+    min-height: 1200px;
+    height: 100vh;
+}
+
+.page-outer-white {
+    min-width: 1400px;
+    width: 100vw;
+    background-color: white;
     position: absolute;
     left: 0px;
     right: 0px;
@@ -91,8 +126,23 @@
     font-weight: 600;
 }
 
+.left-side-text-switch {
+    text-align: center;
+    width: 900px;
+    position: absolute;
+    top: 20px;
+    right: -450px;
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+}
+
 .left-side-text > span {
     color: black;
+}
+
+.left-side-text-switch > span {
+    color: white;
 }
 
 .right-side-text {
@@ -104,23 +154,36 @@
     font-weight: 400;
 }
 
+.right-side-text-switch {
+    text-align: center;
+    width: 400px;
+    position: absolute;
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+}
+
 .top-text {
-    top: 500px;
-    right: -500px;
+    top: 300px;
+    right: -660px;
 }
 
 .mid-text {
-    top: 700px;
-    right: -500px;
+    top: 500px;
+    right: -660px;
 }
 
 .bottom-text {
-    top: 900px;
-    right: -500px;
+    top: 700px;
+    right: -660px;
 }
 
 .login-btn-container {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.signup-username-input {
+    padding-top: 15px;
 }

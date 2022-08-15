@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import ErrorModal from '../ErrorModal';
-import './LoginForm.css';
+import './Auth.css';
 
 const LoginForm = () => {
   const [validationErrors, setValidationErrors] = useState([]);
@@ -52,7 +52,7 @@ const LoginForm = () => {
       <div className='login-container'>
         <form className='login-form-container' onSubmit={onLogin}>
           <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
-          <div className='login-input-container email-container'>
+          <div className='login-input-container login-email-container'>
             <label htmlFor='email'>Email</label>
             <input
               name='email'
@@ -62,7 +62,7 @@ const LoginForm = () => {
               onChange={updateEmail}
             />
           </div>
-          <div className='login-input-container'>
+          <div className='login-input-container login-password-container'>
             <label htmlFor='password'>Password</label>
             <input
               name='password'
@@ -73,7 +73,7 @@ const LoginForm = () => {
             />
           </div>
           <div className='login-btn-container'>
-            <button className='login-btn-resize' type='submit'>Login</button>
+            <button className='login-btn-resize login-btn' type='submit'>Login</button>
             <div>
               Don't have an account?
               <Link to='/sign-up'> Register Here</Link>
