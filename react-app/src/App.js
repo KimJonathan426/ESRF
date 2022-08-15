@@ -15,6 +15,7 @@ import PlayerForm from './components/PlayerForm';
 import HomePage from './components/HomePage';
 import LeagueSettings from './components/LeagueSettings';
 import PlayerList from './components/PlayerList';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -70,6 +71,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <HomePage sessionUser={sessionUser} />
         </ProtectedRoute>
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
