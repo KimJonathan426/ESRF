@@ -1,3 +1,23 @@
+.free-agents-title {
+    display: flex;
+    flex-direction: column;
+    width: 850px;
+    height: 100px;
+    background-color: white;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: #151617;
+    line-height: 32px;
+    font-weight: bold;
+}
+
+.free-agents-title > span {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
 .free-agents-container {
     width: 1220px;
     height: fit-content;
@@ -6,10 +26,21 @@
     background-color: white;
 }
 
+.free-agent-title-accent {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 874px;
+    background-color: #cf4119;
+    padding: none;
+    border-radius: 10px 10px 0 0;
+}
+
 .free-agents-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    margin-top: 5px;
 }
 
 .player-column-headers {
@@ -47,13 +78,13 @@
 .sub-column-1 {
     border-bottom: 1px solid #dcdddf;
     border-right: 1px solid #dcdddf;
+    text-align: left;
 }
 
 .sub-column-2 {
     padding-bottom: 2px;
     border-bottom: 1px solid #dcdddf;
     border-right: 1px solid #dcdddf;
-
 }
 
 .sub-column-3 {
@@ -117,4 +148,26 @@
     justify-content: right;
     width: 230px;
     padding-right: 5px;
+}
+
+.player-stat-column {
+    border-right: 1px solid #dcdddf;
+    text-align: center;
+    color: #797B7D;
+    font-size: 12px;
+}
+
+.fantasy-total-column {
+    text-align: center;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #797B7D;
+}
+
+.table-spacer {
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #dcdddf;
+    position: relative;
+    top: -1px;
 }

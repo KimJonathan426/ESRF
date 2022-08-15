@@ -24,6 +24,11 @@ const PlayerList = () => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
+                <div className='free-agent-title-accent'></div>
+                <div className='free-agents-title'>
+                    Free Agents
+                    <span>Browse all available players below...</span>
+                    </div>
                 {playerList ?
                     <div className='free-agents-container'>
                         <table className='free-agents-table'>
@@ -66,24 +71,25 @@ const PlayerList = () => {
                                         </div>
                                     </td>
                                     <td className='player-stat-column'>
-                                        <td className='sub-column-2-columns'>FGM</td>
-                                        <td className='sub-column-2-columns'>FGA</td>
-                                        <td className='sub-column-2-columns'>FTM</td>
-                                        <td className='sub-column-2-columns'>FTA</td>
-                                        <td className='sub-column-2-columns'>3PM</td>
-                                        <td className='sub-column-2-columns'>AST</td>
-                                        <td className='sub-column-2-columns'>REB</td>
-                                        <td className='sub-column-2-columns'>STL</td>
-                                        <td className='sub-column-2-columns'>BLK</td>
-                                        <td className='sub-column-2-columns'>TO</td>
-                                        <td className='sub-column-2-columns'>PTS</td>
+                                        <td className='sub-column-2-columns'>{player.field_goal_made}</td>
+                                        <td className='sub-column-2-columns'>{player.field_goal_attempted}</td>
+                                        <td className='sub-column-2-columns'>{player.free_throw_made}</td>
+                                        <td className='sub-column-2-columns'>{player.free_throw_attempted}</td>
+                                        <td className='sub-column-2-columns'>{player.three_point_made}</td>
+                                        <td className='sub-column-2-columns'>{player.assists}</td>
+                                        <td className='sub-column-2-columns'>{player.rebounds}</td>
+                                        <td className='sub-column-2-columns'>{player.steals}</td>
+                                        <td className='sub-column-2-columns'>{player.blocks}</td>
+                                        <td className='sub-column-2-columns'>{player.turnovers}</td>
+                                        <td className='sub-column-2-columns'>{player.points}</td>
                                     </td>
-                                    <td>
-
+                                    <td className='fantasy-total-column'>
+                                        {player.fantasy_total}
                                     </td>
                                 </tr>
                             ))}
                         </table>
+                        <div className='table-spacer'></div>
                     </div>
                     :
                     <h3>Loading...</h3>
