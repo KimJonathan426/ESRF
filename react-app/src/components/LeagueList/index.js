@@ -19,7 +19,7 @@ const LeagueList = ({ sessionUser }) => {
             <div className='page-container'>
                 <div className='public-title-container'>
                     <div className='public-league-title'>Leagues can vary from recreational organizations, pick-up games, to any custom format you can think of!</div>
-                    <div className='public-league-title'>Choose from one of 10 random leagues below and explore what the community has to offer!</div>
+                    <div className='public-league-title'>Choose from one of the random leagues below and explore what the community has to offer!</div>
                 </div>
                 {leagueList ?
                     <div className='public-leagues-container'>
