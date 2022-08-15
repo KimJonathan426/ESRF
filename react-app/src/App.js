@@ -25,7 +25,7 @@ function App() {
 
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -37,7 +37,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -46,36 +45,47 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/leagues/new' exact={true} >
+          <NavBar />
           <BaseLeagueForm />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/required-players/new' exact={true} >
+          <NavBar />
           <RequiredPlayerCreation />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues' exact={true} >
+          <NavBar />
           <LeagueList sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId' exact={true} >
+          <NavBar />
           <LeagueHome sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/settings' exact={true} >
+          <NavBar />
           <LeagueSettings sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
+          <NavBar />
           <PlayerForm sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players' exact={true} >
+          <NavBar />
           <PlayerList sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/edit/stats' exact={true} >
+          <NavBar />
           <EditPlayerStatSheet />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
+          <NavBar />
           <HomePage sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/about' exact={true} >
+          <NavBar />
           <AboutPage />
         </ProtectedRoute>
         <Route>
+          <NavBar />
           <PageNotFound />
         </Route>
       </Switch>
