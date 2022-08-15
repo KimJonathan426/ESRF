@@ -2,7 +2,7 @@
 
 _For a live version of ESRF, click here: [ESRF](https://esrf.herokuapp.com/)._
 
-ESRF is an ESPN Fantasy Basketball clone that allows users fully customaize the fantasy basketball experience. Users can make fantasy leagues for recreational leagues, tournaments, pick-up games, and more. They can track their stats and compete against one another. This adds another layer of fun to both the players and spectators.
+ESRF is a full stack Fantasy Basketball app that allows users fully customaize the fantasy basketball experience. Logged in users can make fantasy leagues for recreational leagues, tournaments, pick-up games, and more. They can track their stats and compete against one another. The user also has the ability to create their own unique players either deriving from real games or any player they can imagine. This adds another layer of fun and interactivity during basketball games for both the players and spectators to enjoy.
 
 _For a link to the ESRF wiki, click here: [Wiki](https://github.com/KimJonathan426/ESRF/wiki)._
 
@@ -34,9 +34,6 @@ _For a link to the ESRF wiki, click here: [Wiki](https://github.com/KimJonathan4
 </h3>
 
 ![Player List](https://user-images.githubusercontent.com/100963461/184639855-8de546da-7f58-431e-a3cb-09dc9f29b35c.png)
-
-
-## Instructions
 
 
 ## Technologies Used
