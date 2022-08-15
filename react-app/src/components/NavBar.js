@@ -10,13 +10,22 @@ const NavBar = () => {
     sessionUser ?
       <div className='navbar-outer'>
         <nav className='navbar-container'>
-          <div className='home-logo'>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              <img src='https://esrf.s3.amazonaws.com/Website-Logo.PNG' alt='website logo esrf' />
-            </NavLink>
+          <div className='navbar-left'>
+
+            <div className='home-logo'>
+              <NavLink to='/' exact={true} activeClassName='active'>
+                <img className='website-logo' src='https://esrf.s3.amazonaws.com/Website-Logo.PNG' alt='website logo esrf' />
+              </NavLink>
+            </div>
+
           </div>
-          <div>
-            <LogoutButton />
+
+          <div className='navbar-right'>
+
+            <div className=''>
+              <LogoutButton />
+            </div>
+
           </div>
         </nav>
       </div>
