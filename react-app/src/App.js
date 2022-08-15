@@ -53,16 +53,16 @@ function App() {
           <LeagueList sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId' exact={true} >
-          <LeagueHome />
+          <LeagueHome sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/settings' exact={true} >
-          <LeagueSettings />
+          <LeagueSettings sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
-          <PlayerForm />
+          <PlayerForm sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players' exact={true} >
-          <PlayerList />
+          <PlayerList sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/edit/stats' exact={true} >
           <EditPlayerStatSheet />

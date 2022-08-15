@@ -8,7 +8,7 @@ import LeagueScoringModal from "../LeagueScoringModal";
 import LeagueStartFormModal from "../LeagueStartFormModal";
 import './LeagueSettings.css';
 
-const LeagueSettings = () => {
+const LeagueSettings = ({ sessionUser }) => {
     const { leagueId } = useParams();
     const dispatch = useDispatch();
     const leagueState = useSelector(state => state.leagues);
@@ -34,7 +34,9 @@ const LeagueSettings = () => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Basic Settings</div>
-                                <LeagueEditFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
+                                {league.owner_id === sessionUser.id && (
+                                    <LeagueEditFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
+                                )}
                             </div>
                             <div className='league-settings-container'>
                                 <div className='settings-labels'>
@@ -50,7 +52,9 @@ const LeagueSettings = () => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Game Settings</div>
-                                <LeagueStartFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
+                                {league.owner_id === sessionUser.id && (
+                                    <LeagueStartFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
+                                )}
                             </div>
                             <div className='league-settings-container'>
                                 <div className='settings-labels'>
@@ -62,7 +66,9 @@ const LeagueSettings = () => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Scoring</div>
-                                <LeagueScoringModal currentLeague={league} />
+                                {league.owner_id === sessionUser.id && (
+                                    <LeagueScoringModal currentLeague={league} />
+                                )}
                             </div>
                             <div className='league-settings-container'>
                                 <div className='settings-labels'>
@@ -92,7 +98,9 @@ const LeagueSettings = () => {
                                     <div className='gray'>{league.points_weight}</div>
                                 </div>
                             </div>
-                            <DeleteLeagueModal leagueId={leagueId} />
+                            {league.owner_id === sessionUser.id && (
+                                <DeleteLeagueModal leagueId={leagueId} />
+                            )}
                         </div>
                     </>
                 )
