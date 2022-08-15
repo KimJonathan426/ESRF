@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './store/session';
 import LoginForm from './components/auth/LoginForm';
@@ -15,6 +15,7 @@ import PlayerForm from './components/PlayerForm';
 import HomePage from './components/HomePage';
 import LeagueSettings from './components/LeagueSettings';
 import PlayerList from './components/PlayerList';
+import AboutPage from './components/AboutPage';
 import PageNotFound from './components/PageNotFound';
 
 function App() {
@@ -70,6 +71,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <HomePage sessionUser={sessionUser} />
+        </ProtectedRoute>
+        <ProtectedRoute path='/about' exact={true} >
+          <AboutPage />
         </ProtectedRoute>
         <Route>
           <PageNotFound />

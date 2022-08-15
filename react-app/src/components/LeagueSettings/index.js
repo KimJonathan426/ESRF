@@ -53,7 +53,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             <div className='settings-sub-title'>
                                 <div>Game Settings</div>
                                 {league.owner_id === sessionUser.id && (
-                                    <LeagueStartFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
+                                    <LeagueStartFormModal leagueId={league.id} leagueDate={league.start_date} leagueTime={league.start_time} />
                                 )}
                             </div>
                             <div className='league-settings-container'>
