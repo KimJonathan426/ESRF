@@ -15,6 +15,7 @@ const LeagueHome = ({ sessionUser }) => {
         dispatch(getSingleLeague(leagueId));
     }, [dispatch, leagueId])
 
+
     return (
         league ? league.players_length >= 10 ?
             <div className='page-outer'>
