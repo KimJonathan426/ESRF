@@ -21,10 +21,18 @@ const LeagueHome = () => {
                 <div className='page-spacer'></div>
                 <div className='page-container'>
                     <div className='league-home-main-container'>
+                        <div className='league-links-box'>
+                            <Link to={`/leagues/${leagueId}/players/new`}>Create a Player</Link>
+                            <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+                            <Link to={`/leagues/${leagueId}/players`}>Player List</Link>
+                        </div>
+                        <div className='league-home-image-box'>
+                            <img className='league-home-image' src={`${league.league_image}`}></img>
+                        </div>
                         <div className='league-home-main-box'>
                             <div className='league-home-inner-box-main'>
                                 <div className='league-home-inner-box-1'>
-                                    <span>{league.league_name}</span>
+                                    <span className='faded-league-image-container'>{league.league_name}</span>
                                     <Link to={`/leagues/${leagueId}/settings`}>Settings</Link>
                                 </div>
                                 <div className='league-home-inner-box-2'>
@@ -42,16 +50,25 @@ const LeagueHome = () => {
                                     </div>
                                 </div>
                             </div>
-                            {league.start_date === 'mm/dd/yyyy' && (
+                            {league.start_date === 'mm/dd/yyyy' ? (
                                 <div className='league-home-inner-box-schedule'>
-                                    Your league game has not been scheduled.
+                                    <div>
+                                        Your league game has not been scheduled.
+                                    </div>
                                     <ScheduleStartModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
                                 </div>
-                            )}
+                            )
+                                :
+                                <div className='league-home-inner-box-schedule'></div>
+                            }
                         </div>
-                        Welcome to the {league.league_name} Page!
-                        <NavLink to={`/leagues/${leagueId}/players/new`}>Create a Player</NavLink>
-                        <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+                        <div className='league-home-manager-box'>
+                            <div className='manager-note-header'>League Manager's Note</div>
+                            <div className='manager-note-content'>
+                                <div className='manager-note-title'>{league.league_note_title}</div>
+                                <div className='manager-note-text'>{league.league_note}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

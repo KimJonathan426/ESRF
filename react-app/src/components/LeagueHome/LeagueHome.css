@@ -6,6 +6,26 @@
     height: fit-content;
 }
 
+.league-home-image-box {
+    box-sizing: border-box;
+    display: inline-block;
+    flex-direction: column;
+    width: 900px;
+    height: 220px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.league-home-image {
+    border-radius: 10px;
+    min-width: 876px;
+    max-height: 196px;
+    object-fit: cover;
+}
+
 .league-home-main-box {
     box-sizing: border-box;
     display: flex;
@@ -15,6 +35,7 @@
     padding: 12px;
     border-radius: 10px;
     background-color: white;
+    margin-bottom: 10px;
 }
 
 .league-home-inner-box-main {
@@ -28,14 +49,15 @@
     display: flex;
     flex-direction: column;
     width: 80%;
-
+    font-size: 14px;
 }
 
-.league-home-inner-box-1 > span {
+.league-home-inner-box-1>span {
     width: 100%;
     color: #222222;
     font-size: 24px;
     padding: 0px 0px 3px;
+    margin-bottom: 5px;
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -60,8 +82,55 @@
 }
 
 .league-home-inner-box-schedule {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 50%;
-    background-color: red;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 95px;
+    background-color: #F4F4F4;
+    color: #D0021B;
+    z-index: 1;
+    position: relative;
+}
+
+.league-home-manager-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: fit-content;
+    min-height: 150px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.manager-note-header {
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 1.15;
+    border-bottom: 1px dotted #dcdddf;
+}
+
+.manager-note-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    line-height: 1.15;
+}
+
+.manager-note-title {
+    font-size: 24px;
+    padding: 4px 5px 8px;
+    color: #151617;
+    font-weight: bold;
+}
+
+.manager-note-text {
+    color: #6C6D6F;
+    font-size: 12px;
+    padding: 0px 5px;
+    line-height: 17px;
 }

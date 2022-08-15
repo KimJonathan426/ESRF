@@ -2,7 +2,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    min-width: 1264px;
+    width: 1220px;
     height: fit-content;
     padding: 16px 12px 45px;
     border-radius: 10px;
@@ -13,7 +13,7 @@
     display: block;
     position: absolute;
     height: 6px;
-    width: 1264px;
+    width: 1220px;
     background-color: #cf4119;
     padding: none;
     border-radius: 10px 10px 0 0;
