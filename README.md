@@ -37,7 +37,7 @@ _For a link to the ESRF wiki, click here: [Wiki](https://github.com/KimJonathan4
 
 
 ## Technologies Used
-- React
+### React
 - Redux
 - NodeJS
 - Flask-SQLAlchemy
