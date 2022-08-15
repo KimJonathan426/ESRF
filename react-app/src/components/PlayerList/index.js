@@ -49,36 +49,41 @@ const PlayerList = () => {
                                 </th>
                                 <th className='sub-column-3'>TOT</th>
                             </tr>
+
+                            {playerList.map(player => (
+                                <tr key={player.id} className='individual-player-row'>
+                                    <td className='player-column'>
+                                        <div className='player-info-box'>
+                                            <img src={`${player.player_image}`} alt='player'></img>
+                                            <div>
+                                                <PlayerModal player={player} />
+                                                <span>{player.position}</span>
+                                            </div>
+                                        </div>
+                                        <div className='player-action-box'>
+                                            <EditPlayerModal player={player} />
+                                            <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />
+                                        </div>
+                                    </td>
+                                    <td className='player-stat-column'>
+                                        <td className='sub-column-2-columns'>FGM</td>
+                                        <td className='sub-column-2-columns'>FGA</td>
+                                        <td className='sub-column-2-columns'>FTM</td>
+                                        <td className='sub-column-2-columns'>FTA</td>
+                                        <td className='sub-column-2-columns'>3PM</td>
+                                        <td className='sub-column-2-columns'>AST</td>
+                                        <td className='sub-column-2-columns'>REB</td>
+                                        <td className='sub-column-2-columns'>STL</td>
+                                        <td className='sub-column-2-columns'>BLK</td>
+                                        <td className='sub-column-2-columns'>TO</td>
+                                        <td className='sub-column-2-columns'>PTS</td>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            ))}
                         </table>
-                        {/* <div className='player-column-headers'>
-                            <div>PLAYERS</div>
-                            <div>STATS</div>
-                            <div>FANTASY PTS</div>
-                        </div> */}
-                        {/* <div className='player-column-sub-headers'>
-                            <div>PLAYER</div>
-                            <div className='stat-sub-headers'>
-                                <div>FGM</div>
-                                <div>FGA</div>
-                                <div>FTM</div>
-                                <div>FTA</div>
-                                <div>3PM</div>
-                                <div>AST</div>
-                                <div>REB</div>
-                                <div>STL</div>
-                                <div>BLK</div>
-                                <div>TO</div>
-                                <div>PTS</div>
-                            </div>
-                            <div>FANTASY PTS</div>
-                        </div> */}
-                        {playerList.map(player => (
-                            <tr key={player.id} className='individual-player-row'>
-                                <PlayerModal player={player} />
-                                <EditPlayerModal player={player} />
-                                <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />
-                            </tr>
-                        ))}
                     </div>
                     :
                     <h3>Loading...</h3>

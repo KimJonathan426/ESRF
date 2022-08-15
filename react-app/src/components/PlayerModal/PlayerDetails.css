@@ -1,9 +1,19 @@
 .player-modal-btn {
+    font-size: 12px;
     padding: 0px;
     border: none;
     background-color: transparent;
     color: #0066CC;
     cursor: pointer;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    width: 110px;
+    height: 40%;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .player-details-container {

@@ -104,7 +104,8 @@ const EditPlayerForm = ({ player, setShowModal }) => {
                             <input
                                 value={playerName}
                                 onChange={updatePlayerName}
-                                placeholder='Player Name (Required)' />
+                                placeholder='Player Name (Required)'
+                                maxLength='40' />
                         </div>
                     </div>
 
@@ -131,7 +132,8 @@ const EditPlayerForm = ({ player, setShowModal }) => {
                             <input
                                 value={team}
                                 onChange={updateTeam}
-                                placeholder='Team Name (Optional)' />
+                                placeholder='Team Name (Optional)'
+                                maxLength='40' />
                         </div>
                     </div>
 
@@ -143,7 +145,8 @@ const EditPlayerForm = ({ player, setShowModal }) => {
                             <textarea
                                 value={bio}
                                 onChange={updateBio}
-                                placeholder='Share information about your player to the league... (Optional)' />
+                                placeholder='Share information about your player to the league... (Optional)'
+                                maxLength='1000' />
                         </div>
                     </div>
                 </div>

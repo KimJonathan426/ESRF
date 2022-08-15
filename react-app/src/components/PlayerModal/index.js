@@ -8,7 +8,7 @@ function PlayerModal({ player }) {
 
   return (
     <>
-      <button className='player-modal-btn' onClick={() => setShowModal(true)}>{player.player_name}</button>
+      <div className='player-modal-btn' onClick={() => setShowModal(true)}>{player.player_name}</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PlayerDetails player={player} />
