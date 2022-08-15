@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import ErrorModal from '../ErrorModal';
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -17,7 +19,8 @@ const SignUpForm = () => {
     const data = await dispatch(signUp(username, email, password, confirmedPassword));
 
     if (data) {
-      setErrors(data)
+      setValidationErrors(data);
+      setShowErrorModal(true);
     }
   };
 
@@ -43,19 +46,14 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+      <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
       <div>
         <label>User Name</label>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
-          value={username}
-        ></input>
+          value={username} />
       </div>
       <div>
         <label>Email</label>
@@ -63,8 +61,7 @@ const SignUpForm = () => {
           type='text'
           name='email'
           onChange={updateEmail}
-          value={email}
-        ></input>
+          value={email} />
       </div>
       <div>
         <label>Password</label>
@@ -72,8 +69,7 @@ const SignUpForm = () => {
           type='password'
           name='password'
           onChange={updatePassword}
-          value={password}
-        ></input>
+          value={password} />
       </div>
       <div>
         <label>Confirmed Password</label>
@@ -81,9 +77,7 @@ const SignUpForm = () => {
           type='password'
           name='confirmed_password'
           onChange={updateConfirmedPassword}
-          value={confirmedPassword}
-          required={true}
-        ></input>
+          value={confirmedPassword} />
       </div>
       <button type='submit'>Sign Up</button>
     </form>

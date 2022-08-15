@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
     width: 400px;
-    height: 220px;
+    height: 300px;
     border-radius: 10px;
     background-color: rgb(250, 135, 4);
 }
@@ -40,6 +40,7 @@
     border: 1px solid transparent;
     border-radius: 50px;
     line-height: 1;
+    cursor: pointer;
 }
 
 .login-left-side {
@@ -116,4 +117,10 @@
 .bottom-text {
     top: 900px;
     right: -500px;
+}
+
+.login-btn-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import ErrorModal from '../ErrorModal';
 import './LoginForm.css';
@@ -74,6 +74,10 @@ const LoginForm = () => {
           </div>
           <div className='login-btn-container'>
             <button className='login-btn-resize' type='submit'>Login</button>
+            <div>
+              Don't have an account?
+              <Link to='/sign-up'> Register Here</Link>
+            </div>
           </div>
         </form>
       </div>
