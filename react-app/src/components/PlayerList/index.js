@@ -77,7 +77,7 @@ const PlayerList = ({ sessionUser }) => {
                                                     <span>{player.position}</span>
                                                 </div>
                                             </div>
-                                            {league.owner_id === sessionUser.id && (
+                                            {league?.owner_id === sessionUser.id && (
                                                 <div className='player-action-box'>
                                                     <EditPlayerModal player={player} />
                                                     <DeletePlayerModal totalPlayers={playerList.length} playerId={player.id} />

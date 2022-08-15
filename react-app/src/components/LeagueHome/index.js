@@ -39,12 +39,12 @@ const LeagueHome = ({ sessionUser }) => {
                                         <div className='league-link-2'>
                                             <Link to={`/leagues/${leagueId}/players`}>Player List</Link>
                                         </div>
-                                        {league.owner_id === sessionUser.id && (
+                                        {league?.owner_id === sessionUser.id && (
                                             <div className='league-link-3'>
                                                 <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
                                             </div>
                                         )}
-                                        {league.owner_id === sessionUser.id && (
+                                        {league?.owner_id === sessionUser.id && (
                                             <div className='league-link-4'>
                                                 <Link to={`/leagues/${leagueId}/players/new`}>Create a Player</Link>
                                             </div>
@@ -71,7 +71,7 @@ const LeagueHome = ({ sessionUser }) => {
                                     <div>
                                         This league's game has not been scheduled.
                                     </div>
-                                    {league.owner_id === sessionUser.id && (
+                                    {league?.owner_id === sessionUser.id && (
                                         <ScheduleStartModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
                                     )}
                                 </div>

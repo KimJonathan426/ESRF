@@ -34,7 +34,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Basic Settings</div>
-                                {league.owner_id === sessionUser.id && (
+                                {league?.owner_id === sessionUser.id && (
                                     <LeagueEditFormModal currentLeagueName={league.league_name} leagueId={league.id} leagueImage={league.league_image} />
                                 )}
                             </div>
@@ -52,7 +52,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Game Settings</div>
-                                {league.owner_id === sessionUser.id && (
+                                {league?.owner_id === sessionUser.id && (
                                     <LeagueStartFormModal leagueId={league.id} leagueDate={league.start_date} leagueTime={league.start_time} />
                                 )}
                             </div>
@@ -66,7 +66,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Scoring</div>
-                                {league.owner_id === sessionUser.id && (
+                                {league?.owner_id === sessionUser.id && (
                                     <LeagueScoringModal currentLeague={league} />
                                 )}
                             </div>
@@ -98,7 +98,7 @@ const LeagueSettings = ({ sessionUser }) => {
                                     <div className='gray'>{league.points_weight}</div>
                                 </div>
                             </div>
-                            {league.owner_id === sessionUser.id && (
+                            {league?.owner_id === sessionUser.id && (
                                 <DeleteLeagueModal leagueId={leagueId} />
                             )}
                         </div>
