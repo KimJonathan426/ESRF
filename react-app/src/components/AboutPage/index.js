@@ -25,7 +25,7 @@ const AboutPage = () => {
                 <div className='about-me-container'>
                     <div className='about-me'>
                         <div className='my-image'>
-                            <img className='about-image' src='https://media-exp1.licdn.com/dms/image/C4D03AQFmy3MqHiWloQ/profile-displayphoto-shrink_800_800/0/1613671537681?e=1660780800&v=beta&t=faPlh0ayVNYxdm48UztCTHdUen2lCv-XY1GxeStze4M' />
+                            <img className='about-image' src='https://esrf.s3.amazonaws.com/Linked-in+Image.jpg'/>
                         </div>
                         <div className='info-container'>
                                 <div className='info-title'>
