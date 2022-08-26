@@ -29,6 +29,7 @@ class League(db.Model):
     blocks_weight = db.Column(db.Integer, nullable=True, default=4)
     turnovers_weight = db.Column(db.Integer, nullable=True, default=-2)
     points_weight = db.Column(db.Integer, nullable=True, default=1)
+    is_active = db.Column(db.Boolean, nullable=True, default=False)
     createdAt = db.Column(DateTime(timezone=True), server_default=func.now())
 
     league_owner = db.relationship('User', back_populates='user_leagues')
@@ -69,6 +70,7 @@ class League(db.Model):
             'blocks_weight': self.blocks_weight,
             'turnovers_weight': self.turnovers_weight,
             'points_weight': self.points_weight,
+            'is_active': self.is_active,
             'owner_username': User.query.get(self.owner_id).username,
             'players_length': len(self.league_players),
             # 'teams': [team.to_dict_no_players() for team in self.league_teams],
