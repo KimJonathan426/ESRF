@@ -8,7 +8,7 @@ from app.forms.base_league_form import BaseLeagueForm
 from app.forms.league_edit_form import LeagueEditForm
 from app.forms.league_scoring_form import LeagueScoringForm
 from app.forms.league_start_form import LeagueStartForm
-from app.models import db, League
+from app.models import db, League, Player
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -90,18 +90,47 @@ def edit_scoring(leagueId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         editedLeague = League.query.get(leagueId)
+        editedPlayers = Player.query.filter_by(league_id=leagueId).all()
 
-        editedLeague.field_goal_made_weight = form.data['field_goal_made_weight']
-        editedLeague.field_goal_attempted_weight = form.data['field_goal_attempted_weight']
-        editedLeague.free_throw_made_weight = form.data['free_throw_made_weight']
-        editedLeague.free_throw_attempted_weight = form.data['free_throw_attempted_weight']
-        editedLeague.three_point_made_weight = form.data['three_point_made_weight']
-        editedLeague.assists_weight = form.data['assists_weight']
-        editedLeague.rebounds_weight = form.data['rebounds_weight']
-        editedLeague.steals_weight = form.data['steals_weight']
-        editedLeague.blocks_weight = form.data['blocks_weight']
-        editedLeague.turnovers_weight = form.data['turnovers_weight']
-        editedLeague.points_weight = form.data['points_weight']
+        fgm_w = form.data['field_goal_made_weight']
+        fga_w = form.data['field_goal_attempted_weight']
+        ftm_w = form.data['free_throw_made_weight']
+        fta_w = form.data['free_throw_attempted_weight']
+        three_w = form.data['three_point_made_weight']
+        ast_w = form.data['assists_weight']
+        reb_w = form.data['rebounds_weight']
+        stl_w = form.data['steals_weight']
+        blk_w = form.data['blocks_weight']
+        to_w = form.data['turnovers_weight']
+        pts_w = form.data['points_weight']
+
+        editedLeague.field_goal_made_weight = fgm_w
+        editedLeague.field_goal_attempted_weight = fga_w
+        editedLeague.free_throw_made_weight = ftm_w
+        editedLeague.free_throw_attempted_weight = fta_w
+        editedLeague.three_point_made_weight = three_w
+        editedLeague.assists_weight = ast_w
+        editedLeague.rebounds_weight = reb_w
+        editedLeague.steals_weight = stl_w
+        editedLeague.blocks_weight = blk_w
+        editedLeague.turnovers_weight = to_w
+        editedLeague.points_weight = pts_w
+
+        for player in editedPlayers:
+            fgm_tot = fgm_w * player.field_goal_made
+            fga_tot = fga_w * player.field_goal_attempted
+            ftm_tot = ftm_w * player.free_throw_made
+            fta_tot = fta_w * player.free_throw_attempted
+            three_tot = three_w * player.three_point_made
+            ast_tot = ast_w * player.assists
+            reb_tot = reb_w * player.rebounds
+            stl_tot = stl_w * player.steals
+            blk_tot = blk_w * player.blocks
+            to_tot = to_w * player.turnovers
+            pts_tot = pts_w * player.points
+
+            player.fantasy_total = fgm_tot + fga_tot + ftm_tot + fta_tot + three_tot + ast_tot + reb_tot \
+                + stl_tot + blk_tot + to_tot + pts_tot
 
         db.session.commit()
 
