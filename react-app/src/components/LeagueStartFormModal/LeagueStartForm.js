@@ -69,10 +69,10 @@ const LeagueStartForm = ({ setShowModal, leagueId, leagueDate, leagueTime }) => 
         <form className='edit-start-container' onSubmit={handleSubmit}>
             <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
             <div className='edit-start-header'>League Start</div>
-            <div className='start-warning'>*Setting the fields to a date/time that has already passed will start your league* </div>
+            <div className='start-warning'>*Immediately when the league start, start date and time cannot be altered* </div>
             <div className='start-row'>
                 <div className='edit-label start-label'>
-                    <label>Game Start Date</label>
+                    <label>League Start Date</label>
                 </div>
                 <div className='edit-start-input'>
                     <input
@@ -83,7 +83,7 @@ const LeagueStartForm = ({ setShowModal, leagueId, leagueDate, leagueTime }) => 
             </div>
             <div className='edit-start-time start-row'>
                 <div className='edit-label start-label'>
-                    <label>Game Start Time</label>
+                    <label>League Start Time</label>
                 </div>
                 <div className='edit-start-input'>
                     <input
