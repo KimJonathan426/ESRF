@@ -187,6 +187,17 @@ export const editLeagueStart = (leagueId, start_date, start_time, start_standard
     }
 }
 
+export const editLeagueStatus = (leagueId) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/status`, {
+        method: 'PUT',
+    });
+
+    if (response.ok) {
+        const league = await response.json();
+        dispatch(actionAddLeague(league));
+    }
+}
+
 export const deleteLeague = (leagueId) => async (dispatch) => {
     const response = await fetch(`/api/leagues/delete/${leagueId}`, {
         method: 'DELETE',

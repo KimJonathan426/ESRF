@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getSingleLeague } from '../../store/league';
+import { getSingleLeague, editLeagueStatus } from '../../store/league';
 import ScheduleStartModal from '../LeagueStartFormModal/ScheduleStartModal';
 import './LeagueHome.css';
 
@@ -14,6 +14,39 @@ const LeagueHome = ({ sessionUser }) => {
     useEffect(() => {
         dispatch(getSingleLeague(leagueId));
     }, [dispatch, leagueId])
+
+    useEffect(() => {
+        if (league?.start_standard && league?.is_active === false) {
+
+            const startDate = new Date(`${league.start_standard}`).getTime();
+
+            const countdown = setInterval(() => {
+                const today = new Date().getTime();
+                const difference = startDate - today;
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                console.log(difference)
+                document.getElementById('league-countdown').innerHTML = 'League begins in: ' + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+
+                if (difference <= 0) {
+                    dispatch(editLeagueStatus(leagueId));
+                    document.getElementById('league-countdown').innerHTML = 'League has officially started!';
+                    clearInterval(countdown);
+                }
+            }, 1000);
+
+            return () => {
+                if (countdown) {
+                    clearInterval(countdown);
+                }
+            }
+        }
+
+    }, [dispatch, league])
 
 
     return (
@@ -77,7 +110,13 @@ const LeagueHome = ({ sessionUser }) => {
                                 </div>
                             )
                                 :
-                                <div className='league-home-inner-box-schedule'></div>
+                                !league.is_active ? (
+                                    <div id='league-countdown' className='league-home-inner-box-schedule'>League initializing...</div>
+                                )
+                                    :
+                                    <div className='league-home-inner-box-schedule'>League is active</div>
+
+
                             }
                         </div>
                         <div className='league-home-manager-box'>

@@ -102,6 +102,12 @@ const RequiredPlayerCreation = () => {
                 }
                 timeLeft -= 1;
             }, 1000);
+
+            return () => {
+                if (timer) {
+                    clearInterval(timer);
+                }
+            }
         }
     }, [imageTab, redirect, history, leagueId]);
 
