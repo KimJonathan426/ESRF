@@ -91,7 +91,7 @@ const RequiredPlayerCreation = () => {
 
     useEffect(() => {
         if (!imageTab && redirect) {
-            let timeLeft = 4;
+            let timeLeft = 3;
             let timer = setInterval(() => {
                 if (timeLeft <= 0) {
                     clearInterval(timer);
@@ -206,7 +206,7 @@ const RequiredPlayerCreation = () => {
                                     <div className='first-title'>Your league is all set!</div>
 
                                     {redirect ? (
-                                        <div className='first-title' id='countdown'>You will be redirected to your leagues home page in... <span id='timer'>5</span></div>
+                                        <div className='first-title' id='countdown'>You will be redirected to your leagues home page in... <span id='timer'>4</span></div>
                                     )
                                         : (
                                             <div className='first-title'>If you were not redirected, manually go to your league by clicking <Link to={`/leagues/${leagueId}`}>here</Link></div>

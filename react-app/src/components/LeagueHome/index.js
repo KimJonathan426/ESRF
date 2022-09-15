@@ -29,8 +29,7 @@ const LeagueHome = ({ sessionUser }) => {
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                console.log(difference)
-                document.getElementById('league-countdown').innerHTML = 'League begins in: ' + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+                document.getElementById('league-countdown').innerHTML = 'League begins in... ' + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
 
                 if (difference <= 0) {
                     dispatch(editLeagueStatus(leagueId));
@@ -111,10 +110,22 @@ const LeagueHome = ({ sessionUser }) => {
                             )
                                 :
                                 !league.is_active ? (
-                                    <div id='league-countdown' className='league-home-inner-box-schedule'>League initializing...</div>
+                                    <>
+                                        <div className='league-home-inner-box-schedule'>
+                                            <div id='league-countdown'>League initializing...</div>
+                                            <div className='league-start-info-title'>Note that once the league starts:</div>
+                                            <div className='league-start-info'>League owner will be unable to reschedule the league</div>
+                                            <div className='league-start-info'>League will be locked and no additional league managers may join/create a team.</div>
+                                            <div className='league-start-info'>League managers will be unable to change their roster.</div>
+                                        </div>
+                                    </>
                                 )
                                     :
-                                    <div className='league-home-inner-box-schedule'>League is active</div>
+                                    <>
+                                        <div className='league-home-inner-box-schedule'>
+                                            <div>League is active</div>
+                                        </div>
+                                    </>
 
 
                             }
