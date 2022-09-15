@@ -131,16 +131,10 @@ const LeagueHome = ({ sessionUser }) => {
                             }
                         </div>
                         <div className='league-home-manager-box'>
-                            {/* <div className='manager-note-header'>League Manager's Note</div> */}
-                            <div className='manager-note-header'>League Note</div>
+                            <div className='manager-note-header'>League Manager's Note</div>
                             <div className='manager-note-content'>
-                                {/* <div className='manager-note-title'>{league.league_note_title}</div>
-                                <div className='manager-note-text'>{league.league_note}</div> */}
                                 <div className='manager-note-title'>{league.league_note_title}</div>
-                                <div className='manager-note-text'>Welcome to your ESRF basketball league.
-                                    Your League Manager will be in charge of all internal operations,
-                                    so make sure to reach out to him/her if you have any questions!
-                                </div>
+                                <div className='manager-note-text'>{league.league_note}</div>
                             </div>
                         </div>
                     </div>
