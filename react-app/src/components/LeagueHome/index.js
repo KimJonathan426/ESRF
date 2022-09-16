@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague, editLeagueStatus } from '../../store/league';
 import ScheduleStartModal from '../LeagueStartFormModal/ScheduleStartModal';
+import LeagueNote from '../LeagueNote';
 import './LeagueHome.css';
 
 const LeagueHome = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const { leagueId } = useParams();
-    const leagueState = useSelector(state => state.leagues)
-    const league = leagueState[leagueId]
+    const leagueState = useSelector(state => state.leagues);
+    const league = leagueState[leagueId];
 
     useEffect(() => {
         dispatch(getSingleLeague(leagueId));
@@ -130,13 +131,7 @@ const LeagueHome = ({ sessionUser }) => {
 
                             }
                         </div>
-                        <div className='league-home-manager-box'>
-                            <div className='manager-note-header'>League Manager's Note</div>
-                            <div className='manager-note-content'>
-                                <div className='manager-note-title'>{league.league_note_title}</div>
-                                <div className='manager-note-text'>{league.league_note}</div>
-                            </div>
-                        </div>
+                        <LeagueNote league={league} sessionUser={sessionUser}/>
                     </div>
                 </div>
             </div>

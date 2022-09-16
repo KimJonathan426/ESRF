@@ -1,0 +1,42 @@
+.league-home-manager-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: fit-content;
+    min-height: 150px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.manager-note-header {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 1.15;
+    border-bottom: 1px dotted #dcdddf;
+}
+
+.manager-note-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    line-height: 1.15;
+}
+
+.manager-note-title {
+    font-size: 24px;
+    padding: 4px 5px 8px;
+    color: #151617;
+    font-weight: bold;
+}
+
+.manager-note-text {
+    color: #6C6D6F;
+    font-size: 12px;
+    padding: 0px 5px;
+    line-height: 17px;
+}
