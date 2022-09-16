@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { editLeagueNote } from "../../store/league"
+import { editLeagueNote } from "../../store/league"
 import ErrorModal from '../ErrorModal';
 import './LeagueNote.css';
 
@@ -29,21 +29,22 @@ const LeagueNote = ({ league, sessionUser }) => {
         setLeagueNote(e.target.value);
     }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //     const league_note_title = leagueNoteTitle;
-    //     const league_note = leagueNote;
+        const leagueId = league.id;
+        const league_note_title = leagueNoteTitle;
+        const league_note = leagueNote;
 
-    //     const errors = await dispatch(editLeagueNote(leagueId, league_note_title, league_note));
+        const errors = await dispatch(editLeagueNote(leagueId, league_note_title, league_note));
 
-    //     if (errors) {
-    //         setValidationErrors(errors);
-    //         setShowErrorModal(true);
-    //     } else {
-    //         setShowForm(false);
-    //     }
-    // };
+        if (errors) {
+            setValidationErrors(errors);
+            setShowErrorModal(true);
+        } else {
+            setShowForm(false);
+        }
+    };
 
     return (
         <div className='league-home-manager-box'>
@@ -61,19 +62,21 @@ const LeagueNote = ({ league, sessionUser }) => {
                     <div className='manager-note-text'>{league.league_note}</div>
                 </div>
             ) :
-                <form>
+                <form onSubmit={handleSubmit}>
                     <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
-                    <input
-                        value={leagueNoteTitle}
-                        onChange={updateLeagueNoteTitle}
-                        placeholder='League Note Title (Required)'
-                        maxLength='40' />
-                    <input
-                        value={leagueNote}
-                        onChange={updateLeagueNote}
-                        placeholder='League Note (Required)'
-                        maxLength='1000' />
-                    <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
+                    <div>
+                        <input
+                            value={leagueNoteTitle}
+                            onChange={updateLeagueNoteTitle}
+                            placeholder='League Note Title (Required)'
+                            maxLength='40' />
+                        <textarea
+                            value={leagueNote}
+                            onChange={updateLeagueNote}
+                            placeholder='League Note (Required)'
+                            maxLength='1000' />
+                        <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
+                    </div>
                 </form>
             }
         </div>
