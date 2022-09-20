@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { editLeagueNote } from "../../store/league"
+import $ from 'jquery';
+import autosize from 'autosize';
 import ErrorModal from '../ErrorModal';
 import './LeagueNote.css';
 
@@ -46,15 +48,47 @@ const LeagueNote = ({ league, sessionUser }) => {
         }
     };
 
+    const handleCancel = async (e) => {
+        e.preventDefault();
+
+        setShowForm(false);
+        setLeagueNoteTitle(league.league_note_title);
+        setLeagueNote(league.league_note);
+    }
+
+    useEffect(() => {
+        $(function () {
+            $('#edit-note').on('click', function () {
+                $('#league-note-textarea').ready(function () {
+                    const ele = document.getElementById('league-note-textarea')
+                    console.log(ele)
+                    console.log('no')
+                    console.log('eleHeight', ele.scrollHeight)
+                    ele.style.height = (ele.scrollHeight - 2) + 'px';
+                })
+            });
+        });
+        $(function () {
+            $(document).on('focus', 'textarea', function () {
+                autosize($('textarea'));
+                console.log('yes')
+            });
+        });
+
+        return () => {
+            $(function () {
+                $(document).off();
+            });
+        }
+    }, [])
+
     return (
         <div className='league-home-manager-box'>
             <div className='manager-note-header'>
                 <div>League Manager's Note</div>
-                {league.owner_id === sessionUser.id && !showForm ? (
-                    <button onClick={() => setShowForm(true)} className='edit-btn'>Edit League Note</button>
-                ) :
-                    <button onClick={() => setShowForm(false)} className='edit-btn'>Cancel Changes</button>
-                }
+                {league.owner_id === sessionUser.id && (
+                    <button id='edit-note' disabled={showForm} onClick={() => setShowForm(true)} className={showForm ? 'transparent-btn' : 'edit-btn'}>Edit League Note</button>
+                )}
             </div>
             {!showForm ? (
                 <div className='manager-note-content'>
@@ -68,14 +102,20 @@ const LeagueNote = ({ league, sessionUser }) => {
                         <input
                             value={leagueNoteTitle}
                             onChange={updateLeagueNoteTitle}
+                            className='league-note-title-input'
                             placeholder='League Note Title (Required)'
                             maxLength='40' />
                         <textarea
                             value={leagueNote}
                             onChange={updateLeagueNote}
+                            id='league-note-textarea'
+                            className='league-note-textarea'
                             placeholder='League Note (Required)'
                             maxLength='1000' />
-                        <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
+                        <div className='league-note-btn-container'>
+                            <button disabled={disabled} className={disabled ? 'disabled-btn' : 'save-btn'} type='submit'>Save Changes</button>
+                            <button onClick={handleCancel} className='cancel-btn'>Cancel Changes</button>
+                        </div>
                     </div>
                 </form>
             }

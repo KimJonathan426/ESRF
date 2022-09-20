@@ -40,3 +40,46 @@
     padding: 0px 5px;
     line-height: 17px;
 }
+
+.league-note-title-input {
+    width: 775px;
+    font-size: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    line-height: 1.15;
+    color: #151617;
+    padding: 3px 5px;
+    margin-top: 10px;
+    margin-left: -1px;
+}
+
+.league-note-textarea {
+    width: 860px;
+    min-height: 17px;
+    max-height: 189px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    line-height: 17px;
+    color: #6C6D6F;
+    padding: 1px 5px;
+    margin-top: 2px;
+    margin-left: -1px;
+    overflow: hidden;
+}
+
+.transparent-btn {
+    opacity: 0;
+}
+
+.league-note-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.league-note-btn-container > button {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
