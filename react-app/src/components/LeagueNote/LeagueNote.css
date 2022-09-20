@@ -1,0 +1,85 @@
+.league-home-manager-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: fit-content;
+    min-height: 150px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.manager-note-header {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 1.15;
+    border-bottom: 1px dotted #dcdddf;
+}
+
+.manager-note-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    line-height: 1.15;
+}
+
+.manager-note-title {
+    font-size: 24px;
+    padding: 4px 5px 8px;
+    color: #151617;
+    font-weight: bold;
+}
+
+.manager-note-text {
+    color: #6C6D6F;
+    font-size: 12px;
+    padding: 0px 5px;
+    line-height: 17px;
+}
+
+.league-note-title-input {
+    width: 775px;
+    font-size: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    line-height: 1.15;
+    color: #151617;
+    padding: 3px 5px;
+    margin-top: 10px;
+    margin-left: -1px;
+}
+
+.league-note-textarea {
+    width: 860px;
+    min-height: 17px;
+    max-height: 189px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    line-height: 17px;
+    color: #6C6D6F;
+    padding: 1px 5px;
+    margin-top: 2px;
+    margin-left: -1px;
+    overflow: hidden;
+}
+
+.transparent-btn {
+    opacity: 0;
+}
+
+.league-note-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+}
+
+.league-note-btn-container > button {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}

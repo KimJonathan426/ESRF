@@ -198,6 +198,30 @@ export const editLeagueStatus = (leagueId) => async (dispatch) => {
     }
 }
 
+export const editLeagueNote = (leagueId, league_note_title, league_note) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/edit/${leagueId}/note`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            league_note_title,
+            league_note
+        })
+    });
+
+    if (response.ok) {
+        const league = await response.json();
+        dispatch(actionAddLeague(league));
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
 export const deleteLeague = (leagueId) => async (dispatch) => {
     const response = await fetch(`/api/leagues/delete/${leagueId}`, {
         method: 'DELETE',

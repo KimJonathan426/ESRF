@@ -8,6 +8,7 @@ from app.forms.base_league_form import BaseLeagueForm
 from app.forms.league_edit_form import LeagueEditForm
 from app.forms.league_scoring_form import LeagueScoringForm
 from app.forms.league_start_form import LeagueStartForm
+from app.forms.league_note_form import LeagueNoteForm
 from app.models import db, League, Player
 
 league_routes = Blueprint('leagues', __name__)
@@ -212,3 +213,20 @@ def upload_league_image(leagueId):
     db.session.commit()
 
     return editedLeague.to_dict()
+
+@league_routes.route('/edit/<int:leagueId>/note', methods=['PUT'])
+@login_required
+def league_note(leagueId):
+    form = LeagueNoteForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        editedLeague = League.query.get(leagueId)
+
+        editedLeague.league_note_title = form.data['league_note_title']
+        editedLeague.league_note = form.data['league_note']
+
+        db.session.commit()
+
+        return editedLeague.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
