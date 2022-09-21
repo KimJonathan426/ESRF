@@ -61,9 +61,6 @@ const LeagueNote = ({ league, sessionUser }) => {
             $('#edit-note').on('click', function () {
                 $('#league-note-textarea').ready(function () {
                     const ele = document.getElementById('league-note-textarea')
-                    console.log(ele)
-                    console.log('no')
-                    console.log('eleHeight', ele.scrollHeight)
                     ele.style.height = (ele.scrollHeight - 2) + 'px';
                 })
             });
@@ -71,7 +68,6 @@ const LeagueNote = ({ league, sessionUser }) => {
         $(function () {
             $(document).on('focus', 'textarea', function () {
                 autosize($('textarea'));
-                console.log('yes')
             });
         });
 
