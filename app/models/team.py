@@ -9,6 +9,7 @@ class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'), nullable=False)
     team_owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    team_number = db.Column(db.Integer, nullable=False)
     team_name = db.Column(db.String(30), nullable=False)
     team_abre = db.Column(db.String(4), nullable=False)
     team_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Default-Team-Logo.png')
@@ -36,6 +37,7 @@ class Team(db.Model):
             'id': self.id,
             'league_id': self.league_id,
             'team_owner_id': self.team_owner_id,
+            'team_number': self.team_number,
             'team_name': self.team_name,
             'team_abre': self.team_abre,
             'team_image': self.team_image,
@@ -48,6 +50,7 @@ class Team(db.Model):
         'id': self.id,
         'league_id': self.league_id,
         'team_owner_id': self.team_owner_id,
+        'team_number': self.team_number,
         'team_name': self.team_name,
         'team_abre': self.team_abre,
         'team_image': self.team_image,

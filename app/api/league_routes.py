@@ -9,7 +9,7 @@ from app.forms.league_edit_form import LeagueEditForm
 from app.forms.league_scoring_form import LeagueScoringForm
 from app.forms.league_start_form import LeagueStartForm
 from app.forms.league_note_form import LeagueNoteForm
-from app.models import db, League, Player
+from app.models import db, League, Player, Team
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -230,3 +230,36 @@ def league_note(leagueId):
 
         return editedLeague.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# Teams routes per league
+
+@league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])
+@login_required
+def create_team(leagueId):
+    form = BaseTeamForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        league = League.query.get(leagueId)
+        league_info = league.to_dict()
+
+        team = Team(
+            league_id = leagueId,
+            team_owner_id = current_user.id,
+            team_number = len(league_info.teams),
+            team_name = form.data['team_name'],
+            team_abre = form.data['team_abre']
+        )
+
+        db.session.add(team)
+        db.session.commit()
+
+        return team.to_dict()
+    return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamId>')
+@login_required
+def my_team(leagueId, teamId):
+    team = Team.query.get(teamId)
+    return team.to_dict()
