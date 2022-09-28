@@ -10,7 +10,8 @@ class Team(db.Model):
     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'), nullable=False)
     team_owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     team_number = db.Column(db.Integer, nullable=False)
-    team_name = db.Column(db.String(30), nullable=False)
+    team_location = db.Column(db.String(15), nullable=False)
+    team_name = db.Column(db.String(20), nullable=False)
     team_abre = db.Column(db.String(4), nullable=False)
     team_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Default-Team-Logo.png')
     fantasy_total = db.Column(db.Integer, nullable=True, default=0)
@@ -27,6 +28,7 @@ class Team(db.Model):
     def to_dict_for_player(self):
         return {
             'id': self.id,
+            'team_location': self.team_location,
             'team_name': self.team_name,
             'team_abre': self.team_abre,
         }
@@ -38,6 +40,7 @@ class Team(db.Model):
             'league_id': self.league_id,
             'team_owner_id': self.team_owner_id,
             'team_number': self.team_number,
+            'team_location': self.team_location,
             'team_name': self.team_name,
             'team_abre': self.team_abre,
             'team_image': self.team_image,
@@ -51,6 +54,7 @@ class Team(db.Model):
         'league_id': self.league_id,
         'team_owner_id': self.team_owner_id,
         'team_number': self.team_number,
+        'team_location': self.team_location,
         'team_name': self.team_name,
         'team_abre': self.team_abre,
         'team_image': self.team_image,
