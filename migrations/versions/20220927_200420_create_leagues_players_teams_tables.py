@@ -1,8 +1,9 @@
 """create leagues players teams tables
 
-Revision ID: 5d545b63f29f
+
+Revision ID: 31429237318d
 Revises: ffdc0a98111c
-Create Date: 2022-08-26 05:23:55.863717
+Create Date: 2022-09-27 20:04:20.629713
 
 """
 from alembic import op
@@ -10,7 +11,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5d545b63f29f'
+revision = '31429237318d'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -74,6 +75,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('league_id', sa.Integer(), nullable=False),
     sa.Column('team_owner_id', sa.Integer(), nullable=False),
+    sa.Column('team_number', sa.Integer(), nullable=False),
     sa.Column('team_name', sa.String(length=30), nullable=False),
     sa.Column('team_abre', sa.String(length=4), nullable=False),
     sa.Column('team_image', sa.String(length=500), nullable=True),
