@@ -85,7 +85,7 @@ const LeagueHome = ({ sessionUser }) => {
                                     </div>
                                 </div>
                                 <div className='league-home-inner-box-2'>
-                                    <div>
+                                    <div className='creator-container'>
                                         Creator: <span>{league.owner_username}</span>
                                     </div>
                                     <div>
