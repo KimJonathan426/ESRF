@@ -31,7 +31,7 @@ def password_checker(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(message='Username is required.'), Length(max=40, message='Username cannot exceed 40 characters.'), username_exists])
+        'username', validators=[DataRequired(message='Username is required.'), Length(max=20, message='Username cannot exceed 20 characters.'), username_exists])
     email = StringField('email', validators=[DataRequired(message='Email is required.'), Email(message='Please enter a valid email.'), Length(max=255, message='Email cannot exceed 255 characters.'), user_exists])
     password = StringField('password', validators=[DataRequired(message='Password is required.'), Length(max=255, message='Password cannot exceed 255 characters.')])
     confirmedPassword = StringField('confirm password', validators=[DataRequired(message='Confirmed password is required.'), Length(max=255, message='Confirmed Password cannot exceed 255 characters'),password_checker])

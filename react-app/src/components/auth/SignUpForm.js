@@ -74,7 +74,8 @@ const SignUpForm = () => {
               name='username'
               onChange={updateUsername}
               placeholder='Username (Required)'
-              value={username} />
+              value={username}
+              maxLength='20'/>
           </div>
           <div className='login-input-container'>
             <label>Email</label>
