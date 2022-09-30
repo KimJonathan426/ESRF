@@ -72,7 +72,7 @@ class League(db.Model):
             'points_weight': self.points_weight,
             'is_active': self.is_active,
             'owner_username': User.query.get(self.owner_id).username,
-            'players_length': len(self.league_players),
+            'players_count': len(self.league_players),
             'teams': [team.to_dict_no_players() for team in self.league_teams],
             # 'players': [player.to_dict() for player in self.league_players],
         }

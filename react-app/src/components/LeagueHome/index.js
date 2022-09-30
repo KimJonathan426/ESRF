@@ -50,7 +50,7 @@ const LeagueHome = ({ sessionUser }) => {
 
 
     return (
-        league ? league.players_length >= 10 ?
+        league ? league.players_count >= 10 ?
             <div className='page-outer'>
                 <div className='page-spacer'></div>
                 <div className='page-container'>
