@@ -9,6 +9,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import LeagueList from './components/LeagueList';
 import LeagueHome from './components/LeagueHome';
 import BaseLeagueForm from './components/BaseLeagueForm';
+import BaseTeamForm from './components/BaseTeamForm';
 import RequiredPlayerCreation from './components/RequiredPlayerCreation';
 import EditPlayerStatSheet from './components/EditPlayerStatSheet';
 import PlayerForm from './components/PlayerForm';
@@ -83,6 +84,10 @@ function App() {
         <ProtectedRoute path='/about' exact={true} >
           <NavBar />
           <AboutPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/test/:leagueId' exact={true} >
+          <NavBar />
+          <BaseTeamForm sessionUser={sessionUser} />
         </ProtectedRoute>
         <Route>
           <NavBar />
