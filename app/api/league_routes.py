@@ -235,6 +235,19 @@ def league_note(leagueId):
 
 # Teams routes per league
 
+@league_routes.route('/<int:leagueId>/teams')
+@login_required
+def all_team(leagueId):
+    league = League.query.get(leagueId)
+    teams = league.to_dict().teams
+    return teams
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamId>')
+@login_required
+def my_team(leagueId, teamId):
+    team = Team.query.get(teamId)
+    return team.to_dict()
+
 @league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])
 @login_required
 def create_team(leagueId):
@@ -243,14 +256,13 @@ def create_team(leagueId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         league = League.query.get(leagueId)
-        print('league from team route', league)
         league_info = league.to_dict()
-        print('league from team route in dict form', league_info)
 
         team = Team(
             league_id = leagueId,
             team_owner_id = current_user.id,
-            team_number = len(league_info.teams),
+            team_number = len(league_info['teams']) + 1,
+            team_location = form.data['team_location'],
             team_name = form.data['team_name'],
             team_abre = form.data['team_abre']
         )
@@ -260,9 +272,3 @@ def create_team(leagueId):
 
         return team.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
-
-@league_routes.route('/<int:leagueId>/teams/<int:teamId>')
-@login_required
-def my_team(leagueId, teamId):
-    team = Team.query.get(teamId)
-    return team.to_dict()
