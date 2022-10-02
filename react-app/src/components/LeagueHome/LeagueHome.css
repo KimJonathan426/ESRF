@@ -74,12 +74,14 @@
 }
 
 .card-header-title {
+    width: 100%;
     color: #151617;
     font-size: 12px;
     font-weight: 800;
     line-height: 12px;
     height: 12px;
     margin: 0px;
+    text-align: left;
 }
 
 .settings-icon {
@@ -117,22 +119,53 @@
     border-radius: 50%;
 }
 
+.card-league-lock {
+    display: flex;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 .card-team-logo-image > img {
     height: 100%;
     width: auto;
 }
 
-.card-team-name {
+.card-league-lock > img {
+    object-position: 0 -25px;
+    height: 200%;
+    width: auto;
+}
+
+.card-team-name,
+.card-interest {
+    width: 100%;
     font-size: 20px;
     font-weight: 600;
     line-height: 24px;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
-.card-owner-name {
+.card-interest {
+    margin-top: 10px;
+}
+
+.card-owner-name,
+.card-league-alert {
+    width: 100%;
     color: rgb(108, 109, 111);
     font-size: 12px;
     line-height: 14px;
     font-weight: normal;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.card-league-alert {
+    margin-top: 10px;
 }
 
 .view-roster {
@@ -143,6 +176,18 @@
     line-height: 16px;
     margin: 30px auto 4px;
     width: 100%;
+}
+
+.join-league {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 44px auto 4px;
+    width: 100%;
+}
+
+.join-league > button {
+    margin: 0px;
 }
 
 .league-home-main {

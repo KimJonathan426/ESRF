@@ -4,8 +4,10 @@ import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague, editLeagueStatus } from '../../store/league';
 import { getAllTeams } from '../../store/team';
 import settingsIcon from '../../images/settings-icon.png';
+import leagueLock from '../../images/locked.png';
 import ScheduleStartModal from '../LeagueStartFormModal/ScheduleStartModal';
 import LeagueNote from '../LeagueNote';
+import JoinLeagueButton from '../JoinLeagueButton';
 import './LeagueHome.css';
 
 const LeagueHome = ({ sessionUser }) => {
@@ -22,8 +24,6 @@ const LeagueHome = ({ sessionUser }) => {
             break
         }
     }
-
-    console.log('userTeam', userTeam)
 
     useEffect(() => {
         dispatch(getSingleLeague(leagueId));
@@ -79,7 +79,7 @@ const LeagueHome = ({ sessionUser }) => {
                                         <>
                                             <header className='card-header'>
                                                 <h3 className='card-header-title'>My Team</h3>
-                                                <img src={settingsIcon} alt='settings icon' className='settings-icon'/>
+                                                <img src={settingsIcon} alt='settings icon' className='settings-icon' />
                                             </header>
                                             <div className='card-content'>
                                                 <div className='card-team-info'>
@@ -100,11 +100,45 @@ const LeagueHome = ({ sessionUser }) => {
                                                 </div>
                                             </div>
                                         </>
-
                                         :
-                                        <div>
-                                            hi
-                                        </div>
+                                        league.teams.length < league.team_limit && !league.is_active ?
+                                            <>
+                                                <header className='card-header'>
+                                                    <h3 className='card-header-title'>Create a Team</h3>
+                                                </header>
+                                                <div className='card-content'>
+                                                    <div className='card-team-info'>
+                                                        <span className='card-interest'>
+                                                            Interested in joining this league?
+                                                        </span>
+                                                        <div className='join-league'>
+                                                            <JoinLeagueButton sessionUser={sessionUser} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
+                                            :
+                                            <>
+                                                <header className='card-header'>
+                                                    <h3 className='card-header-title'>League Alert</h3>
+                                                </header>
+                                                <div className='card-content'>
+                                                    <div className='card-team-logo'>
+                                                        <div className='card-league-lock'>
+                                                            <img src={leagueLock} alt='league locked' />
+                                                        </div>
+                                                    </div>
+                                                    <div className='card-team-info'>
+                                                        <span className='card-team-name'>
+                                                            League locked
+                                                        </span>
+                                                        <div className='card-league-alert'>
+                                                            *No additional league managers may join this league as it is
+                                                            at full capacity or has already started.*
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
                                     }
                                 </section>
                             </div>
