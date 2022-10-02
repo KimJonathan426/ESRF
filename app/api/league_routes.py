@@ -238,9 +238,8 @@ def league_note(leagueId):
 @league_routes.route('/<int:leagueId>/teams')
 @login_required
 def all_team(leagueId):
-    league = League.query.get(leagueId)
-    teams = league.to_dict().teams
-    return teams
+    teams = Team.query.filter_by(league_id=leagueId).all()
+    return {'teamsList': [team.to_dict() for team in teams]}
 
 @league_routes.route('/<int:leagueId>/teams/<int:teamId>')
 @login_required

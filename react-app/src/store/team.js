@@ -63,99 +63,13 @@ export const addTeam = (leagueId, team_owner_id, team_location, team_name, team_
     }
 }
 
-// export const editPlayerInfo = (playerId, player_name, position, team, bio) => async (dispatch) => {
-//     const response = await fetch(`/api/players/edit/${playerId}`, {
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             player_name,
-//             position,
-//             team,
-//             bio
-//         })
-//     });
-
-//     if (response.ok) {
-//         const player = await response.json();
-//         dispatch(actionAddPlayer(player));
-//         return player;
-//     }
-//     else {
-//         const errors = await response.json();
-//         return errors
-//     }
-// }
-
-// export const editPlayerStats = (payload) => async (dispatch) => {
-//     const playerId = payload.playerId;
-//     const recent_news = payload.recent_news;
-//     const field_goal_made = payload.field_goal_made;
-//     const field_goal_attempted = payload.field_goal_attempted;
-//     const free_throw_made = payload.free_throw_made;
-//     const free_throw_attempted = payload.free_throw_attempted;
-//     const three_point_made = payload.three_point_made;
-//     const assists = payload.assists;
-//     const rebounds = payload.rebounds;
-//     const steals = payload.steals;
-//     const blocks = payload.blocks;
-//     const turnovers = payload.turnovers;
-//     const points = payload.points;
-
-//     const response = await fetch(`/api/players/edit/${playerId}/stats`, {
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//             recent_news,
-//             field_goal_made,
-//             field_goal_attempted,
-//             free_throw_made,
-//             free_throw_attempted,
-//             three_point_made,
-//             assists,
-//             rebounds,
-//             steals,
-//             blocks,
-//             turnovers,
-//             points
-//         })
-//     });
-
-//     if (response.ok) {
-//         const player = await response.json();
-//         dispatch(actionAddPlayer(player));
-//         return null;
-//     } else if (response.status < 500) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             return data.errors;
-//         }
-//     } else {
-//         return ['An error occurred. Please try again.']
-//     }
-// }
-
-// export const deletePlayer = (formData) => async (dispatch) => {
-//     const response = await fetch(`/api/players/delete`, {
-//         method: 'DELETE',
-//         body: formData
-//     });
-
-//     if (response.ok) {
-//         const playerId = await response.json();
-//         dispatch(actionDeletePlayer(playerId));
-//     } else {
-//         const errors = await response.json();
-//         return errors;
-//     }
-// }
-
 
 // Team Reducer
 const TeamsReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_TEAMS:
             const newState1 = {};
-            action.teams.forEach(team => {
+            action.teams.teamsList.forEach(team => {
                 newState1[team.team_number] = team;
             });
             return newState1;
