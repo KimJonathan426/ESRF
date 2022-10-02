@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague, editLeagueStatus } from '../../store/league';
+import { getAllTeams } from '../../store/team';
+import settingsIcon from '../../images/settings-icon.png';
 import ScheduleStartModal from '../LeagueStartFormModal/ScheduleStartModal';
 import LeagueNote from '../LeagueNote';
 import './LeagueHome.css';
@@ -10,10 +12,22 @@ const LeagueHome = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const { leagueId } = useParams();
     const leagueState = useSelector(state => state.leagues);
+    const teamState = useSelector(state => state.teams);
     const league = leagueState[leagueId];
+    let userTeam;
+
+    for (let team of Object.values(teamState)) {
+        if (team.team_owner_id === sessionUser.id) {
+            userTeam = team;
+            break
+        }
+    }
+
+    console.log('userTeam', userTeam)
 
     useEffect(() => {
         dispatch(getSingleLeague(leagueId));
+        dispatch(getAllTeams(leagueId));
     }, [dispatch, leagueId])
 
     useEffect(() => {
@@ -54,84 +68,121 @@ const LeagueHome = ({ sessionUser }) => {
             <div className='page-outer'>
                 <div className='page-spacer'></div>
                 <div className='page-container'>
-                    <div className='league-home-main-container'>
-                        <div className='league-links-box'>
-                        </div>
+                    <div className='league-home-container'>
                         <div className='league-home-image-box'>
                             <img className='league-home-image' src={`${league.league_image}`}></img>
                         </div>
-                        <div className='league-home-main-box'>
-                            <div className='league-home-inner-box-main'>
-                                <div className='league-home-inner-box-1'>
-                                    <div className='main-box-top-accent'></div>
-                                    <span>{league.league_name}</span>
-                                    <div className='league-navigation-links'>
-                                        <div className='league-link-1'>
-                                            <Link to={`/leagues/${leagueId}/settings`}>Settings</Link>
-                                        </div>
-                                        <div className='league-link-2'>
-                                            <Link to={`/leagues/${leagueId}/players`}>Player List</Link>
-                                        </div>
-                                        {league?.owner_id === sessionUser.id && (
-                                            <div className='league-link-3'>
-                                                <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+                        <div className='league-home-main-container'>
+                            <div className='league-home-side'>
+                                <section className='team-card'>
+                                    {userTeam ?
+                                        <>
+                                            <header className='card-header'>
+                                                <h3 className='card-header-title'>My Team</h3>
+                                                <img src={settingsIcon} alt='settings icon' className='settings-icon'/>
+                                            </header>
+                                            <div className='card-content'>
+                                                <div className='card-team-info'>
+                                                    <div className='card-team-logo'>
+                                                        <div className='card-team-logo-image'>
+                                                            <img src={userTeam.team_image} alt='team logo' />
+                                                        </div>
+                                                    </div>
+                                                    <span className='card-team-name'>
+                                                        {userTeam.team_location + ' ' + userTeam.team_name}
+                                                    </span>
+                                                    <div className='card-owner-name'>
+                                                        {sessionUser.username}
+                                                    </div>
+                                                </div>
+                                                <div className='view-roster'>
+                                                    View Roster Link
+                                                </div>
                                             </div>
-                                        )}
-                                        {league?.owner_id === sessionUser.id && (
-                                            <div className='league-link-4'>
-                                                <Link to={`/leagues/${leagueId}/players/new`}>Create a Player</Link>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className='league-home-inner-box-2'>
-                                    <div>
-                                        Creator: <span>{league.owner_username}</span>
-                                    </div>
-                                    <div>
-                                        Format: <span>League Manager</span>
-                                    </div>
-                                    <div>
-                                        Scoring: <span>Single Game Fantasy</span>
-                                    </div>
-                                    <div>
-                                        Team Limit: <span>{league.team_limit}</span>
-                                    </div>
-                                </div>
+                                        </>
+
+                                        :
+                                        <div>
+                                            hi
+                                        </div>
+                                    }
+                                </section>
                             </div>
-                            {league.start_date === 'mm/dd/yyyy' ? (
-                                <div className='league-home-inner-box-schedule'>
-                                    <div>
-                                        This league's game has not been scheduled.
+                            <div className='league-home-main'>
+                                <div className='league-home-main-box'>
+                                    <div className='league-home-inner-box-main'>
+                                        <div className='league-home-inner-box-1'>
+                                            <div className='main-box-top-accent'></div>
+                                            <span>{league.league_name}</span>
+                                            <div className='league-navigation-links'>
+                                                <div className='league-link-1'>
+                                                    <Link to={`/leagues/${leagueId}/settings`}>Settings</Link>
+                                                </div>
+                                                <div className='league-link-2'>
+                                                    <Link to={`/leagues/${leagueId}/players`}>Player List</Link>
+                                                </div>
+                                                {league?.owner_id === sessionUser.id && (
+                                                    <div className='league-link-3'>
+                                                        <Link to={`/leagues/${leagueId}/players/edit/stats`}>Player Stat Sheet</Link>
+                                                    </div>
+                                                )}
+                                                {league?.owner_id === sessionUser.id && (
+                                                    <div className='league-link-4'>
+                                                        <Link to={`/leagues/${leagueId}/players/new`}>Create a Player</Link>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className='league-home-inner-box-2'>
+                                            <div>
+                                                Creator: <span>{league.owner_username}</span>
+                                            </div>
+                                            <div>
+                                                Format: <span>League Manager</span>
+                                            </div>
+                                            <div>
+                                                Scoring: <span>Single Game Fantasy</span>
+                                            </div>
+                                            <div>
+                                                Team Limit: <span>{league.team_limit}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    {league?.owner_id === sessionUser.id && (
-                                        <ScheduleStartModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
-                                    )}
+                                    {league.start_date === 'mm/dd/yyyy' ? (
+                                        <div className='league-home-inner-box-schedule'>
+                                            <div>
+                                                This league's game has not been scheduled.
+                                            </div>
+                                            {league?.owner_id === sessionUser.id && (
+                                                <ScheduleStartModal leagueId={leagueId} leagueDate={league.start_date} leagueTime={league.start_time} />
+                                            )}
+                                        </div>
+                                    )
+                                        :
+                                        !league.is_active ? (
+                                            <>
+                                                <div className='league-home-inner-box-schedule'>
+                                                    <div id='league-countdown'>League initializing...</div>
+                                                    <div className='league-start-info-title'>Note that once the league starts:</div>
+                                                    <div className='league-start-info'>League owner will be unable to reschedule the league</div>
+                                                    <div className='league-start-info'>League will be locked and no additional league managers may join/create a team.</div>
+                                                    <div className='league-start-info'>League managers will be unable to change their roster.</div>
+                                                </div>
+                                            </>
+                                        )
+                                            :
+                                            <>
+                                                <div className='league-home-inner-box-schedule'>
+                                                    <div>League is active</div>
+                                                </div>
+                                            </>
+
+
+                                    }
                                 </div>
-                            )
-                                :
-                                !league.is_active ? (
-                                    <>
-                                        <div className='league-home-inner-box-schedule'>
-                                            <div id='league-countdown'>League initializing...</div>
-                                            <div className='league-start-info-title'>Note that once the league starts:</div>
-                                            <div className='league-start-info'>League owner will be unable to reschedule the league</div>
-                                            <div className='league-start-info'>League will be locked and no additional league managers may join/create a team.</div>
-                                            <div className='league-start-info'>League managers will be unable to change their roster.</div>
-                                        </div>
-                                    </>
-                                )
-                                    :
-                                    <>
-                                        <div className='league-home-inner-box-schedule'>
-                                            <div>League is active</div>
-                                        </div>
-                                    </>
-
-
-                            }
+                                <LeagueNote league={league} sessionUser={sessionUser} />
+                            </div>
                         </div>
-                        <LeagueNote league={league} sessionUser={sessionUser}/>
                     </div>
                 </div>
             </div>
