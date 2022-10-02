@@ -46,12 +46,10 @@
 }
 
 .player-detail-image-container > img {
-    min-width: 255px;
-    max-height: 250px;
-    object-fit: fill;
+    width: 200px;
+    height: 156px;
+    object-fit: cover;
     position: relative;
-    top: -10px;
-    left: -50px;
 }
 
 .triangle {
