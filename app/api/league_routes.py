@@ -246,7 +246,10 @@ def all_team(leagueId):
 @login_required
 def my_team(leagueId, teamNumber):
     team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
-    return team.to_dict()
+
+    if team:
+        return team.to_dict()
+    return {'errors': 'Team not found'}, 404
 
 @league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])
 @login_required

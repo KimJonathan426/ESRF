@@ -22,50 +22,38 @@ const TeamSettings = ({ sessionUser }) => {
         dispatch(getSingleTeam(leagueId, teamNumber))
     }, [dispatch])
 
-    // const [league, setLeague] = useState('');
-    // const [team, setTeam] = useState('');
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const leagueRes = await dispatch(getSingleLeague(leagueId))
-    //         const teamRes = await dispatch(getSingleTeam(leagueId, teamNumber))
-
-    //         setLeague(leagueRes);
-    //         setTeam(teamRes);
-    //     }
-
-    //     fetchData();
-    // }, [dispatch, leagueId, teamNumber])
-
-    // which is best way to render?
-    // with use state or use selector?
-    // conditional render of entire dom based on data existence?
 
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                <div className='team-settings-container'>
-                    <div className='team-settings-top-accent' />
-                    <div className='team-settings-header'>
-                        <h1 className='team-settings-header-main'>Team Settings</h1>
-                        <h3 className='team-settings-header-sub'>{league?.league_name}</h3>
-                    </div>
-                    <div className='team-forms-container'>
-                        <div className='team-settings-image-box'>
-                            <div className='team-logo-box'>
-                                <img className='team-settings-logo' src={team?.team_image} alt='team logo' />
+                {team ?
+                    <div className='team-settings-container'>
+                        <div className='team-settings-top-accent' />
+                        <div className='team-settings-header'>
+                            <h1 className='team-settings-header-main'>Team Settings</h1>
+                            <h3 className='team-settings-header-sub'>{league?.league_name}</h3>
+                        </div>
+                        <div className='team-forms-container'>
+                            <div className='team-settings-image-box'>
+                                <div className='team-logo-box'>
+                                    <img className='team-settings-logo' src={team?.team_image} alt='team logo' />
+                                </div>
+                                <TeamImageUpload />
                             </div>
-                            <TeamImageUpload />
+                            <EditTeamForm />
                         </div>
-                        <EditTeamForm />
+                        {league && sessionUser.id !== league?.owner_id &&
+                            <div className='team-settings-delete'>
+                                <DeleteTeamModal />
+                            </div>
+                        }
                     </div>
-                    {league && sessionUser.id !== league?.owner_id &&
-                        <div className='team-settings-delete'>
-                            <DeleteTeamModal />
-                        </div>
-                    }
-                </div>
+                    :
+                    <div>
+                        not allowed
+                    </div>
+                }
             </div>
         </div>
     )

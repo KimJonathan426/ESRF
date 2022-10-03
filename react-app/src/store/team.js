@@ -57,6 +57,10 @@ export const getSingleTeam = (leagueId, teamNumber) => async (dispatch) => {
         dispatch(actionGetSingleTeam(team));
         return team;
     }
+    else {
+        const errors = await response.json();
+        return errors
+    }
 }
 
 export const addTeam = (leagueId, team_owner_id, team_location, team_name, team_abre) => async (dispatch) => {

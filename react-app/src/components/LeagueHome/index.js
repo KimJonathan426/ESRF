@@ -79,7 +79,9 @@ const LeagueHome = ({ sessionUser }) => {
                                         <>
                                             <header className='card-header'>
                                                 <h3 className='card-header-title'>My Team</h3>
-                                                <img src={settingsIcon} alt='settings icon' className='settings-icon' />
+                                                <Link to={`/leagues/${leagueId}/teams/${userTeam.team_number}/settings`}>
+                                                    <img src={settingsIcon} alt='settings icon' className='settings-icon' />
+                                                </Link>
                                             </header>
                                             <div className='card-content'>
                                                 <div className='card-team-info'>
