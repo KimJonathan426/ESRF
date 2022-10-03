@@ -91,7 +91,7 @@ const TeamsReducer = (state = {}, action) => {
             return newState1;
         case GET_SINGLE_TEAM:
             const newState2 = {};
-            newState2[action.team.team_number] = team;
+            newState2[action.team.team_number] = action.team;
             return newState2;
         case ADD_TEAM:
             const newState3 = { ...state };

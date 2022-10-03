@@ -241,10 +241,11 @@ def all_team(leagueId):
     teams = Team.query.filter_by(league_id=leagueId).all()
     return {'teamsList': [team.to_dict() for team in teams]}
 
-@league_routes.route('/<int:leagueId>/teams/<int:teamId>')
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>')
 @login_required
-def my_team(leagueId, teamId):
-    team = Team.query.get(teamId)
+def my_team(leagueId, teamNumber):
+    team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+    print('##########TEAM##########', team)
     return team.to_dict()
 
 @league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])

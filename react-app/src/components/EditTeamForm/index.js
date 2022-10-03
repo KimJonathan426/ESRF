@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addTeam } from "../../store/team";
-import './BaseTeamForm.css';
+import { getSingleTeam } from "../../store/team";
+import './EditTeamForm.css';
 
-const BaseTeamForm = ({ sessionUser }) => {
+const EditTeamForm = ({ sessionUser }) => {
     const dispatch = useDispatch();
-    const { leagueId } = useParams();
+    const { leagueId, teamNumber } = useParams();
+    console.log('leagueId, teamNumber', leagueId, teamNumber)
+
+    useEffect(() => {
+        dispatch(getSingleTeam(leagueId, teamNumber))
+    }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,10 +22,10 @@ const BaseTeamForm = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-
+                Hi
             </div>
         </div>
     )
 }
 
-export default BaseTeamForm;
+export default EditTeamForm;
