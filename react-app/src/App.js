@@ -12,7 +12,7 @@ import BaseLeagueForm from './components/BaseLeagueForm';
 import RequiredPlayerCreation from './components/RequiredPlayerCreation';
 import EditPlayerStatSheet from './components/EditPlayerStatSheet';
 import PlayerForm from './components/PlayerForm';
-import EditTeamForm from './components/EditTeamForm';
+import TeamSettings from './components/TeamSettings';
 import HomePage from './components/HomePage';
 import LeagueSettings from './components/LeagueSettings';
 import PlayerList from './components/PlayerList';
@@ -77,9 +77,9 @@ function App() {
           <NavBar />
           <EditPlayerStatSheet />
         </ProtectedRoute>
-        <ProtectedRoute path='/leagues/:leagueId/teams/:teamNumber/edit' exact={true} >
+        <ProtectedRoute path='/leagues/:leagueId/teams/:teamNumber/settings' exact={true} >
           <NavBar />
-          <EditTeamForm sessionUser={sessionUser} />
+          <TeamSettings sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <NavBar />

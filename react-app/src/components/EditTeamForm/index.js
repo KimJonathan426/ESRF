@@ -1,30 +1,54 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getSingleTeam } from "../../store/team";
 import './EditTeamForm.css';
 
-const EditTeamForm = ({ sessionUser }) => {
+const EditTeamForm = ({ team }) => {
+    const [teamLocation, setTeamLocation] = useState(team.team_location);
+    const [teamName, setTeamName] = useState(team.team_name);
+    const [teamAbre, setTeamAbre] = useState(team.team_abre);
+
     const dispatch = useDispatch();
-    const { leagueId, teamNumber } = useParams();
-    console.log('leagueId, teamNumber', leagueId, teamNumber)
 
-    useEffect(() => {
-        dispatch(getSingleTeam(leagueId, teamNumber))
-    }, [dispatch])
+    const updateTeamLocation = (e) => {
+        setTeamLocation(e.target.value);
+    };
+    const updateTeamName = (e) => {
+        setTeamName(e.target.value);
+    };
+    const updateTeamAbre = (e) => {
+        setTeamAbre(e.target.value);
+    };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+
 
     }
 
     return (
-        <div className='page-outer'>
-            <div className='page-spacer'></div>
-            <div className='page-container'>
-                Hi
-            </div>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <label>*Location</label>
+            <input
+                className='team-settings-location'
+                value={teamLocation}
+                onChange={updateTeamLocation}
+                maxLength='15'
+            />
+            <label>*Nickname</label>
+            <input
+                className='team-settings-name'
+                value={teamName}
+                onChange={updateTeamName}
+                maxLength='20'
+            />
+            <label>*Abbreviation</label>
+            <input
+                className='team-settings-abre'
+                value={teamAbre}
+                onChange={updateTeamAbre}
+                maxLength='4'
+            />
+        </form>
     )
 }
 

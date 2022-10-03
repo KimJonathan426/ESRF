@@ -1,0 +1,48 @@
+.team-settings-container {
+    width: 900px;
+    height: 500px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.team-settings-top-accent {
+    display: block;
+    position: relative;
+    top: -12px;
+    left: -12px;
+    height: 6px;
+    width: 900px;
+    background-color: #cf4119;
+    padding: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.team-settings-header {
+    display: inline-block;
+    margin: 0 0 6px;
+}
+
+.team-settings-header-main {
+    display: inline-block;
+    color: #151617;
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0;
+}
+
+.team-settings-header-sub {
+    display: inline-block;
+    color: #4A4A4A;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 32px;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.team-forms-container {
+    display: flex;
+    margin-top: 16px;
+}
