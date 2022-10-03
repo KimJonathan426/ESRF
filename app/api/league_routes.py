@@ -330,7 +330,7 @@ def upload_team_image(leagueId, teamNumber):
     url = upload["url"]
     # flask_login allows us to get the current user from the request
 
-    editedTeam = Team.query.filter_by(league_id=leagueId, team_number=teamNumber)
+    editedTeam = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
     editedTeam.team_image=url
     db.session.commit()
 
