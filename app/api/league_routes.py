@@ -7,6 +7,7 @@ from random import sample
 from app.forms.base_league_form import BaseLeagueForm
 from app.forms.base_team_form import BaseTeamForm
 from app.forms.league_edit_form import LeagueEditForm
+from app.forms.edit_team_form import EditTeamForm
 from app.forms.league_scoring_form import LeagueScoringForm
 from app.forms.league_start_form import LeagueStartForm
 from app.forms.league_note_form import LeagueNoteForm
@@ -245,7 +246,6 @@ def all_team(leagueId):
 @login_required
 def my_team(leagueId, teamNumber):
     team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
-    print('##########TEAM##########', team)
     return team.to_dict()
 
 @league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])
@@ -271,4 +271,22 @@ def create_team(leagueId):
         db.session.commit()
 
         return team.to_dict()
+    return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/edit', methods=['PUT'])
+@login_required
+def edit_team(leagueId, teamNumber):
+    form = EditTeamForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        editedTeam = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+        editedTeam.team_location = form.data['team_location']
+        editedTeam.team_name = form.data['team_name']
+        editedTeam.team_abre = form.data['team_abre']
+
+        db.session.commit()
+
+        return editedTeam.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
