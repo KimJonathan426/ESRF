@@ -28,9 +28,9 @@ export const actionAddTeam = (team) => ({
     team
 })
 
-const actionDeleteTeam = (teamId) => ({
+const actionDeleteTeam = (teamNumber) => ({
     type: DELETE_TEAM,
-    teamId
+    teamNumber
 })
 
 export const clearTeams = () => ({
@@ -101,6 +101,18 @@ export const editTeamInfo = (leagueId, teamNumber, team_location, team_name, tea
     }
 }
 
+export const deleteTeam = (leagueId, teamNumber) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/delete`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        dispatch(actionDeleteTeam(teamNumber));
+        return teamNumber;
+    }
+}
+
+
 // Team Reducer
 const TeamsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -120,7 +132,7 @@ const TeamsReducer = (state = {}, action) => {
             return newState3;
         case DELETE_TEAM:
             const newState4 = { ...state };
-            delete newState4[action.teamId];
+            delete newState4[action.teamNumber];
             return newState4;
         case CLEAR_TEAMS:
             const clearState = {};
