@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import { getSingleTeam } from "../../store/team";
 import EditTeamForm from "../EditTeamForm";
+import DeleteTeamModal from "../DeleteTeamModal";
 import './TeamSettings.css';
 
 const TeamSettings = ({ sessionUser }) => {
@@ -33,6 +34,7 @@ const TeamSettings = ({ sessionUser }) => {
                         <div>Image Edit</div>
                         <EditTeamForm />
                     </div>
+                    <DeleteTeamModal />
                 </div>
             </div>
         </div>
