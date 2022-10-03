@@ -79,6 +79,27 @@ export const addTeam = (leagueId, team_owner_id, team_location, team_name, team_
     }
 }
 
+export const editTeamInfo = (leagueId, teamNumber, team_location, team_name, team_abre) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/edit`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            team_location,
+            team_name,
+            team_abre
+        })
+    });
+
+    if (response.ok) {
+        const team = await response.json();
+        dispatch(actionAddTeam(team));
+        return team;
+    }
+    else {
+        const errors = await response.json();
+        return errors
+    }
+}
 
 // Team Reducer
 const TeamsReducer = (state = {}, action) => {
