@@ -1,5 +1,6 @@
 // Read
 const GET_TEAMS = 'teams/GET_TEAMS';
+const GET_SINGLE_TEAM = 'teams/GET_SINGLE_TEAM';
 
 // Create and Edit
 const ADD_TEAM = 'teams/ADD_TEAM';
@@ -15,6 +16,11 @@ const CLEAR_TEAMS = 'teams/CLEAR_TEAMS';
 const actionGetTeams = (teams) => ({
     type: GET_TEAMS,
     teams
+})
+
+const actionGetSingleTeam = (team) => ({
+    type: GET_SINGLE_TEAM,
+    team
 })
 
 export const actionAddTeam = (team) => ({
@@ -40,6 +46,16 @@ export const getAllTeams = (leagueId) => async (dispatch) => {
         const teams = await response.json();
         dispatch(actionGetTeams(teams));
         return teams;
+    }
+}
+
+export const getSingleTeam = (leagueId, teamNumber) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}`);
+
+    if (response.ok) {
+        const team = await response.json();
+        dispatch(actionGetSingleTeam(team));
+        return team;
     }
 }
 
@@ -73,14 +89,18 @@ const TeamsReducer = (state = {}, action) => {
                 newState1[team.team_number] = team;
             });
             return newState1;
-        case ADD_TEAM:
-            const newState2 = { ...state };
-            newState2[action.team.team_number] = action.team;
+        case GET_SINGLE_TEAM:
+            const newState2 = {};
+            newState2[action.team.team_number] = team;
             return newState2;
-        case DELETE_TEAM:
+        case ADD_TEAM:
             const newState3 = { ...state };
-            delete newState3[action.teamId];
+            newState3[action.team.team_number] = action.team;
             return newState3;
+        case DELETE_TEAM:
+            const newState4 = { ...state };
+            delete newState4[action.teamId];
+            return newState4;
         case CLEAR_TEAMS:
             const clearState = {};
             return clearState;
