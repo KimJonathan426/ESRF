@@ -45,7 +45,7 @@ def seed_teams_and_players():
     league1_player5 = Player(
         league_id=1,
         player_name='Jeremie Lynn',
-        player_image='https://esrf.s3.amazonaws.com/Player-Lynn.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Lynn.png',
         position='PG',
         team='New York Knacks',
         bio='Jeremie (#17), a 6\'3" point guard, had a breakout year on the knacks. \
@@ -56,7 +56,7 @@ def seed_teams_and_players():
     league1_player6 = Player(
         league_id=1,
         player_name='Giannis Antetokounmpo',
-        player_image='https://esrf.s3.amazonaws.com/Player-Giannis.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Giannis.png',
         position='PF',
         team='Milwaukee Bucks',
         bio='Giannis Sina Ugo Antetokounmpo is a Greek-Nigerian professional basketball player for the Milwaukee Bucks of the National Basketball Association. \
@@ -76,7 +76,7 @@ def seed_teams_and_players():
     league1_player8 = Player(
         league_id=1,
         player_name='Luka Dončić',
-        player_image='https://esrf.s3.amazonaws.com/Player-Luka.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Luka.png',
         position='PG',
         team='Dallas Mavericks',
         bio='Luka Dončić is a Slovenian professional basketball player for the Dallas Mavericks of the National Basketball Association. \
@@ -86,7 +86,7 @@ def seed_teams_and_players():
     league1_player9 = Player(
         league_id=1,
         player_name='Stephen Curry',
-        player_image='https://esrf.s3.amazonaws.com/Player-Steph-Original.png',
+        player_image='https://esrf.s3.amazonaws.com/Player-Steph.png',
         position='PG',
         team='Golden State Warriors',
         bio='Wardell Stephen Curry II is an American professional basketball player for the Golden State Warriors of the National Basketball Association. \
