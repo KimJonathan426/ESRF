@@ -290,3 +290,13 @@ def edit_team(leagueId, teamNumber):
 
         return editedTeam.to_dict()
     return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/delete', methods=['DELETE'])
+@login_required
+def delete_team(leagueId, teamNumber):
+    deleted_team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+    db.session.delete(deleted_team)
+    db.session.commit()
+
+    return 'Deleted Successfully'
