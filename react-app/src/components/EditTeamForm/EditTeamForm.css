@@ -1,0 +1,16 @@
+.edit-team-form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 8px 0 0 32px;
+}
+
+.edit-team-label {
+    color: #2b2c2d;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.edit-team-label > span {
+    color: #d00;
+}

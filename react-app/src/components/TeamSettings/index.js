@@ -10,10 +10,8 @@ const TeamSettings = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const { leagueId, teamNumber } = useParams();
     const leagueState = useSelector(state => state.leagues)
-    const teamState = useSelector(state => state.teams)
 
     const league = leagueState[leagueId];
-    const team = teamState[teamNumber];
 
     useEffect(() => {
         dispatch(getSingleLeague(leagueId))
@@ -33,7 +31,7 @@ const TeamSettings = ({ sessionUser }) => {
                     </div>
                     <div className='team-forms-container'>
                         <div>Image Edit</div>
-                        <EditTeamForm team={team} />
+                        <EditTeamForm />
                     </div>
                 </div>
             </div>
