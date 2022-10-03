@@ -1,8 +1,8 @@
 .team-settings-container {
     width: 900px;
-    height: 462px;
+    height: 500px;
     background-color: white;
-    padding: 12px;
+    padding: 16px 12px 12px 12px;
     border-radius: 10px;
     box-sizing: border-box;
 }
@@ -10,7 +10,7 @@
 .team-settings-top-accent {
     display: block;
     position: relative;
-    top: -12px;
+    top: -16px;
     left: -12px;
     height: 6px;
     width: 900px;
@@ -22,6 +22,10 @@
 .team-settings-header {
     display: inline-block;
     margin: 0 0 6px;
+    position: relative;
+    top: -5px;
+    height: 36px;
+    box-sizing: border-box;
 }
 
 .team-settings-header-main {
@@ -44,9 +48,33 @@
 
 .team-forms-container {
     display: flex;
-    margin-top: 16px;
+    margin-top: 11px;
+    margin-bottom: 40px;
 }
 
-.team-forms-container > div {
+.team-settings-image-box {
     width: 25%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.team-logo-box {
+    display: flex;
+    justify-content: center;
+    height: 180px;
+    overflow: hidden;
+    width: 180px;
+    border-radius: 50%;
+    margin: 0px auto;
+}
+
+.team-settings-logo {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+}
+
+.team-settings-delete {
+    padding-top: 22px;
+    border-top: 1px solid #dcdddf;
 }

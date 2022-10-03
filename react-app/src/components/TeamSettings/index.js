@@ -4,21 +4,42 @@ import { useParams } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import { getSingleTeam } from "../../store/team";
 import EditTeamForm from "../EditTeamForm";
+import TeamImageUpload from "../TeamImageUpload";
 import DeleteTeamModal from "../DeleteTeamModal";
 import './TeamSettings.css';
 
 const TeamSettings = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const { leagueId, teamNumber } = useParams();
-    const leagueState = useSelector(state => state.leagues)
+    const leagueState = useSelector(state => state.leagues);
+    const teamState = useSelector(state => state.teams);
 
     const league = leagueState[leagueId];
+    const team = teamState[teamNumber];
 
     useEffect(() => {
         dispatch(getSingleLeague(leagueId))
         dispatch(getSingleTeam(leagueId, teamNumber))
     }, [dispatch])
 
+    // const [league, setLeague] = useState('');
+    // const [team, setTeam] = useState('');
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const leagueRes = await dispatch(getSingleLeague(leagueId))
+    //         const teamRes = await dispatch(getSingleTeam(leagueId, teamNumber))
+
+    //         setLeague(leagueRes);
+    //         setTeam(teamRes);
+    //     }
+
+    //     fetchData();
+    // }, [dispatch, leagueId, teamNumber])
+
+    // which is best way to render?
+    // with use state or use selector?
+    // conditional render of entire dom based on data existence?
 
     return (
         <div className='page-outer'>
@@ -31,10 +52,19 @@ const TeamSettings = ({ sessionUser }) => {
                         <h3 className='team-settings-header-sub'>{league?.league_name}</h3>
                     </div>
                     <div className='team-forms-container'>
-                        <div>Image Edit</div>
+                        <div className='team-settings-image-box'>
+                            <div className='team-logo-box'>
+                                <img className='team-settings-logo' src={team?.team_image} alt='team logo' />
+                            </div>
+                            <TeamImageUpload />
+                        </div>
                         <EditTeamForm />
                     </div>
-                    <DeleteTeamModal />
+                    {league && sessionUser.id !== league?.owner_id &&
+                        <div className='team-settings-delete'>
+                            <DeleteTeamModal />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
