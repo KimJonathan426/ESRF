@@ -55,7 +55,7 @@ const TeamImageUpload = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='team-image-upload-form' onSubmit={handleSubmit}>
             <ErrorModal hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={errors} />
             <div className='team-image-upload-container'>
 
