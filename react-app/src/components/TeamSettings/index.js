@@ -6,6 +6,7 @@ import { getSingleTeam } from "../../store/team";
 import EditTeamForm from "../EditTeamForm";
 import TeamImageUpload from "../TeamImageUpload";
 import DeleteTeamModal from "../DeleteTeamModal";
+import PageNotFound from "../PageNotFound";
 import './TeamSettings.css';
 
 const TeamSettings = ({ sessionUser }) => {
@@ -50,9 +51,7 @@ const TeamSettings = ({ sessionUser }) => {
                         }
                     </div>
                     :
-                    <div>
-                        not allowed
-                    </div>
+                    <PageNotFound />
                 }
             </div>
         </div>
