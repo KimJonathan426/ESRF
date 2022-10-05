@@ -14,6 +14,7 @@ const EditTeamForm = () => {
     const [teamAbre, setTeamAbre] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const [hidden, setHidden] = useState(true);
     const [disabled, setDisabled] = useState(true);
 
@@ -27,13 +28,14 @@ const EditTeamForm = () => {
             setTeamLocation(team.team_location);
             setTeamName(team.team_name);
             setTeamAbre(team.team_abre);
+            setLoaded(true);
         }
 
         fetchData();
     }, [dispatch, leagueId, teamNumber])
 
     useEffect(() => {
-        if ((teamLocation !== team.team_location || teamName !== team.team_name || teamAbre !== team.team_abre) && hidden) {
+        if ((teamLocation !== team.team_location || teamName !== team.team_name || teamAbre !== team.team_abre) && hidden && loaded) {
             setDisabled(false);
         } else {
             setDisabled(true);

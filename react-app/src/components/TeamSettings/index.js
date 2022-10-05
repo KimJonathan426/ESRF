@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import { getSingleTeam } from "../../store/team";
+import Loading from "../Loading";
 import EditTeamForm from "../EditTeamForm";
 import TeamImageUpload from "../TeamImageUpload";
 import DeleteTeamModal from "../DeleteTeamModal";
-import PageNotFound from "../PageNotFound";
+import AccessDenied from "../AccessDenied";
+import InvalidTeamId from "../InvalidTeamId";
 import './TeamSettings.css';
 
 const TeamSettings = ({ sessionUser }) => {
@@ -15,12 +17,20 @@ const TeamSettings = ({ sessionUser }) => {
     const leagueState = useSelector(state => state.leagues);
     const teamState = useSelector(state => state.teams);
 
+    const [loaded, setLoaded] = useState(false);
+
     const league = leagueState[leagueId];
     const team = teamState[teamNumber];
 
     useEffect(() => {
-        dispatch(getSingleLeague(leagueId))
-        dispatch(getSingleTeam(leagueId, teamNumber))
+        const fetchData = async () => {
+            await dispatch(getSingleLeague(leagueId))
+            await dispatch(getSingleTeam(leagueId, teamNumber))
+
+            setLoaded(true)
+        }
+
+        fetchData();
     }, [dispatch])
 
 
@@ -28,7 +38,7 @@ const TeamSettings = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {team ?
+                {loaded && team && (team.team_owner_id === sessionUser.id ? (
                     <div className='team-settings-container'>
                         <div className='team-settings-top-accent' />
                         <div className='team-settings-header'>
@@ -50,9 +60,18 @@ const TeamSettings = ({ sessionUser }) => {
                             </div>
                         }
                     </div>
+                )
                     :
-                    <PageNotFound />
-                }
+                    <AccessDenied leagueId={leagueId} />
+                )}
+
+                {loaded && !team && (
+                    <InvalidTeamId />
+                )}
+
+                {!loaded && (
+                    <Loading />
+                )}
             </div>
         </div>
     )
