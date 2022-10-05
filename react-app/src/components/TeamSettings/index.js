@@ -31,7 +31,7 @@ const TeamSettings = ({ sessionUser }) => {
         }
 
         fetchData();
-    }, [dispatch])
+    }, [dispatch, leagueId, teamNumber])
 
 
     return (

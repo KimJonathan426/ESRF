@@ -56,7 +56,7 @@ const SignUpForm = () => {
     <div className='page-outer-white'>
       <div className='signup-left-side'>
         <div className='login-image-container'>
-          <img className='login-image' src='https://g.espncdn.com/lm-static/fba/images/fans-cheering.png'></img>
+          <img className='login-image' src='https://g.espncdn.com/lm-static/fba/images/fans-cheering.png' alt='espn fantasy design'></img>
           <div className='left-side-text-switch'><span>&nbsp; Welcome to Entert</span>ainment and Sports <span>Recreation</span>al Fantasy!</div>
           <div className='right-side-text-switch top-text'>Compete against friends with ESRF Fantasy League Manager!</div>
           <div className='right-side-text-switch mid-text' >Create a league with your family and friends!</div>

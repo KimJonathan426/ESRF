@@ -60,7 +60,7 @@ const LeagueHome = ({ sessionUser }) => {
             }
         }
 
-    }, [dispatch, league])
+    }, [dispatch, leagueId, league?.start_standard, league?.is_active])
 
 
     return (
@@ -70,7 +70,7 @@ const LeagueHome = ({ sessionUser }) => {
                 <div className='page-container'>
                     <div className='league-home-container'>
                         <div className='league-home-image-box'>
-                            <img className='league-home-image' src={`${league.league_image}`}></img>
+                            <img className='league-home-image' src={`${league.league_image}`} alt='league logo'/>
                         </div>
                         <div className='league-home-main-container'>
                             <div className='league-home-side'>

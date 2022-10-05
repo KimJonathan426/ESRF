@@ -50,7 +50,7 @@ const LeagueEditForm = ({ setShowModal, currentLeagueName, leagueId, leagueImage
         <>
             <div className='edit-league-header'>League Settings</div>
             <div className='edit-league-image-container'>
-                <img src={leagueImage} />
+                <img src={leagueImage} alt='league logo'/>
                 <LeagueImageUpload leagueId={leagueId} />
             </div>
             <form className='edit-league-container' onSubmit={handleSubmit}>
