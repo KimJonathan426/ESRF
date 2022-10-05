@@ -40,7 +40,7 @@ const EditTeamForm = () => {
         } else {
             setDisabled(true);
         }
-    }, [teamLocation, team.team_location, teamName, team.team_name, teamAbre, team.team_abre, hidden])
+    }, [teamLocation, team.team_location, teamName, team.team_name, teamAbre, team.team_abre, hidden, loaded])
 
     useEffect(() => {
         let updated;

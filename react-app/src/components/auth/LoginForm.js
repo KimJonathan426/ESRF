@@ -47,7 +47,7 @@ const LoginForm = () => {
     <div className='page-outer-black'>
       <div className='login-left-side'>
         <div className='login-image-container'>
-          <img className='login-image' src='https://g.espncdn.com/lm-static/fba/images/fans-cheering.png'></img>
+          <img className='login-image' src='https://g.espncdn.com/lm-static/fba/images/fans-cheering.png' alt='espn fantasy design'></img>
           <div className='left-side-text'><span>&nbsp; Welcome to Entert</span>ainment and Sports <span>Recreation</span>al Fantasy!</div>
           <div className='right-side-text top-text'>Compete against friends with ESRF Fantasy League Manager!</div>
           <div className='right-side-text mid-text' >Create a league with your family and friends!</div>

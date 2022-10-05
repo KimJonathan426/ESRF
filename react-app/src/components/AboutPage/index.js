@@ -25,7 +25,7 @@ const AboutPage = () => {
                 <div className='about-me-container'>
                     <div className='about-me'>
                         <div className='my-image'>
-                            <img className='about-image' src='https://esrf.s3.amazonaws.com/Linked-in+Image.jpg'/>
+                            <img className='about-image' src='https://esrf.s3.amazonaws.com/Linked-in+Image.jpg' alt='Jonathan Kim'/>
                         </div>
                         <div className='info-container'>
                                 <div className='info-title'>
@@ -34,13 +34,13 @@ const AboutPage = () => {
                                 </div>
                             <div className='about-links'>
                                 <div className='linked-in'>
-                                    <a href="https://www.linkedin.com/in/kimjonathan426" target='_blank'>
-                                        <img className='linked-in-link' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" />
+                                    <a href="https://www.linkedin.com/in/kimjonathan426" target='_blank' rel='noreferrer'>
+                                        <img className='linked-in-link' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" alt='linked in logo'/>
                                     </a>
                                 </div>
                                 <div className='github-repo'>
-                                    <a href="https://github.com/KimJonathan426" target='_blank'>
-                                        <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                                    <a href="https://github.com/KimJonathan426" target='_blank' rel='noreferrer'>
+                                        <img className='github-link' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt='github logo'/>
                                     </a>
                                 </div>
                             </div>
