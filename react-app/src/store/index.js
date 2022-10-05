@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import LeaguesReducer from './league';
 import PlayersReducer from './player';
+import TeamsReducer from './team';
 
 const rootReducer = combineReducers({
   session,
   leagues: LeaguesReducer,
   players: PlayersReducer,
+  teams: TeamsReducer,
 });
 
 

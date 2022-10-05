@@ -1,0 +1,9 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.loading-gif {
+    width: 40%;
+}

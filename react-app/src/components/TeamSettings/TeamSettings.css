@@ -1,0 +1,83 @@
+.team-settings-container {
+    width: 900px;
+    height: 500px;
+    background-color: white;
+    padding: 16px 12px 12px 12px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.team-settings-top-accent {
+    display: block;
+    position: relative;
+    top: -16px;
+    left: -12px;
+    height: 6px;
+    width: 900px;
+    background-color: #cf4119;
+    padding: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.team-settings-header {
+    display: inline-block;
+    margin: 0 0 6px;
+    position: relative;
+    top: -5px;
+    height: 36px;
+    box-sizing: border-box;
+}
+
+.team-settings-header-main {
+    display: inline-block;
+    color: #151617;
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0;
+}
+
+.team-settings-header-sub {
+    display: inline-block;
+    color: #4A4A4A;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 32px;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.team-forms-container {
+    display: flex;
+    margin-top: 11px;
+    margin-bottom: 40px;
+}
+
+.team-settings-image-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.team-logo-box {
+    display: flex;
+    justify-content: center;
+    height: 180px;
+    overflow: hidden;
+    width: 180px;
+    border-radius: 50%;
+    margin: 0px auto;
+}
+
+.team-settings-logo {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+}
+
+.team-settings-delete {
+    padding-top: 22px;
+    border-top: 1px solid #dcdddf;
+}

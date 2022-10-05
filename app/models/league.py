@@ -11,8 +11,9 @@ class League(db.Model):
     league_name = db.Column(db.String(40), nullable=False)
     league_image = db.Column(db.String(500), nullable=True, default='https://esrf.s3.amazonaws.com/Default-League-Logo.jpg')
     league_note_title = db.Column(db.String(40), nullable=True, default='Fantasy Basketball!')
-    league_note = db.Column(db.String(1000), nullable=True, default='Welcome to your ESRF basketball league. \
-        Your League Manager will have the opportunity to post a League Manager Note to the entire league and that will appear in this area.')
+    league_note = db.Column(db.String(1000), nullable=True, default='Welcome to your ESRF basketball league. Your League Manager '
+                                                                    'will have the opportunity to post a League Manager Note to the '
+                                                                    'entire league and that will appear in this area.')
     team_limit = db.Column(db.Integer, nullable=False)
     team_player_limit = db.Column(db.Integer, nullable=False)
     start_date = db.Column(db.String(11), nullable=True, default='mm/dd/yyyy')
@@ -72,7 +73,7 @@ class League(db.Model):
             'points_weight': self.points_weight,
             'is_active': self.is_active,
             'owner_username': User.query.get(self.owner_id).username,
-            'players_length': len(self.league_players),
-            # 'teams': [team.to_dict_no_players() for team in self.league_teams],
+            'players_count': len(self.league_players),
+            'teams': [team.to_dict_no_players() for team in self.league_teams],
             # 'players': [player.to_dict() for player in self.league_players],
         }

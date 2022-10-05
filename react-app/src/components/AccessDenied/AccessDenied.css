@@ -1,0 +1,28 @@
+.forbidden-container {
+    background: rgb(255, 255, 255);
+    height: 457px;
+    padding: 60px 30px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.forbidden-image {
+    height: 150px;
+    width: 175px;
+}
+
+.forbidden-message {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 26px 0;
+}
+
+.forbidden-link {
+    display: inline-block;
+    width: 430px;
+    font-size: 20px;
+    padding-top: 26px;
+    border-top: 1px solid rgb(203, 204, 206);
+}

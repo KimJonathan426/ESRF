@@ -5,11 +5,13 @@ from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 from random import sample
 from app.forms.base_league_form import BaseLeagueForm
+from app.forms.base_team_form import BaseTeamForm
 from app.forms.league_edit_form import LeagueEditForm
+from app.forms.edit_team_form import EditTeamForm
 from app.forms.league_scoring_form import LeagueScoringForm
 from app.forms.league_start_form import LeagueStartForm
 from app.forms.league_note_form import LeagueNoteForm
-from app.models import db, League, Player
+from app.models import db, League, Player, Team
 
 league_routes = Blueprint('leagues', __name__)
 
@@ -230,3 +232,109 @@ def league_note(leagueId):
 
         return editedLeague.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# Teams routes per league
+
+@league_routes.route('/<int:leagueId>/teams')
+@login_required
+def all_team(leagueId):
+    teams = Team.query.filter_by(league_id=leagueId).all()
+    return {'teamsList': [team.to_dict() for team in teams]}
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>')
+@login_required
+def my_team(leagueId, teamNumber):
+    team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+    if team:
+        return team.to_dict()
+    return {'errors': 'Team not found'}, 404
+
+@league_routes.route('/<int:leagueId>/teams/new', methods=['POST'])
+@login_required
+def create_team(leagueId):
+    form = BaseTeamForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        league = League.query.get(leagueId)
+        league_info = league.to_dict()
+
+        team = Team(
+            league_id = leagueId,
+            team_owner_id = current_user.id,
+            team_number = len(league_info['teams']) + 1,
+            team_location = form.data['team_location'],
+            team_name = form.data['team_name'],
+            team_abre = form.data['team_abre']
+        )
+
+        db.session.add(team)
+        db.session.commit()
+
+        return team.to_dict()
+    return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/edit', methods=['PUT'])
+@login_required
+def edit_team(leagueId, teamNumber):
+    form = EditTeamForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        editedTeam = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+        editedTeam.team_location = form.data['team_location']
+        editedTeam.team_name = form.data['team_name']
+        editedTeam.team_abre = form.data['team_abre']
+
+        db.session.commit()
+
+        return editedTeam.to_dict()
+    return {'errors':validation_errors_to_error_messages(form.errors)}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/delete', methods=['DELETE'])
+@login_required
+def delete_team(leagueId, teamNumber):
+    deleted_team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+    db.session.delete(deleted_team)
+    db.session.commit()
+
+    return 'Deleted Successfully'
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/image', methods=['POST'])
+@login_required
+def upload_team_image(leagueId, teamNumber):
+    try:
+        validate_csrf(request.cookies['csrf_token'])
+    except:
+        return {'errors': 'Invalid csrf token'}, 400
+
+    if "image" not in request.files:
+        return {"errors": "Image Required."}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "Invalid filetype, jpg, jpeg, png, gif only."}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+
+    editedTeam = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+    editedTeam.team_image=url
+    db.session.commit()
+
+    return editedTeam.to_dict()

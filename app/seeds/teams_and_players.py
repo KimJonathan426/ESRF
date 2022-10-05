@@ -45,7 +45,7 @@ def seed_teams_and_players():
     league1_player5 = Player(
         league_id=1,
         player_name='Jeremie Lynn',
-        player_image='https://esrf.s3.amazonaws.com/Player-Lynn.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Lynn.png',
         position='PG',
         team='New York Knacks',
         bio='Jeremie (#17), a 6\'3" point guard, had a breakout year on the knacks. \
@@ -56,7 +56,7 @@ def seed_teams_and_players():
     league1_player6 = Player(
         league_id=1,
         player_name='Giannis Antetokounmpo',
-        player_image='https://esrf.s3.amazonaws.com/Player-Giannis.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Giannis.png',
         position='PF',
         team='Milwaukee Bucks',
         bio='Giannis Sina Ugo Antetokounmpo is a Greek-Nigerian professional basketball player for the Milwaukee Bucks of the National Basketball Association. \
@@ -76,7 +76,7 @@ def seed_teams_and_players():
     league1_player8 = Player(
         league_id=1,
         player_name='Luka Dončić',
-        player_image='https://esrf.s3.amazonaws.com/Player-Luka.PNG',
+        player_image='https://esrf.s3.amazonaws.com/Player-Luka.png',
         position='PG',
         team='Dallas Mavericks',
         bio='Luka Dončić is a Slovenian professional basketball player for the Dallas Mavericks of the National Basketball Association. \
@@ -86,7 +86,7 @@ def seed_teams_and_players():
     league1_player9 = Player(
         league_id=1,
         player_name='Stephen Curry',
-        player_image='https://esrf.s3.amazonaws.com/Player-Steph-Original.png',
+        player_image='https://esrf.s3.amazonaws.com/Player-Steph.png',
         position='PG',
         team='Golden State Warriors',
         bio='Wardell Stephen Curry II is an American professional basketball player for the Golden State Warriors of the National Basketball Association. \
@@ -227,7 +227,9 @@ def seed_teams_and_players():
     league1_team1 = Team(
         league_id=1,
         team_owner_id=1,
-        team_name="Demo Extremos",
+        team_number=1,
+        team_location='Demo',
+        team_name="Extremos",
         team_abre='DEMO',
         team_image='https://esrf.s3.amazonaws.com/Team-Demo.png',
         players_on_team=[league1_player1, league1_player2, league1_player3, league1_player4, league1_player5]
@@ -236,7 +238,9 @@ def seed_teams_and_players():
     league1_team2 = Team(
         league_id=1,
         team_owner_id=2,
-        team_name="Giannis Jontantetokounmpos",
+        team_number=2,
+        team_location='Giannis',
+        team_name="Jontantetokounmpos",
         team_abre='GiJo',
         team_image='https://esrf.s3.amazonaws.com/Team-Jontantetokounmpo.jpg',
         players_on_team=[league1_player1, league1_player2, league1_player6, league1_player7, league1_player10]
@@ -245,6 +249,8 @@ def seed_teams_and_players():
     league1_team3 = Team(
         league_id=1,
         team_owner_id=3,
+        team_number=3,
+        team_location='Akron',
         team_name="LeGOATs",
         team_abre='BRON',
         team_image='https://esrf.s3.amazonaws.com/Team-LeGOAT.png',
@@ -254,6 +260,8 @@ def seed_teams_and_players():
     league1_team4 = Team(
         league_id=1,
         team_owner_id=4,
+        team_number=4,
+        team_location='International',
         team_name="Chungstas",
         team_abre='LUKA',
         team_image='https://esrf.s3.amazonaws.com/Team-Chungstas.PNG',
@@ -263,7 +271,9 @@ def seed_teams_and_players():
     league1_team5 = Team(
         league_id=1,
         team_owner_id=5,
-        team_name="Inspirational Labbits",
+        team_number=5,
+        team_location='Inspirational',
+        team_name="Labbits",
         team_abre='STEF',
         team_image='https://esrf.s3.amazonaws.com/Team-Labbit.jpg',
         players_on_team=[league1_player2, league1_player4, league1_player6, league1_player7, league1_player9]
@@ -272,7 +282,9 @@ def seed_teams_and_players():
     league1_team6 = Team(
         league_id=1,
         team_owner_id=6,
-        team_name="Super Lintendos",
+        team_number=6,
+        team_location='Super',
+        team_name='Lintendos',
         team_abre='LIN',
         team_image='https://esrf.s3.amazonaws.com/Team-Lynnsanity.png',
         players_on_team=[league1_player3, league1_player5, league1_player8, league1_player9, league1_player10]
@@ -281,8 +293,10 @@ def seed_teams_and_players():
 
     league2_team1 = Team(
         league_id=2,
-        team_owner_id=4,
-        team_name="2028 Warriors",
+        team_owner_id=2,
+        team_number=1,
+        team_location='2028',
+        team_name="Warriors",
         team_abre='GS',
         team_image='https://esrf.s3.amazonaws.com/Team-Golden-State.jpg',
         players_on_team=[league2_player1, league2_player2, league2_player3, league2_player4, league2_player5]
@@ -291,7 +305,9 @@ def seed_teams_and_players():
     league2_team2 = Team(
         league_id=2,
         team_owner_id=1,
-        team_name="2028 Cavaliers",
+        team_number=2,
+        team_location='2028',
+        team_name="Cavaliers",
         team_abre='Cle',
         team_image='https://esrf.s3.amazonaws.com/Team-Cleveland.jpg',
         players_on_team=[league2_player6, league2_player7, league2_player8, league2_player9, league2_player10]

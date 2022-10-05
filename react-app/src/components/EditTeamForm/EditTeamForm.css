@@ -1,0 +1,59 @@
+.edit-team-form {
+    width: 65%;
+    padding: 8px 0 0 32px;
+    box-sizing: border-box;
+}
+
+.edit-team-form > div {
+    display: flex;
+    width: 90%;
+}
+
+.edit-team-label {
+    display: inline-block;
+    color: #2b2c2d;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.edit-team-label > span,
+.team-required-notice > span {
+    color: #d00;
+}
+
+.team-settings-location,
+.team-settings-name {
+    box-sizing: border-box;
+    width: 151px;
+    height: 32px;
+    margin-right: 16px;
+}
+
+.team-settings-abre {
+    box-sizing: border-box;
+    width: 70px;
+    height: 32px;
+}
+
+.team-required-notice {
+    color: #9B9B9B;
+    font-size: 12px;
+    margin-top: 24px;
+}
+
+.team-btn-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.team-save-btn {
+    margin-top: 24px;
+    margin-right: 25px;
+}
+
+.team-updated {
+    position: relative;
+    top: 33px;
+    color: green;
+    font-style: italic;
+}
