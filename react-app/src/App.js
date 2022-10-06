@@ -15,6 +15,7 @@ import PlayerForm from './components/PlayerForm';
 import TeamSettings from './components/TeamSettings';
 import HomePage from './components/HomePage';
 import LeagueSettings from './components/LeagueSettings';
+import LeagueMembers from './components/LeagueMembers';
 import PlayerList from './components/PlayerList';
 import AboutPage from './components/AboutPage';
 import PageNotFound from './components/PageNotFound';
@@ -64,6 +65,10 @@ function App() {
         <ProtectedRoute path='/leagues/:leagueId/settings' exact={true} >
           <NavBar />
           <LeagueSettings sessionUser={sessionUser} />
+        </ProtectedRoute>
+        <ProtectedRoute path='/leagues/:leagueId/members' exact={true} >
+          <NavBar />
+          <LeagueMembers sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/new' exact={true} >
           <NavBar />
