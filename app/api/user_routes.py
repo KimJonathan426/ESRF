@@ -28,4 +28,10 @@ def all_users(leagueId):
 
     users = User.query.filter(User.id.in_(user_ids)).all()
 
-    return {'users': [user.to_dict() for user in users]}
+    user_dict = {}
+
+    for user in users:
+        user_info = user.to_dict()
+        user_dict[user_info['id']] = user_info
+
+    return user_dict
