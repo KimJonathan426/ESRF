@@ -56,7 +56,7 @@ const TeamSettings = ({ sessionUser }) => {
                         </div>
                         {league && sessionUser.id !== league?.owner_id &&
                             <div className='team-settings-delete'>
-                                <DeleteTeamModal />
+                                <DeleteTeamModal deleteText='Delete Team / Leave League' warningText='you want to leave this league?'/>
                             </div>
                         }
                     </div>
