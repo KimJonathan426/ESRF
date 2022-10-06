@@ -5,7 +5,7 @@ import { Modal } from '../../context/Modal';
 import { deleteTeam } from '../../store/team';
 import './DeleteTeamModal.css'
 
-const DeleteTeamModal = () => {
+const DeleteTeamModal = ({ deleteText, warningText }) => {
     const { leagueId, teamNumber } = useParams();
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
@@ -21,15 +21,15 @@ const DeleteTeamModal = () => {
 
     return (
         <>
-            <button className='delete-btn team-delete-resize' onClick={() => setShowModal(true)}>Delete Team / Leave League</button>
+            <button className='delete-btn team-delete-resize' onClick={() => setShowModal(true)}>{deleteText}</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div className='delete-modal-container'>
+                    <div className='delete-team-modal-container'>
                         <div className='delete-confirm-header'>
                             <h2>Delete Confirmation</h2>
                         </div>
                         <div className='delete-confirm-text'>
-                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> you want to leave this league?</div>
+                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> {warningText}</div>
                         </div>
                         <div>
                             <button className='delete-btn delete-resize' onClick={onDelete}>Delete</button>

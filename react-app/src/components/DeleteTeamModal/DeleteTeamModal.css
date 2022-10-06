@@ -1,3 +1,13 @@
+.delete-team-modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    height: 175px;
+    padding: 0 40px;
+}
+
 .team-delete-resize {
     width: 100%;
 }
