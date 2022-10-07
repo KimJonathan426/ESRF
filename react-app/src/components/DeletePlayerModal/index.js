@@ -31,16 +31,16 @@ const DeletePlayerModal = ({ totalPlayers, playerId }) => {
 
     return (
         <>
-            <button className='delete-btn' onClick={() => setShowModal(true)}>Delete Player</button>
+            <button className='delete-btn' onClick={() => setShowModal(true)}>Delete</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div className='delete-modal-container'>
+                    <div className='delete-team-modal-container'>
                         <ErrorModal className='error-modal-container' hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
                         <div className='delete-confirm-header'>
                             <h2>Delete Confirmation</h2>
                         </div>
-                        <div className='delete-confirm-text'>
-                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> you want to remove this player?</div>
+                        <div className='delete-confirm-text delete'>
+                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> you want to remove this player from your league?</div>
                         </div>
                         <div>
                             <button className='delete-btn delete-resize' onClick={onDelete}>Delete</button>

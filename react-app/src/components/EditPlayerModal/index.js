@@ -8,7 +8,7 @@ function EditPlayerModal({ player }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} className='edit-btn'>Edit Player</button>
+      <button onClick={() => setShowModal(true)} className='edit-btn'>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditPlayerForm setShowModal={setShowModal} player={player} />
