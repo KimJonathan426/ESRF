@@ -16,6 +16,9 @@ const MyTeam = ({ sessionUser }) => {
     const league = leagueState[leagueId];
     const team = teamState[teamNumber];
 
+    const [playerList, setPlayerList] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     let max = 0;
     let currentLeader;
 
@@ -26,8 +29,7 @@ const MyTeam = ({ sessionUser }) => {
         }
     }
 
-    const [playerList, setPlayerList] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const remainingTeamSpace = league?.team_player_limit - team?.players.length;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -216,6 +218,40 @@ const MyTeam = ({ sessionUser }) => {
                                             </td>
                                             <th className='team-fantasy-total-column'>
                                                 {player.fantasy_total}
+                                            </th>
+                                        </tr>
+                                    ))}
+                                    {remainingTeamSpace > 0 && [...Array(remainingTeamSpace)].map((e, i) => (
+                                        <tr key={i} className='team-individual-player-row'>
+                                            <td className='team-player-column'>
+                                                <div className='empty-player-info-box'>
+                                                    <img src='https://esrf.s3.amazonaws.com/Empty-Player-Image.png' alt='empty player'></img>
+                                                    <div className='empty-player-label'>
+                                                        Empty
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className='team-player-stat-column'>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                            <td className='sub-column-2-columns'>--</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <th className='team-fantasy-total-column'>
+                                                --
                                             </th>
                                         </tr>
                                     ))}
