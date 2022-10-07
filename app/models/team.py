@@ -59,5 +59,6 @@ class Team(db.Model):
         'team_abre': self.team_abre,
         'team_image': self.team_image,
         'fantasy_total': self.fantasy_total,
-        'players': [player.to_dict_no_team() for player in self.players_on_team]
+        'players': [player.to_dict_no_team() for player in self.players_on_team],
+        'team_owner': self.team_owner.to_dict()
         }
