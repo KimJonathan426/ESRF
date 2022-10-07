@@ -63,13 +63,12 @@ export const getSingleTeam = (leagueId, teamNumber) => async (dispatch) => {
     }
 }
 
-export const addTeam = (leagueId, team_owner_id, team_location, team_name, team_abre) => async (dispatch) => {
+export const addTeam = (leagueId, team_location, team_name, team_abre) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}/teams/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             leagueId,
-            team_owner_id,
             team_location,
             team_name,
             team_abre
