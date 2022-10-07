@@ -49,7 +49,7 @@ function App() {
         </Route>
         <ProtectedRoute path='/leagues/new' exact={true} >
           <NavBar />
-          <BaseLeagueForm />
+          <BaseLeagueForm sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/required-players/new' exact={true} >
           <NavBar />
