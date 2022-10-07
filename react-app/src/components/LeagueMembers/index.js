@@ -17,7 +17,6 @@ const LeagueMembers = ({ sessionUser }) => {
     const teams = Object.values(teamState);
 
     const [loaded, setLoaded] = useState(false);
-    const [users, setUsers] = useState({});
 
 
     useEffect(() => {
@@ -25,11 +24,6 @@ const LeagueMembers = ({ sessionUser }) => {
             await dispatch(getSingleLeague(leagueId));
             await dispatch(getAllTeams(leagueId));
 
-            const response = await fetch(`/api/users/${leagueId}/all`);
-
-            const users = await response.json();
-
-            setUsers(users);
             setLoaded(true);
         }
 
@@ -89,11 +83,11 @@ const LeagueMembers = ({ sessionUser }) => {
                                                         </Link>
                                                     </td>
                                                     <td className='members-table-td th-4 team-bold'>
-                                                        {users[team.team_owner_id].username}
+                                                        {team.team_owner.username}
                                                     </td>
-                                                    <td title={users[team.team_owner_id].email} className='members-table-td th-5 team-bold members-user-email'>
+                                                    <td title={team.team_owner.email} className='members-table-td th-5 team-bold members-user-email'>
                                                         <span>
-                                                            {users[team.team_owner_id].email}
+                                                            {team.team_owner.email}
                                                         </span>
                                                     </td>
                                                     {sessionUser.id !== league.owner_id &&
@@ -120,11 +114,11 @@ const LeagueMembers = ({ sessionUser }) => {
                                                             </Link>
                                                         </td>
                                                         <td className='members-table-td th-4'>
-                                                            {users[team.team_owner_id].username}
+                                                            {team.team_owner.username}
                                                         </td>
-                                                        <td title={users[team.team_owner_id].email} className='members-table-td th-5 members-user-email'>
+                                                        <td title={team.team_owner.email} className='members-table-td th-5 members-user-email'>
                                                             <span>
-                                                                {users[team.team_owner_id].email}
+                                                                {team.team_owner.email}
                                                             </span>
                                                         </td>
                                                         {team.team_owner_id !== league.owner_id && sessionUser.id === league.owner_id &&

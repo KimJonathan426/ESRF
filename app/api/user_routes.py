@@ -18,20 +18,20 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/<int:leagueId>/all')
-@login_required
-def all_users(leagueId):
-    league = League.query.get(leagueId)
-    teams = league.to_dict()['teams']
+# @user_routes.route('/<int:leagueId>/all')
+# @login_required
+# def all_users(leagueId):
+#     league = League.query.get(leagueId)
+#     teams = league.to_dict()['teams']
 
-    user_ids = [team['team_owner_id'] for team in teams]
+#     user_ids = [team['team_owner_id'] for team in teams]
 
-    users = User.query.filter(User.id.in_(user_ids)).all()
+#     users = User.query.filter(User.id.in_(user_ids)).all()
 
-    user_dict = {}
+#     user_dict = {}
 
-    for user in users:
-        user_info = user.to_dict()
-        user_dict[user_info['id']] = user_info
+#     for user in users:
+#         user_info = user.to_dict()
+#         user_dict[user_info['id']] = user_info
 
-    return user_dict
+#     return user_dict
