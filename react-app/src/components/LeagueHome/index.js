@@ -70,7 +70,7 @@ const LeagueHome = ({ sessionUser }) => {
                 <div className='page-container'>
                     <div className='league-home-container'>
                         <div className='league-home-image-box'>
-                            <img className='league-home-image' src={`${league.league_image}`} alt='league logo'/>
+                            <img className='league-home-image' src={`${league.league_image}`} alt='league logo' />
                         </div>
                         <div className='league-home-main-container'>
                             <div className='league-home-side'>
@@ -98,7 +98,9 @@ const LeagueHome = ({ sessionUser }) => {
                                                     </div>
                                                 </div>
                                                 <div className='view-roster'>
-                                                    View Roster Link
+                                                    <Link to={`/leagues/${leagueId}/teams/${userTeam.team_number}`}>
+                                                        View Roster
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </>
