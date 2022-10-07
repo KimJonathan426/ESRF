@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { addLeague } from "../../store/league"
+import { addTeam } from "../../store/team";
 import ErrorModal from '../ErrorModal';
 import './BaseLeagueForm.css'
 
-const BaseLeagueForm = () => {
+const BaseLeagueForm = ({ sessionUser }) => {
     const [leagueName, setLeagueName] = useState('');
     const [teamLimit, setTeamLimit] = useState(3);
     const [teamPlayerLimit, setTeamPlayerLimit] = useState(5);
@@ -59,6 +60,13 @@ const BaseLeagueForm = () => {
         const createdLeague = await dispatch(addLeague(league_name, team_limit, team_player_limit));
 
         if (createdLeague && createdLeague.errors === undefined) {
+
+            const leagueId = createdLeague.id;
+            const team_location = 'Team';
+            const team_name = sessionUser.username;
+            const team_abre = sessionUser.username.slice(0, 4).toUpperCase();
+
+            await dispatch(addTeam(leagueId, team_location, team_name, team_abre))
             history.push(`/leagues/${createdLeague.id}/required-players/new`);
         }
         else if (createdLeague.errors) {
