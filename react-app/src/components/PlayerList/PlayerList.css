@@ -81,6 +81,16 @@
     text-align: left;
 }
 
+.sub-column-1 > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.column-label-1 {
+    margin-right: 40px;
+}
+
 .sub-column-2 {
     padding-bottom: 2px;
     border-bottom: 1px solid #dcdddf;
@@ -117,8 +127,8 @@
 }
 
 .player-info-box > img {
-    width: 40px;
-    min-height: 35px;
+    min-width: 40px;
+    height: 35px;
     object-fit: cover;
     border-radius: 10px;
 }

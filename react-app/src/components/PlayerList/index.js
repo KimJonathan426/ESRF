@@ -44,7 +44,12 @@ const PlayerList = ({ sessionUser }) => {
                                     <th className='column-3'>FANTASY PTS</th>
                                 </tr>
                                 <tr className='player-column-sub-headers'>
-                                    <th className='sub-column-1'>PLAYER</th>
+                                    <th className='sub-column-1'>
+                                        <div>
+                                            <span>PLAYER</span>
+                                            <div className='column-label-1'>ACTION</div>
+                                        </div>
+                                    </th>
                                     <th className='sub-column-2'>
                                         <table>
                                             <tbody>
@@ -71,7 +76,7 @@ const PlayerList = ({ sessionUser }) => {
                                     <tr key={player.id} className='individual-player-row'>
                                         <td className='player-column'>
                                             <div className='player-info-box'>
-                                                <img src={`${player.player_image}`} alt='player'></img>
+                                                <img src={`${player.player_image}`} alt='player' />
                                                 <div>
                                                     <PlayerModal player={player} />
                                                     <span>{player.position}</span>
