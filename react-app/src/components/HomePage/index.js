@@ -1,17 +1,30 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getMyLeagues } from '../../store/league';
+import { getMyTeams } from '../../store/team';
+import Loading from '../Loading';
 import './HomePage.css';
 
 
 const HomePage = ({ sessionUser }) => {
     const dispatch = useDispatch();
-    const leagueState = useSelector(state => state.leagues)
-    const myLeagues = Object.values(leagueState)
+    const leagueState = useSelector(state => state.leagues);
+    const teamState = useSelector(state => state.teams);
+    const myLeagues = Object.values(leagueState);
+    const myTeams = Object.values(teamState);
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        dispatch(getMyLeagues(sessionUser.id))
+        const fetchData = async () => {
+            await dispatch(getMyLeagues(sessionUser.id));
+            await dispatch(getMyTeams(sessionUser.id));
+
+            setLoading(true);
+        }
+
+        fetchData();
     }, [dispatch, sessionUser.id])
 
 
@@ -44,7 +57,7 @@ const HomePage = ({ sessionUser }) => {
                         </div>
                     </div>
                 </div>
-                {myLeagues ? (
+                {loading ? (
                     <>
                         <div className='my-leagues-title'>My Leagues</div>
                         <div className='my-leagues-container'>
@@ -57,10 +70,26 @@ const HomePage = ({ sessionUser }) => {
                                 </div>
                             ))}
                         </div>
+                        <div className='my-leagues-title'>My Teams</div>
+                        <div className='my-leagues-container'>
+                            {myTeams.map(team => (
+                                <div key={team.id} className='my-league'>
+                                    <Link to={`/leagues/${team.league_id}/teams/${team.team_number}`}>
+                                        <div className='home-team-info-1'>
+                                            <span>{team.team_name}</span>
+                                            <br />
+                                            <span>Fantasy Points: {team.fantasy_total}</span>
+                                        </div>
+                                        {/* <div className='home-team-info-1'>Fantasy Points: {team.fantasy_total}</div> */}
+                                        <img className='my-teams-logo' src={`${team.team_image}`} alt='team-logo' />
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
                     </>
                 )
                     :
-                    <h3>Loading...</h3>
+                    <Loading />
                 }
             </div>
         </div>
