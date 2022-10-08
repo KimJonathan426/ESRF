@@ -5,20 +5,8 @@ from app.models import db, Team
 
 team_routes = Blueprint('teams', __name__)
 
-@team_routes.route('/<int:teamId>')
+@team_routes.route('/<int:sessionUserId>/all')
 @login_required
-def user_teams(teamId):
-    team = Team.query.get(teamId)
-    return team.to_dict()
-
-@team_routes.route('/league/<int:leagueId>')
-@login_required
-def league_teams(leagueId):
-    teams = Team.query.filter_by(id=leagueId).all()
-    return {'teamList': [team.to_dict() for team in teams]}
-
-@team_routes.route('/user')
-@login_required
-def user_teams():
-    teams = Team.query.filter_by(team_owner_id=current_user.id).all()
-    return {'teamList': [team.to_dict() for team in teams]}
+def all_my_teams(sessionUserId):
+    teams = Team.query.filter_by(team_owner_id=sessionUserId).all()
+    return {'teamsList': [team.to_dict_no_players() for team in teams]}
