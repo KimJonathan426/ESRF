@@ -356,8 +356,8 @@ def add_player_to_team(leagueId, teamNumber):
     if (teamCount < playerLimit):
         player = Player.query.get(playerId)
         team.add_player(player)
+        team.fantasy_total += player.fantasy_total
 
-        db.session.add(team)
         db.session.commit()
 
         return team.to_dict()
@@ -374,8 +374,21 @@ def drop_player(leagueId, teamNumber):
     dropped = team.drop_player(player)
 
     if dropped:
-        db.session.add(team)
+        team.fantasy_total -= player.fantasy_total
+
         db.session.commit()
 
         return team.to_dict()
     return {'errors': 'Failed to drop player... please try again'}, 401
+
+@league_routes.route('/<int:leagueId>/teams/update-fantasy', methods=['PUT'])
+@login_required
+def update_fantasy_total(leagueId):
+    teams = Team.query.filter_by(league_id=leagueId).all()
+
+    for team in teams:
+        team.fantasy_total = sum(team.to_dict_player_fantasy()['player_fantasy_totals'])
+
+    db.session.commit()
+
+    return {'teamsList': [team.to_dict() for team in teams]}
