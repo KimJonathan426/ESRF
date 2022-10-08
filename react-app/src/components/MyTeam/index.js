@@ -23,13 +23,15 @@ const MyTeam = ({ sessionUser }) => {
     const [playerList, setPlayerList] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    let max = 0;
+    let max = -Infinity;
     let currentLeader;
 
-    for (let team in league?.teams) { // change to of
-        if (team.fantasy_total > max) {
-            max = team.fantasy_total;
-            currentLeader = team;
+    if (league) {
+        for (let team of league?.teams) {
+            if (team.fantasy_total > max) {
+                max = team.fantasy_total;
+                currentLeader = team;
+            }
         }
     }
 
@@ -109,7 +111,7 @@ const MyTeam = ({ sessionUser }) => {
                                     </div>
                                     <ul className='my-team-total'>
                                         <li className='my-team-standings'>
-                                            {currentLeader && currentLeader.id !== team.id ? (
+                                            {league.is_active && currentLeader && currentLeader.id !== team.id ? (
                                                 <>
                                                     <div className='my-team-standings-logo-box'>
                                                         <img className='my-team-standings-logo' src={currentLeader.team_image} />
@@ -122,7 +124,7 @@ const MyTeam = ({ sessionUser }) => {
                                                     </div>
                                                 </>
                                             )
-                                                : currentLeader && currentLeader.id === team.id ? (
+                                                : league.is_active && currentLeader && currentLeader.id === team.id ? (
                                                     <>
                                                         <div className='my-team-leader'>
                                                             You are the current league leader with the most fantasy points
