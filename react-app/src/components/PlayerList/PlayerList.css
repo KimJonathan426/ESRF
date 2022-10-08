@@ -126,6 +126,14 @@
     flex-direction: row;
 }
 
+.player-info-image {
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 35px;
+    overflow: hidden;
+}
+
 .player-info-box > img {
     min-width: 40px;
     height: 35px;
@@ -133,18 +141,18 @@
     border-radius: 10px;
 }
 
-.player-info-box > div {
+.player-info {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 110px;
+    width: 140px;
     height: 40px;
     margin-left: 10px;
     margin-top: 3px;
 }
 
-.player-info-box > div > span {
+.player-info > span {
     font-size: 11px;
     font-weight: 600;
     line-height: 1;
@@ -180,4 +188,8 @@
     border-top: 1px solid #dcdddf;
     position: relative;
     top: -1px;
+}
+
+.add-player-only {
+    margin-right: 33px;
 }
