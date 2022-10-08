@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
+from sqlalchemy.sql import func
 from flask_wtf.csrf import validate_csrf
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
@@ -36,19 +37,23 @@ def my_leagues(ownerId):
 @league_routes.route('/public/<int:userId>')
 @login_required
 def public_leagues(userId):
-    leagues = League.query.filter(League.owner_id!=userId).all()
 
-    random_leagues = []
-    if (len(leagues) > 11):
-        random = sample(range(0, len(leagues)), 10)
+    valid_random_leagues = []
 
-        for index in random:
-            random_leagues.append(leagues[index])
+    team = Team.query.filter_by(team_owner_id=userId).all()
 
-    if (random_leagues):
-        return {'leagueList': [league.to_dict() for league in random_leagues]}
+    leagues = League.query.order_by(func.random()).filter(League.owner_id != userId).filter(League.is_active == False).limit(1000).all()
 
-    return {'leagueList': [league.to_dict() for league in leagues]}
+    for league in leagues:
+        filters = league.to_dict_query_filters()
+
+        if len(valid_random_leagues) >= 10:
+            break
+
+        if (userId not in filters['team_owner_ids'] and filters['players_count'] >= 10):
+            valid_random_leagues.append(league)
+
+    return {'leagueList': [league.to_dict() for league in valid_random_leagues]}
 
 @league_routes.route('/new', methods=['POST'])
 @login_required
