@@ -32,6 +32,10 @@ class Team(db.Model):
     def add_player(self, player):
         self.players_on_team.append(player)
 
+    def to_dict_player_fantasy(self):
+        return {
+            'player_fantasy_totals': [player.to_dict_no_team()['fantasy_total'] for player in self.players_on_team]
+        }
 
     def to_dict_team_owner(self):
         return {
