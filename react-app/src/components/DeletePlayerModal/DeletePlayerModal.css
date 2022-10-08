@@ -1,3 +1,9 @@
+.delete-player-resize {
+    margin-left: 9px;
+    height: 32px;
+    width: 70px;
+}
+
 .delete-modal-container {
     display: flex;
     flex-direction: column;

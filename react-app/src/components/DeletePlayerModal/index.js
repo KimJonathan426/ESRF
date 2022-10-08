@@ -24,18 +24,19 @@ const DeletePlayerModal = ({ totalPlayers, playerId }) => {
             errors.push(response.errors);
             setValidationErrors(errors);
             if (errors.length) {
-                setShowErrorModal(true)
+                setShowModal(false);
+                setShowErrorModal(true);
             }
         }
     }
 
     return (
         <>
-            <button className='delete-btn' onClick={() => setShowModal(true)}>Delete</button>
+            <button className='delete-btn delete-player-resize' onClick={() => setShowModal(true)}>Delete Player</button>
+            <ErrorModal className='error-modal-container' hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div className='delete-team-modal-container'>
-                        <ErrorModal className='error-modal-container' hideModal={() => setShowErrorModal(false)} showErrorModal={showErrorModal} validationErrors={validationErrors} />
                         <div className='delete-confirm-header'>
                             <h2>Delete Confirmation</h2>
                         </div>

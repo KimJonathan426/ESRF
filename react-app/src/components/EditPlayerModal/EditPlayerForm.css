@@ -1,3 +1,9 @@
+.edit-player-resize {
+    height: 32px;
+    width: 70px;
+    margin-left: 0;
+}
+
 .edit-player-container {
     display: flex;
     flex-direction: column;
