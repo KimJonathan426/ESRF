@@ -49,6 +49,16 @@ export const getAllTeams = (leagueId) => async (dispatch) => {
     }
 }
 
+export const getMyTeams = (sessionUserId) => async (dispatch) => {
+    const response = await fetch(`/api/teams/${sessionUserId}/all`);
+
+    if (response.ok) {
+        const teams = await response.json();
+        dispatch(actionGetTeams(teams));
+        return teams;
+    }
+}
+
 export const getSingleTeam = (leagueId, teamNumber) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}`);
 
