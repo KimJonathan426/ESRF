@@ -205,7 +205,7 @@ const MyTeam = ({ sessionUser }) => {
                                                         <span>{player.position}</span>
                                                     </div>
                                                 </div>
-                                                {team.team_owner_id === sessionUser.id && (
+                                                {team.team_owner_id === sessionUser.id && !league.is_active && (
                                                     <div className='team-player-action-box add-player-only'>
                                                         <DropPlayer player={player} />
                                                     </div>
