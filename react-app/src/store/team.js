@@ -98,6 +98,22 @@ export const addPlayerToTeam = (leagueId, teamNumber, formData) => async (dispat
     }
 }
 
+export const dropPlayer = (leagueId, teamNumber, formData) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/dropPlayer`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    if (response.ok) {
+        const team = await response.json();
+        dispatch(actionAddTeam(team));
+        return team;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
 export const editTeamInfo = (leagueId, teamNumber, team_location, team_name, team_abre) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/edit`, {
         method: 'PUT',
@@ -143,6 +159,17 @@ const TeamsReducer = (state = {}, action) => {
             return newState1;
         case GET_SINGLE_TEAM:
             const newState2 = {};
+
+            // normalized players
+            // const playerState = {};
+            // const playerList = [...action.team.players];
+
+            // playerList.forEach(player => {
+            //     playerState[player.id] = player;
+            // })
+
+            // action.team.players = playerState;
+
             newState2[action.team.team_number] = action.team;
             return newState2;
         case ADD_TEAM:
