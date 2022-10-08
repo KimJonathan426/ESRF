@@ -25,6 +25,10 @@ class Team(db.Model):
     )
 
 
+    def add_player(self, player):
+        self.players_on_team.append(player)
+
+
     def to_dict_for_player(self):
         return {
             'id': self.id,
