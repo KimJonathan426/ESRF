@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
+import { getSingleLeague } from "../../store/league";
 import { getAllPlayers } from "../../store/player";
+import AccessDenied from "../AccessDenied";
 import EditPlayerStatForm from "../EditPlayerStatForm";
+import InvalidLeagueId from "../InvalidLeagueId";
 import Loading from "../Loading";
 import './EditPlayerStatSheet.css'
 
-const EditPlayerStatSheet = () => {
-    const players = useSelector(state => state.players);
-    const playerList = Object.values(players);
-    const { leagueId } = useParams();
+const EditPlayerStatSheet = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { leagueId } = useParams();
+    const leagueState = useSelector(state => state.leagues);
+    const players = useSelector(state => state.players);
+
+    const league = leagueState[leagueId];
+    const playerList = Object.values(players);
 
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const playerResponse = await dispatch(getAllPlayers(leagueId))
+            const leagueResponse = await dispatch(getSingleLeague(leagueId))
+            await dispatch(getAllPlayers(leagueId))
 
-            if (playerResponse.playerList.length < 10) {
-                history.push(`/leagues/${leagueId}`);
+            if (leagueResponse?.players_count < 10) {
+                history.push(`/leagues/${leagueResponse.id}`);
             }
 
             setLoading(true);
@@ -34,7 +41,7 @@ const EditPlayerStatSheet = () => {
             <div className='page-outer'>
                 <div className='page-spacer'></div>
                 <div className='page-container'>
-                    {loading ?
+                    {loading ? league ? sessionUser.id === league.owner_id ?
                         <>
                             <div className='stat-sheet-title'>Player Stat Sheets</div>
                             <div className='stat-column'>
@@ -61,6 +68,10 @@ const EditPlayerStatSheet = () => {
                                     )))}
                             </div>
                         </>
+                        :
+                        <AccessDenied />
+                        :
+                        <InvalidLeagueId />
                         :
                         <Loading />
                     }
