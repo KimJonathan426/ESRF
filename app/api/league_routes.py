@@ -338,3 +338,22 @@ def upload_team_image(leagueId, teamNumber):
     db.session.commit()
 
     return editedTeam.to_dict()
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/addPlayer', methods=['PUT'])
+@login_required
+def add_player_to_team(leagueId, teamNumber):
+    playerId = int(request.form.get('playerId'))
+    playerLimit = int(request.form.get('playerLimit'))
+
+    team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+    teamCount = len(team.to_dict()['players'])
+
+    if (teamCount < playerLimit):
+        player = Player.query.get(playerId)
+        team.add_player(player)
+
+        db.session.add(team)
+        db.session.commit()
+
+        return team.to_dict()
+    return {'errors': 'Failed to add player. Make sure you have enough roster space on your team!'}, 401
