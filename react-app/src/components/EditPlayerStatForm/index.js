@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPlayerStats } from "../../store/player";
+import { updateFantasyTotal } from "../../store/team";
 import $ from 'jquery';
 import ErrorModal from "../ErrorModal";
 import './EditPlayerStatForm.css';
@@ -114,6 +115,7 @@ const EditPlayerStatForm = ({ currentPlayer }) => {
             setShowErrorModal(true);
         }
         else {
+            dispatch(updateFantasyTotal(currentPlayer.league_id))
             $(`#${currentPlayer.id}`).fadeOut(100).fadeIn(600);
         }
     };
