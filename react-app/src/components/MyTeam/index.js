@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import { getSingleTeam } from "../../store/team";
 import PlayerModal from "../PlayerModal";
+import DropPlayer from "../DropPlayer";
 import Loading from "../Loading";
 import settingsIcon from '../../images/settings-icon.png';
 import './MyTeam.css';
@@ -28,6 +29,10 @@ const MyTeam = ({ sessionUser }) => {
             currentLeader = team;
         }
     }
+
+     useEffect(() => {
+        setPlayerList(team?.players);
+     }, [team?.players])
 
     const remainingTeamSpace = league?.team_player_limit - team?.players.length;
 
@@ -194,8 +199,8 @@ const MyTeam = ({ sessionUser }) => {
                                                     </div>
                                                 </div>
                                                 {team.team_owner_id === sessionUser.id && (
-                                                    <div className='team-player-action-box'>
-                                                        <div>DROP</div>
+                                                    <div className='team-player-action-box add-player-only'>
+                                                        <DropPlayer player={player}/>
                                                     </div>
                                                 )}
                                             </td>
