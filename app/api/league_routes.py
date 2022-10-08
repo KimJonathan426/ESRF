@@ -356,4 +356,21 @@ def add_player_to_team(leagueId, teamNumber):
         db.session.commit()
 
         return team.to_dict()
-    return {'errors': 'Failed to add player. Make sure you have enough roster space on your team!'}, 401
+    return {'errors': 'Failed to add player. Make sure you have enough roster space on your team'}, 401
+
+@league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/dropPlayer', methods=['PUT'])
+@login_required
+def drop_player(leagueId, teamNumber):
+    playerId = int(request.form.get('playerId'))
+
+    team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+
+    player = Player.query.get(playerId)
+    dropped = team.drop_player(player)
+
+    if dropped:
+        db.session.add(team)
+        db.session.commit()
+
+        return team.to_dict()
+    return {'errors': 'Failed to drop player... please try again'}, 401
