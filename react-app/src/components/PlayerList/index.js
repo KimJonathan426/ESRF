@@ -124,7 +124,7 @@ const PlayerList = ({ sessionUser }) => {
                                                             <span>{player.position}</span>
                                                         </div>
                                                     </div>
-                                                    {team && teamPlayers && !(player.id in teamPlayers) &&
+                                                    {team && teamPlayers && !(player.id in teamPlayers) && !league.is_active &&
                                                         <div className={league.owner_id === sessionUser.id ? 'player-action-box' : 'player-action-box add-player-only'}>
                                                             <TeamAddPlayer playerLimit={league.team_player_limit} teamNumber={team.team_number} player={player} />
                                                         </div>
