@@ -24,6 +24,10 @@ class Team(db.Model):
     back_populates='teams_with_player'
     )
 
+    def drop_player(self, player):
+        if player in self.players_on_team:
+            self.players_on_team.remove(player)
+            return True
 
     def add_player(self, player):
         self.players_on_team.append(player)
