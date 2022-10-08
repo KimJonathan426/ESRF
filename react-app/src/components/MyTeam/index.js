@@ -22,7 +22,7 @@ const MyTeam = ({ sessionUser }) => {
     let max = 0;
     let currentLeader;
 
-    for (let team in league?.teams) {
+    for (let team in league?.teams) { // change to of
         if (team.fantasy_total > max) {
             max = team.fantasy_total;
             currentLeader = team;
@@ -185,8 +185,10 @@ const MyTeam = ({ sessionUser }) => {
                                         <tr key={player.id} className='team-individual-player-row'>
                                             <td className='team-player-column'>
                                                 <div className='team-player-info-box'>
+                                                    <div className='team-player-info-image'>
                                                     <img src={`${player.player_image}`} alt='player'></img>
-                                                    <div>
+                                                    </div>
+                                                    <div className='team-player-info'>
                                                         <PlayerModal player={player} />
                                                         <span>{player.position}</span>
                                                     </div>

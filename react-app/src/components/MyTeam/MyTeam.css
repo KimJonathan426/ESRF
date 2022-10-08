@@ -274,25 +274,33 @@
     flex-direction: row;
 }
 
-.team-player-info-box > img {
+.team-player-info-image {
+    display: flex;
+    justify-content: center;
     width: 40px;
-    min-height: 35px;
+    height: 35px;
+    overflow: hidden;
+}
+
+.team-player-info-box > img {
+    min-width: 40px;
+    height: 35px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.team-player-info-box > div {
+.team-player-info {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 110px;
+    width: 140px;
     height: 40px;
     margin-left: 10px;
     margin-top: 3px;
 }
 
-.team-player-info-box > div > span {
+.team-player-info > span {
     font-size: 11px;
     font-weight: 600;
     line-height: 1;
