@@ -1,0 +1,29 @@
+.add-player-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 32px;
+    background: rgb(0, 148, 68);
+    padding: 0 12px;
+    margin: 0 4px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+.add-player-btn:active {
+    margin: 0 5px;
+    height: 30px;
+    width: 36px;
+    font-size: 16px;
+    background-color: rgb(2, 109, 52);
+}
+
+.player-added {
+    display: none;
+}
