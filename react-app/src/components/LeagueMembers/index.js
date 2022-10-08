@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { getSingleLeague } from '../../store/league';
 import { getAllTeams } from '../../store/team';
 import DeleteTeamModal from '../DeleteTeamModal';
+import InvalidLeagueId from '../InvalidLeagueId';
 import Loading from '../Loading';
 import './LeagueMembers.css';
 
 const LeagueMembers = ({ sessionUser }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { leagueId } = useParams();
     const leagueState = useSelector(state => state.leagues);
     const teamState = useSelector(state => state.teams);
@@ -21,8 +23,12 @@ const LeagueMembers = ({ sessionUser }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await dispatch(getSingleLeague(leagueId));
+            const leagueResponse = await dispatch(getSingleLeague(leagueId));
             await dispatch(getAllTeams(leagueId));
+
+            if (leagueResponse?.players_count < 10) {
+                history.push(`/leagues/${leagueResponse.id}`);
+            }
 
             setLoaded(true);
         }
@@ -35,7 +41,7 @@ const LeagueMembers = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {loaded ? (
+                {loaded ? league ? (
                     <>
                         <div className='members-top-accent' />
                         <div className='members-container'>
@@ -135,6 +141,8 @@ const LeagueMembers = ({ sessionUser }) => {
                         </div>
                     </>
                 )
+                    :
+                    <InvalidLeagueId />
                     :
                     <Loading />
                 }

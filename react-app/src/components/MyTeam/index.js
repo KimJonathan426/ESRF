@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import { getSingleTeam } from "../../store/team";
 import PlayerModal from "../PlayerModal";
 import DropPlayer from "../DropPlayer";
+import InvalidTeamId from "../InvalidTeamId";
+import InvalidLeagueId from "../InvalidLeagueId";
 import Loading from "../Loading";
 import settingsIcon from '../../images/settings-icon.png';
 import './MyTeam.css';
@@ -12,6 +14,7 @@ import './MyTeam.css';
 const MyTeam = ({ sessionUser }) => {
     const { leagueId, teamNumber } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const teamState = useSelector(state => state.teams);
     const leagueState = useSelector(state => state.leagues);
     const league = leagueState[leagueId];
@@ -30,17 +33,21 @@ const MyTeam = ({ sessionUser }) => {
         }
     }
 
-     useEffect(() => {
+    useEffect(() => {
         setPlayerList(team?.players);
-     }, [team?.players])
+    }, [team?.players])
 
-    const remainingTeamSpace = league?.team_player_limit - team?.players.length;
+    const remainingTeamSpace = league?.team_player_limit - team?.players?.length;
 
     useEffect(() => {
         const fetchData = async () => {
 
             const teamResponse = await dispatch(getSingleTeam(leagueId, teamNumber))
-            await dispatch(getSingleLeague(leagueId))
+            const leagueResponse = await dispatch(getSingleLeague(leagueId))
+
+            if (leagueResponse?.players_count < 10) {
+                history.push(`/leagues/${leagueResponse.id}`);
+            }
 
             setPlayerList(teamResponse.players)
             setLoading(true);
@@ -55,7 +62,7 @@ const MyTeam = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {loading ?
+                {loading ? league ? team ?
                     <>
                         <div className='my-team-title-accent'></div>
                         <div className='my-team-title-box'>
@@ -191,7 +198,7 @@ const MyTeam = ({ sessionUser }) => {
                                             <td className='team-player-column'>
                                                 <div className='team-player-info-box'>
                                                     <div className='team-player-info-image'>
-                                                    <img src={`${player.player_image}`} alt='player'></img>
+                                                        <img src={`${player.player_image}`} alt='player'></img>
                                                     </div>
                                                     <div className='team-player-info'>
                                                         <PlayerModal player={player} />
@@ -200,7 +207,7 @@ const MyTeam = ({ sessionUser }) => {
                                                 </div>
                                                 {team.team_owner_id === sessionUser.id && (
                                                     <div className='team-player-action-box add-player-only'>
-                                                        <DropPlayer player={player}/>
+                                                        <DropPlayer player={player} />
                                                     </div>
                                                 )}
                                             </td>
@@ -266,6 +273,10 @@ const MyTeam = ({ sessionUser }) => {
                             </table>
                         </div>
                     </>
+                    :
+                    <InvalidTeamId />
+                    :
+                    <InvalidLeagueId />
                     :
                     <Loading />
                 }

@@ -1,21 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { getSingleLeague } from "../../store/league";
 import DeleteLeagueModal from "../DeleteLeagueModal";
+import InvalidLeagueId from "../InvalidLeagueId";
 import LeagueEditFormModal from "../LeagueEditModal";
 import LeagueScoringModal from "../LeagueScoringModal";
 import LeagueStartFormModal from "../LeagueStartFormModal";
+import Loading from "../Loading";
 import './LeagueSettings.css';
 
 const LeagueSettings = ({ sessionUser }) => {
     const { leagueId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const leagueState = useSelector(state => state.leagues);
     const league = leagueState[leagueId]
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        dispatch(getSingleLeague(leagueId));
+        const fetchData = async () => {
+            const leagueResponse = await dispatch(getSingleLeague(leagueId));
+
+            if (leagueResponse?.players_count < 10) {
+                history.push(`/leagues/${leagueResponse.id}`);
+            }
+
+            setLoading(true);
+        }
+
+        fetchData();
     }, [dispatch, leagueId])
 
 
@@ -23,7 +37,7 @@ const LeagueSettings = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {league ? (
+                {loading ? league ? (
                     <>
                         <div className='top-accent'></div>
                         <div className='settings-container'>
@@ -52,7 +66,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Game Settings</div>
-                                {league?.owner_id === sessionUser.id && (
+                                {league.owner_id === sessionUser.id && (
                                     <LeagueStartFormModal leagueId={league.id} leagueDate={league.start_date} leagueTime={league.start_time} />
                                 )}
                             </div>
@@ -66,7 +80,7 @@ const LeagueSettings = ({ sessionUser }) => {
                             </div>
                             <div className='settings-sub-title'>
                                 <div>Scoring</div>
-                                {league?.owner_id === sessionUser.id && (
+                                {league.owner_id === sessionUser.id && (
                                     <LeagueScoringModal currentLeague={league} />
                                 )}
                             </div>
@@ -98,14 +112,16 @@ const LeagueSettings = ({ sessionUser }) => {
                                     <div className='gray'>{league.points_weight}</div>
                                 </div>
                             </div>
-                            {league?.owner_id === sessionUser.id && (
+                            {league.owner_id === sessionUser.id && (
                                 <DeleteLeagueModal leagueId={leagueId} />
                             )}
                         </div>
                     </>
                 )
                     :
-                    <h3>Loading...</h3>
+                    <InvalidLeagueId />
+                    :
+                    <Loading />
                 }
             </div>
         </div>

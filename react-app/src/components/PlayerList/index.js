@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getAllPlayers } from "../../store/player";
+import { getSingleLeague } from "../../store/league";
 import PlayerModal from "../PlayerModal";
 import EditPlayerModal from "../EditPlayerModal";
 import DeletePlayerModal from "../DeletePlayerModal";
-import { getSingleLeague } from "../../store/league";
 import TeamAddPlayer from "../TeamAddPlayer";
+import InvalidLeagueId from "../InvalidLeagueId";
 import Loading from "../Loading";
 import './PlayerList.css';
 
 const PlayerList = ({ sessionUser }) => {
     const { leagueId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const players = useSelector(state => state.players);
     const leagueState = useSelector(state => state.leagues);
     const league = leagueState[leagueId];
@@ -27,13 +29,19 @@ const PlayerList = ({ sessionUser }) => {
             await dispatch(getAllPlayers(leagueId))
             const leagueResponse = await dispatch(getSingleLeague(leagueId))
 
+            if (leagueResponse?.players_count < 10) {
+                history.push(`/leagues/${leagueResponse.id}`);
+            }
+
             let temp;
 
-            for (let team of leagueResponse.teams) {
-                if (sessionUser.id === team.team_owner_id) {
-                    setTeam(team);
-                    temp = team;
-                    break;
+            if (leagueResponse) {
+                for (let team of leagueResponse.teams) {
+                    if (sessionUser.id === team.team_owner_id) {
+                        setTeam(team);
+                        temp = team;
+                        break;
+                    }
                 }
             }
 
@@ -58,7 +66,7 @@ const PlayerList = ({ sessionUser }) => {
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {loading ?
+                {loading ? league ?
                     <>
                         <div className='free-agent-title-accent'></div>
                         <div className='free-agents-title'>
@@ -158,6 +166,8 @@ const PlayerList = ({ sessionUser }) => {
                             </div>
                         }
                     </>
+                    :
+                    <InvalidLeagueId />
                     :
                     <Loading />
                 }

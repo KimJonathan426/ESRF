@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getSingleLeague, editLeagueStatus } from '../../store/league';
@@ -8,6 +8,8 @@ import leagueLock from '../../images/locked.png';
 import ScheduleStartModal from '../LeagueStartFormModal/ScheduleStartModal';
 import LeagueNote from '../LeagueNote';
 import JoinLeagueButton from '../JoinLeagueButton';
+import InvalidLeagueId from '../InvalidLeagueId';
+import Loading from '../Loading';
 import './LeagueHome.css';
 
 const LeagueHome = ({ sessionUser }) => {
@@ -16,6 +18,9 @@ const LeagueHome = ({ sessionUser }) => {
     const leagueState = useSelector(state => state.leagues);
     const teamState = useSelector(state => state.teams);
     const league = leagueState[leagueId];
+
+    const [loading, setLoading] = useState(false);
+
     let userTeam;
 
     for (let team of Object.values(teamState)) {
@@ -26,8 +31,14 @@ const LeagueHome = ({ sessionUser }) => {
     }
 
     useEffect(() => {
-        dispatch(getSingleLeague(leagueId));
-        dispatch(getAllTeams(leagueId));
+        const fetchData = async () => {
+            await dispatch(getSingleLeague(leagueId));
+            await dispatch(getAllTeams(leagueId));
+
+            setLoading(true);
+        }
+
+        fetchData();
     }, [dispatch, leagueId])
 
     useEffect(() => {
@@ -64,7 +75,7 @@ const LeagueHome = ({ sessionUser }) => {
 
 
     return (
-        league ? league.players_count >= 10 ?
+        loading ? league ? league.players_count >= 10 ?
             <div className='page-outer'>
                 <div className='page-spacer'></div>
                 <div className='page-container'>
@@ -243,7 +254,16 @@ const LeagueHome = ({ sessionUser }) => {
                     </div>
                 </div>
             :
-            <h3> Loading... </h3>
+            <>
+                <div className='page-outer'>
+                    <div className='page-spacer'></div>
+                    <div className='page-container'>
+                        <InvalidLeagueId />
+                    </div>
+                </div>
+            </>
+            :
+            <Loading />
     )
 }
 
