@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getPublicLeagues } from '../../store/league';
+import Loading from '../Loading';
 import './LeagueList.css';
 
 const LeagueList = ({ sessionUser }) => {
@@ -9,19 +10,28 @@ const LeagueList = ({ sessionUser }) => {
     const leagues = useSelector(state => state.leagues);
     const leagueList = Object.values(leagues);
 
-    useEffect(() => {
-        dispatch(getPublicLeagues(sessionUser.id));
-    }, [dispatch, sessionUser.id])
+    const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await dispatch(getPublicLeagues(sessionUser.id));
+
+            setLoading(true);
+        }
+
+        fetchData();
+    }, [dispatch, sessionUser.id])
+    console.log('leagueList', leagueList)
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
+                <div className='public-top-accent'></div>
                 <div className='public-title-container'>
-                    <div className='public-league-title'>Leagues can vary from recreational organizations, pick-up games, to any custom format you can think of!</div>
-                    <div className='public-league-title'>Choose from one of the random leagues below and explore what the community has to offer!</div>
+                    <div className='public-league-title'>Leagues can range anywhere from recreational organizations, pick-up games, to any custom format...</div>
+                    <div className='public-league-title'>Choose from one of the leagues below and explore what the community has to offer!</div>
                 </div>
-                {leagueList ?
+                {loading ? leagueList &&
                     <div className='public-leagues-container'>
                         {leagueList.map(league => (
                             <div key={league.id} className='my-league'>
@@ -33,7 +43,7 @@ const LeagueList = ({ sessionUser }) => {
                         ))}
                     </div>
                     :
-                    <h3>Loading...</h3>
+                    <Loading />
                 }
             </div>
         </div>
