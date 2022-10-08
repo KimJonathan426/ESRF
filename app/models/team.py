@@ -33,6 +33,11 @@ class Team(db.Model):
         self.players_on_team.append(player)
 
 
+    def to_dict_team_owner(self):
+        return {
+            'team_owner_id': self.team_owner_id
+        }
+
     def to_dict_for_player(self):
         return {
             'id': self.id,

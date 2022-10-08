@@ -38,6 +38,12 @@ class League(db.Model):
     league_players = db.relationship('Player', back_populates='player_league', cascade="all, delete")
 
 
+    def to_dict_query_filters(self):
+        return {
+            'team_owner_ids': [team.to_dict_team_owner()['team_owner_id'] for team in self.league_teams],
+            'players_count': len(self.league_players)
+        }
+
     def to_dict_league_info(self):
         return {
             'id': self.id,
