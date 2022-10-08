@@ -124,6 +124,21 @@ export const dropPlayer = (leagueId, teamNumber, formData) => async (dispatch) =
     }
 }
 
+export const updateFantasyTotal = (leagueId) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/update-fantasy`, {
+        method: 'PUT'
+    });
+
+    if (response.ok) {
+        const teams = await response.json();
+        dispatch(actionGetTeams(teams));
+        return teams;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
 export const editTeamInfo = (leagueId, teamNumber, team_location, team_name, team_abre) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/edit`, {
         method: 'PUT',
