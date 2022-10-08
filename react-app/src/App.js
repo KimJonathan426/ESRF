@@ -81,7 +81,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/players/edit/stats' exact={true} >
           <NavBar />
-          <EditPlayerStatSheet />
+          <EditPlayerStatSheet sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute path='/leagues/:leagueId/teams/:teamNumber' exact={true} >
           <NavBar />
