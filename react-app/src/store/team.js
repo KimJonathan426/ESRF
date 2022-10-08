@@ -82,6 +82,22 @@ export const addTeam = (leagueId, team_location, team_name, team_abre) => async 
     }
 }
 
+export const addPlayerToTeam = (leagueId, teamNumber, formData) => async (dispatch) => {
+    const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/addPlayer`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    if (response.ok) {
+        const team = await response.json();
+        dispatch(actionAddTeam(team));
+        return team;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
 export const editTeamInfo = (leagueId, teamNumber, team_location, team_name, team_abre) => async (dispatch) => {
     const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}/edit`, {
         method: 'PUT',
