@@ -44,7 +44,6 @@ const MyTeam = ({ sessionUser }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-
             const teamResponse = await dispatch(getSingleTeam(leagueId, teamNumber))
             const leagueResponse = await dispatch(getSingleLeague(leagueId))
 
@@ -53,7 +52,7 @@ const MyTeam = ({ sessionUser }) => {
             }
 
             setPlayerList(teamResponse.players);
-
+            console.log('teamResponse', teamResponse)
             if (teamResponse.errors === undefined) {
                 setTeam(teamResponse);
             }
@@ -64,17 +63,12 @@ const MyTeam = ({ sessionUser }) => {
         fetchData();
     }, [dispatch, leagueId, teamNumber])
 
-    console.log('leagueId', leagueId)
-    console.log('teamNumber', teamNumber)
-    console.log('team', team)
-    console.log('teamFromState', teamFromState)
-    console.log('playerList', playerList)
 
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {loading ? league ? team ? teamFromState ?
+                {!isNaN(teamNumber) ? loading ? league ? team ? teamFromState ?
                     <>
                         <div className='my-team-title-accent'></div>
                         <div className='my-team-title-box'>
@@ -293,6 +287,8 @@ const MyTeam = ({ sessionUser }) => {
                     <InvalidLeagueId />
                     :
                     <Loading />
+                    :
+                    <InvalidTeamId />
                 }
             </div>
         </div>
