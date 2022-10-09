@@ -60,6 +60,10 @@ export const getMyTeams = (sessionUserId) => async (dispatch) => {
 }
 
 export const getSingleTeam = (leagueId, teamNumber) => async (dispatch) => {
+    if (isNaN(teamNumber)) {
+        return {'errors': 'Team could not be found.'};
+    }
+
     const response = await fetch(`/api/leagues/${leagueId}/teams/${teamNumber}`);
 
     if (response.ok) {
