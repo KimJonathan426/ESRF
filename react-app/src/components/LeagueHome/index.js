@@ -263,7 +263,14 @@ const LeagueHome = ({ sessionUser }) => {
                 </div>
             </>
             :
-            <Loading />
+            <>
+                <div className='page-outer'>
+                    <div className='page-spacer'></div>
+                    <div className='page-container'>
+                        <Loading />
+                    </div>
+                </div>
+            </>
     )
 }
 
