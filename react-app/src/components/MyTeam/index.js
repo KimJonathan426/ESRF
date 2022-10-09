@@ -52,7 +52,7 @@ const MyTeam = ({ sessionUser }) => {
             }
 
             setPlayerList(teamResponse.players);
-            console.log('teamResponse', teamResponse)
+
             if (teamResponse.errors === undefined) {
                 setTeam(teamResponse);
             }
