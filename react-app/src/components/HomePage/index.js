@@ -27,6 +27,8 @@ const HomePage = ({ sessionUser }) => {
         fetchData();
     }, [dispatch, sessionUser.id])
 
+    console.log('myLeagues', myLeagues.length)
+    console.log('myLeagues', myTeams)
 
     return (
         <div className='page-outer'>
@@ -61,18 +63,26 @@ const HomePage = ({ sessionUser }) => {
                     <>
                         <div className='my-leagues-title'>My Leagues</div>
                         <div className='my-leagues-container'>
-                            {myLeagues.map(league => (
+                            {myLeagues.length > 0 ? myLeagues.map(league => (
                                 <div key={league.id} className='my-league'>
                                     <Link to={`/leagues/${league.id}`}>
                                         <div className='home-league-info'>{league.league_name}</div>
                                         <img className='my-leagues-logo' src={`${league.league_image}`} alt='league-logo' />
                                     </Link>
                                 </div>
-                            ))}
+                            ))
+                                :
+                                <div className='no-teams-leagues'>
+                                    <span>
+                                        Looks like you don't own any leagues...&nbsp;
+                                        Your leagues will show up here when you create them.
+                                    </span>
+                                </div>
+                            }
                         </div>
                         <div className='my-leagues-title'>My Teams</div>
                         <div className='my-leagues-container'>
-                            {myTeams.map(team => (
+                            {myTeams.length > 0 ? myTeams.map(team => (
                                 <div key={team.id} className='my-league'>
                                     <Link to={`/leagues/${team.league_id}/teams/${team.team_number}`}>
                                         <div className='home-team-info-1'>
@@ -84,7 +94,15 @@ const HomePage = ({ sessionUser }) => {
                                         <img className='my-teams-logo' src={`${team.team_image}`} alt='team-logo' />
                                     </Link>
                                 </div>
-                            ))}
+                            ))
+                                :
+                                <div className='no-teams-leagues'>
+                                    <span>
+                                        Looks like you don't have any teams...&nbsp;
+                                        Your teams will show up here when you join different leagues.
+                                    </span>
+                                </div>
+                            }
                         </div>
                     </>
                 )

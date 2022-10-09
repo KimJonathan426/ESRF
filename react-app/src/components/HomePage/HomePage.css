@@ -107,6 +107,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    min-height: 250px;
     height: fit-content;
 }
 
@@ -181,4 +182,15 @@
     z-index: -1;
     position: relative;
     top: -42px;
+}
+
+.no-teams-leagues {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 24px;
+    font-weight: lighter;
+    position: relative;
+    top: -50px;
 }
