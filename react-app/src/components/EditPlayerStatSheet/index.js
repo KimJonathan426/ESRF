@@ -34,7 +34,7 @@ const EditPlayerStatSheet = ({ sessionUser }) => {
         }
 
         fetchData();
-    }, [dispatch, leagueId])
+    }, [dispatch, leagueId, history])
 
     return (
         <>

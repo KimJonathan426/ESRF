@@ -59,7 +59,7 @@ const PlayerList = ({ sessionUser }) => {
 
         fetchData();
 
-    }, [dispatch, leagueId, sessionUser.id])
+    }, [dispatch, leagueId, sessionUser.id, history])
 
 
     return (

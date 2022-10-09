@@ -179,7 +179,7 @@ const NavBar = () => {
                             <div className='opposing-teams-box'>
                               <div className='opposing-teams-image-box'>
                                 <div className='opposing-logos-box'>
-                                  <img className='opposing-teams-logo' src={team.team_image} />
+                                  <img className='opposing-teams-logo' src={team.team_image} alt='team logo' />
                                 </div>
                               </div>
                               <div className='opposing-teams-info'>

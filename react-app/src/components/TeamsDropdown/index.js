@@ -5,11 +5,9 @@ import "./TeamsDropdown.css"
 const TeamsDropdown = ({ sessionUser, teamsList }) => {
     const { leagueId } = useParams();
     const [dropdown, setDropdown] = useState(false);
-    const [opposingActive, setOpposingActive] = useState(false);
 
     const handleClick = () => {
         setDropdown(!dropdown);
-        setOpposingActive(!opposingActive);
     }
 
     return (
@@ -17,12 +15,12 @@ const TeamsDropdown = ({ sessionUser, teamsList }) => {
             <ul className='teams-list-dropdown'>
                 {teamsList.map(team =>
                     team.team_owner_id !== sessionUser.id &&
-                    <li className='dropdown-item-team'>
+                    <li key={team.id} className='dropdown-item-team'>
                         <Link className='dropdown-link-team' to={`/leagues/${leagueId}/teams/${team.team_number}`} onClick={handleClick}>
                             <div className='opposing-teams-box'>
                                 <div className='opposing-teams-image-box'>
                                     <div className='opposing-logos-box'>
-                                        <img className='opposing-teams-logo' src={team.team_image} />
+                                        <img className='opposing-teams-logo' src={team.team_image} alt='team logo' />
                                     </div>
                                 </div>
                                 <div className='opposing-teams-info'>

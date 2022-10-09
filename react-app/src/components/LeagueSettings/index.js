@@ -30,7 +30,7 @@ const LeagueSettings = ({ sessionUser }) => {
         }
 
         fetchData();
-    }, [dispatch, leagueId])
+    }, [dispatch, leagueId, history])
 
 
     return (

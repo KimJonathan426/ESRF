@@ -61,7 +61,7 @@ const MyTeam = ({ sessionUser }) => {
         }
 
         fetchData();
-    }, [dispatch, leagueId, teamNumber])
+    }, [dispatch, leagueId, teamNumber, history])
 
 
     return (
@@ -118,7 +118,7 @@ const MyTeam = ({ sessionUser }) => {
                                             {league.is_active && currentLeader && currentLeader.id !== team.id ? (
                                                 <>
                                                     <div className='my-team-standings-logo-box'>
-                                                        <img className='my-team-standings-logo' src={currentLeader.team_image} />
+                                                        <img className='my-team-standings-logo' src={currentLeader.team_image} alt='team logo' />
                                                     </div>
                                                     <div className='my-team-leader'>
                                                         {currentLeader.team_name}
@@ -148,7 +148,7 @@ const MyTeam = ({ sessionUser }) => {
                                         </li>
                                         <li className='my-team-standings'>
                                             <div className='my-team-standings-logo-box'>
-                                                <img className='my-team-standings-logo' src={team.team_image} />
+                                                <img className='my-team-standings-logo' src={team.team_image} alt='team logo'/>
                                             </div>
                                             <div className='my-team-leader'>
                                                 {team.team_name}
@@ -204,7 +204,7 @@ const MyTeam = ({ sessionUser }) => {
                                             <td className='team-player-column'>
                                                 <div className='team-player-info-box'>
                                                     <div className='team-player-info-image'>
-                                                        <img src={`${player.player_image}`} alt='player'></img>
+                                                        <img src={`${player.player_image}`} alt='player' />
                                                     </div>
                                                     <div className='team-player-info'>
                                                         <PlayerModal player={player} />
@@ -245,7 +245,7 @@ const MyTeam = ({ sessionUser }) => {
                                         <tr key={i} className='team-individual-player-row'>
                                             <td className='team-player-column'>
                                                 <div className='empty-player-info-box'>
-                                                    <img src='https://esrf.s3.amazonaws.com/Empty-Player-Image.png' alt='empty player'></img>
+                                                    <img src='https://esrf.s3.amazonaws.com/Empty-Player-Image.png' alt='empty player' />
                                                     <div className='empty-player-label'>
                                                         Empty
                                                     </div>
