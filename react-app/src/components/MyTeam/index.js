@@ -18,9 +18,10 @@ const MyTeam = ({ sessionUser }) => {
     const teamState = useSelector(state => state.teams);
     const leagueState = useSelector(state => state.leagues);
     const league = leagueState[leagueId];
-    const team = teamState[teamNumber];
+    const teamFromState = teamState[teamNumber];
 
     const [playerList, setPlayerList] = useState([]);
+    const [team, setTeam] = useState(false);
     const [loading, setLoading] = useState(false);
 
     let max = -Infinity;
@@ -36,10 +37,10 @@ const MyTeam = ({ sessionUser }) => {
     }
 
     useEffect(() => {
-        setPlayerList(team?.players);
-    }, [team?.players])
+        setPlayerList(teamFromState?.players);
+    }, [teamFromState?.players,])
 
-    const remainingTeamSpace = league?.team_player_limit - team?.players?.length;
+    const remainingTeamSpace = league?.team_player_limit - teamFromState?.players?.length;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,20 +52,29 @@ const MyTeam = ({ sessionUser }) => {
                 history.push(`/leagues/${leagueResponse.id}`);
             }
 
-            setPlayerList(teamResponse.players)
+            setPlayerList(teamResponse.players);
+
+            if (teamResponse.errors === undefined) {
+                setTeam(teamResponse);
+            }
+
             setLoading(true);
         }
 
         fetchData();
-
     }, [dispatch, leagueId, teamNumber])
 
+    console.log('leagueId', leagueId)
+    console.log('teamNumber', teamNumber)
+    console.log('team', team)
+    console.log('teamFromState', teamFromState)
+    console.log('playerList', playerList)
 
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
             <div className='page-container'>
-                {loading ? league ? team ?
+                {loading ? league ? team ? teamFromState ?
                     <>
                         <div className='my-team-title-accent'></div>
                         <div className='my-team-title-box'>
@@ -195,7 +205,7 @@ const MyTeam = ({ sessionUser }) => {
                                         <th className='sub-column-3'>TOT</th>
                                     </tr>
 
-                                    {playerList.map(player => (
+                                    {playerList?.map(player => (
                                         <tr key={player.id} className='team-individual-player-row'>
                                             <td className='team-player-column'>
                                                 <div className='team-player-info-box'>
@@ -207,7 +217,7 @@ const MyTeam = ({ sessionUser }) => {
                                                         <span>{player.position}</span>
                                                     </div>
                                                 </div>
-                                                {team.team_owner_id === sessionUser.id && !league.is_active && (
+                                                {teamFromState.team_owner_id === sessionUser.id && !league.is_active && (
                                                     <div className='team-player-action-box add-player-only'>
                                                         <DropPlayer player={player} />
                                                     </div>
@@ -275,6 +285,8 @@ const MyTeam = ({ sessionUser }) => {
                             </table>
                         </div>
                     </>
+                    :
+                    <Loading />
                     :
                     <InvalidTeamId />
                     :
