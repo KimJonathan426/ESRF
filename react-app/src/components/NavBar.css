@@ -110,6 +110,21 @@
     border-left: 1px solid #dcdddf;
 }
 
+.league-links-border {
+    position: relative;
+    margin-left: 10px;
+}
+
+.league-links-border:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    height: 24px;
+    width: 1px;
+    border-left: 1px solid #dcdddf;
+}
+
 .league-links-team:hover:after,
 .active-link-team:after {
     content: '';

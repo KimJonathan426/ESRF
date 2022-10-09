@@ -18,6 +18,7 @@ const NavBar = () => {
 
   const [teamsList, setTeamsList] = useState(false);
   const [teamNumber, setTeamNumber] = useState('');
+  const [userTeam, setUserTeam] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const [teamActive, setTeamActive] = useState(false);
@@ -38,6 +39,7 @@ const NavBar = () => {
               const team = await response.json();
 
               setTeamNumber(team.team_number);
+              setUserTeam(true);
             }
 
             break;
@@ -98,14 +100,16 @@ const NavBar = () => {
 
             {loaded && league && (
               <>
+              {userTeam &&
                 <NavLink className={teamActive ? 'league-links-team active-link-team' : 'league-links-team'} to={`/leagues/${leagueId}/teams/${teamNumber}`} exact={true}>
                   <span className='link-text'>
                     My Team
                   </span>
                   <div className='transition'></div>
                 </NavLink>
+                }
 
-                <div>
+                <div className={!userTeam ? 'league-links-border' : ''}>
                   <NavLink className={leagueActive ? 'league-links-league active-link-league' : 'league-links-league'} to={`/leagues/${leagueId}`} exact={true}>
                     <span className='link-text'>
                       League
@@ -170,7 +174,7 @@ const NavBar = () => {
                     <ul className='teams-list-dropdown'>
                       {teamsList && teamsList.map(team =>
                         team.team_owner_id !== sessionUser.id &&
-                        <li className='dropdown-item-team'>
+                        <li key={team.id} className='dropdown-item-team'>
                           <Link className='dropdown-link-team' to={`/leagues/${leagueId}/teams/${team.team_number}`}>
                             <div className='opposing-teams-box'>
                               <div className='opposing-teams-image-box'>
