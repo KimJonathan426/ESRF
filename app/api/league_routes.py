@@ -40,8 +40,6 @@ def public_leagues(userId):
 
     valid_random_leagues = []
 
-    team = Team.query.filter_by(team_owner_id=userId).all()
-
     leagues = League.query.order_by(func.random()).filter(League.owner_id != userId).filter(League.is_active == False).limit(1000).all()
 
     for league in leagues:
