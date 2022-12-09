@@ -21,7 +21,7 @@ const LeagueList = ({ sessionUser }) => {
 
         fetchData();
     }, [dispatch, sessionUser.id])
-    console.log('leagueList', leagueList)
+    console.log('leagueList', leagueList.length)
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
@@ -31,7 +31,7 @@ const LeagueList = ({ sessionUser }) => {
                     <div className='public-league-title'>Leagues can range anywhere from recreational organizations, pick-up games, to any custom format...</div>
                     <div className='public-league-title'>Choose from one of the leagues below and explore what the community has to offer!</div>
                 </div>
-                {loading ? leagueList &&
+                {loading ? leagueList.length > 0 ?
                     <div className='public-leagues-container'>
                         {leagueList.map(league => (
                             <div key={league.id} className='my-league'>
@@ -41,6 +41,17 @@ const LeagueList = ({ sessionUser }) => {
                                 </Link>
                             </div>
                         ))}
+                    </div>
+                    :
+                    <div className='no-leagues'>
+                        Looks like there aren't any available leagues at the moment...
+                        <div>
+                            Check back later or&nbsp;
+                            <Link to='/leagues/new' className='public-to-create'>
+                                make your own league
+                            </Link>
+                            !
+                        </div>
                     </div>
                     :
                     <Loading />
