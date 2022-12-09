@@ -13,7 +13,7 @@ const AboutPage = () => {
                     </div>
                     <div className='about-text-1'>
                         This project is clone of ESPN Fantasy Basketball. However, the difference is that this
-                        fantasy app is fully custom customizable and not only limited to NBA games and players.
+                        fantasy app is fully customizable and not only limited to NBA games and players.
                         Users can make fantasy leagues for recreational leagues, tournaments, pick-up games, and more.
                         They can track their stats and compete against one another. This adds another layer of fun to
                         both the players and spectators.
