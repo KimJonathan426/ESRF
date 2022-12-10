@@ -44,7 +44,7 @@ def public_leagues(userId):
 
     for league in leagues:
         filters = league.to_dict_query_filters()
-        print('TEEM', filters)
+
         if len(valid_random_leagues) >= 10:
             break
 
