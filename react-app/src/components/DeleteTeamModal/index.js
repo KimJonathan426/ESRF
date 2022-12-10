@@ -29,7 +29,7 @@ const DeleteTeamModal = ({ deleteText, warningText }) => {
                             <h2>Delete Confirmation</h2>
                         </div>
                         <div className='delete-confirm-text'>
-                            <div>Are you <span style={{'font-style': 'italic'}}>sure</span> {warningText}</div>
+                            <div>Are you <span style={{'fontStyle': 'italic'}}>sure</span> {warningText}</div>
                         </div>
                         <div>
                             <button className='delete-btn delete-resize' onClick={onDelete}>Delete</button>
