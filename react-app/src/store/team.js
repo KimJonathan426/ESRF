@@ -183,7 +183,7 @@ const TeamsReducer = (state = {}, action) => {
         case GET_TEAMS:
             const newState1 = {};
             action.teams.teamsList.forEach(team => {
-                newState1[team.team_number] = team;
+                newState1[team.id] = team;
             });
             return newState1;
         case GET_SINGLE_TEAM:
@@ -199,15 +199,15 @@ const TeamsReducer = (state = {}, action) => {
 
             // action.team.players = playerState;
 
-            newState2[action.team.team_number] = action.team;
+            newState2[action.team.id] = action.team;
             return newState2;
         case ADD_TEAM:
             const newState3 = { ...state };
-            newState3[action.team.team_number] = action.team;
+            newState3[action.team.id] = action.team;
             return newState3;
         case DELETE_TEAM:
             const newState4 = { ...state };
-            delete newState4[action.teamNumber];
+            delete newState4[action.id];
             return newState4;
         case CLEAR_TEAMS:
             const clearState = {};
