@@ -21,7 +21,8 @@ const LeagueList = ({ sessionUser }) => {
 
         fetchData();
     }, [dispatch, sessionUser.id])
-    console.log('leagueList', leagueList.length)
+
+
     return (
         <div className='page-outer'>
             <div className='page-spacer'></div>
