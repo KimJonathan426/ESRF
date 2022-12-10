@@ -26,6 +26,8 @@ const NavBar = () => {
   const [playerActive, setPlayerActive] = useState(false);
 
   useEffect(() => {
+    setShowOpposing(false);
+
     if (league) {
       setTeamsList(league.teams)
 
@@ -45,14 +47,14 @@ const NavBar = () => {
         setUserTeam(false);
       }
 
-      if ((found && teamsList.length > 1) || (!found && teamsList.length > 0)) {
+      if ((found && teamsList.length > 1 && league.players_count >= 10) || (!found && league.players_count >= 10)) {
         setShowOpposing(true);
       }
 
     }
 
     setLoaded(true);
-  }, [league, sessionUser.id, teamsList.length])
+  }, [league, leagueId, sessionUser.id, teamsList.length])
 
   useEffect(() => {
     switch (currentLocation.pathname) {
