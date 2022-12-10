@@ -41,7 +41,8 @@ class League(db.Model):
     def to_dict_query_filters(self):
         return {
             'team_owner_ids': [team.to_dict_team_owner()['team_owner_id'] for team in self.league_teams],
-            'players_count': len(self.league_players)
+            'players_count': len(self.league_players),
+            'team_limit': self.team_limit
         }
 
     def to_dict_league_info(self):

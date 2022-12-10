@@ -44,11 +44,11 @@ def public_leagues(userId):
 
     for league in leagues:
         filters = league.to_dict_query_filters()
-
+        print('TEEM', filters)
         if len(valid_random_leagues) >= 10:
             break
 
-        if (userId not in filters['team_owner_ids'] and filters['players_count'] >= 10):
+        if userId not in filters['team_owner_ids'] and len(filters['team_owner_ids']) < filters['team_limit'] and filters['players_count'] >= 10:
             valid_random_leagues.append(league)
 
     return {'leagueList': [league.to_dict() for league in valid_random_leagues]}
