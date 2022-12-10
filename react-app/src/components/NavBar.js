@@ -43,6 +43,8 @@ const NavBar = () => {
             }
 
             break;
+          } else {
+            setUserTeam(false)
           }
         }
       }
@@ -51,7 +53,7 @@ const NavBar = () => {
     }
 
     fetchData();
-  }, [dispatch, leagueId, league, sessionUser.id])
+  }, [dispatch, leagueId, league, sessionUser.id, teamsList])
 
   useEffect(() => {
     switch (currentLocation.pathname) {
@@ -100,13 +102,13 @@ const NavBar = () => {
 
             {loaded && league && (
               <>
-              {userTeam &&
-                <NavLink className={teamActive ? 'league-links-team active-link-team' : 'league-links-team'} to={`/leagues/${leagueId}/teams/${teamNumber}`} exact={true}>
-                  <span className='link-text'>
-                    My Team
-                  </span>
-                  <div className='transition'></div>
-                </NavLink>
+                {userTeam &&
+                  <NavLink className={teamActive ? 'league-links-team active-link-team' : 'league-links-team'} to={`/leagues/${leagueId}/teams/${teamNumber}`} exact={true}>
+                    <span className='link-text'>
+                      My Team
+                    </span>
+                    <div className='transition'></div>
+                  </NavLink>
                 }
 
                 <div className={!userTeam ? 'league-links-border' : ''}>
@@ -161,41 +163,43 @@ const NavBar = () => {
                   </div>
                 </div>
 
-                <div>
-                  <div className='league-links-opposing'>
-                    <span className='link-text'>
-                      Opposing Teams
-                    </span>
-                    <div className='down-caret-box'>
-                      <img className='down-caret' src={downCaret} alt='down caret' />
+                {teamsList.length > 1 &&
+                  <div>
+                    <div className='league-links-opposing'>
+                      <span className='link-text'>
+                        Opposing Teams
+                      </span>
+                      <div className='down-caret-box'>
+                        <img className='down-caret' src={downCaret} alt='down caret' />
+                      </div>
+                    </div>
+                    <div className='opposing-dropdown'>
+                      <ul className='teams-list-dropdown'>
+                        {teamsList.map(team =>
+                          team.team_owner_id !== sessionUser.id &&
+                          <li key={team.id} className='dropdown-item-team'>
+                            <Link className='dropdown-link-team' to={`/leagues/${leagueId}/teams/${team.team_number}`}>
+                              <div className='opposing-teams-box'>
+                                <div className='opposing-teams-image-box'>
+                                  <div className='opposing-logos-box'>
+                                    <img className='opposing-teams-logo' src={team.team_image} alt='team logo' />
+                                  </div>
+                                </div>
+                                <div className='opposing-teams-info'>
+                                  <div className='opposing-teams-name-abre'>
+                                    <div className='opposing-teams-name'>{team.team_name}</div>
+                                    <span className='opposing-teams-abre'>({team.team_abre})</span>
+                                  </div>
+                                  <div className='opposing-teams-user'>{team.team_owner.username}</div>
+                                </div>
+                              </div>
+                            </Link>
+                          </li>
+                        )}
+                      </ul>
                     </div>
                   </div>
-                  <div className='opposing-dropdown'>
-                    <ul className='teams-list-dropdown'>
-                      {teamsList && teamsList.map(team =>
-                        team.team_owner_id !== sessionUser.id &&
-                        <li key={team.id} className='dropdown-item-team'>
-                          <Link className='dropdown-link-team' to={`/leagues/${leagueId}/teams/${team.team_number}`}>
-                            <div className='opposing-teams-box'>
-                              <div className='opposing-teams-image-box'>
-                                <div className='opposing-logos-box'>
-                                  <img className='opposing-teams-logo' src={team.team_image} alt='team logo' />
-                                </div>
-                              </div>
-                              <div className='opposing-teams-info'>
-                                <div className='opposing-teams-name-abre'>
-                                  <div className='opposing-teams-name'>{team.team_name}</div>
-                                  <span className='opposing-teams-abre'>({team.team_abre})</span>
-                                </div>
-                                <div className='opposing-teams-user'>{team.team_owner.username}</div>
-                              </div>
-                            </div>
-                          </Link>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                </div>
+                }
               </>
             )}
 
