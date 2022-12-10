@@ -81,7 +81,7 @@ const LeagueMembers = ({ sessionUser }) => {
                                                         {team.team_abre}
                                                     </td>
                                                     <td title={team.team_name} className='members-table-td th-3 team-bold'>
-                                                        <Link to={`/leagues/${leagueId}`} className='members-team-link'>
+                                                        <Link to={`/leagues/${leagueId}/teams/${team.team_number}`} className='members-team-link'>
                                                             <div className='members-team-logo-box'>
                                                                 <img className='members-team-logo' src={team.team_image} alt='team logo' />
                                                             </div>
@@ -112,7 +112,7 @@ const LeagueMembers = ({ sessionUser }) => {
                                                             {team.team_abre}
                                                         </td>
                                                         <td title={team.team_name} className='members-table-td th-3'>
-                                                            <Link to={`/leagues/${leagueId}`} className='members-team-link'>
+                                                            <Link to={`/leagues/${leagueId}/teams/${team.team_number}`} className='members-team-link'>
                                                                 <div className='members-team-logo-box'>
                                                                     <img className='members-team-logo' src={team.team_image} alt='team logo' />
                                                                 </div>
