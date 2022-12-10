@@ -27,8 +27,6 @@ const HomePage = ({ sessionUser }) => {
         fetchData();
     }, [dispatch, sessionUser.id])
 
-    console.log('myLeagues', myLeagues.length)
-    console.log('myLeagues', myTeams)
 
     return (
         <div className='page-outer'>
@@ -90,7 +88,6 @@ const HomePage = ({ sessionUser }) => {
                                             <br />
                                             <span>Fantasy Points: {team.fantasy_total}</span>
                                         </div>
-                                        {/* <div className='home-team-info-1'>Fantasy Points: {team.fantasy_total}</div> */}
                                         <img className='my-teams-logo' src={`${team.team_image}`} alt='team-logo' />
                                     </Link>
                                 </div>
