@@ -224,7 +224,6 @@
     position: absolute;
     right: auto;
     max-width: 450px;
-    min-width: 200px;
     height: auto;
     list-style: none;
     background-color: white;
@@ -406,4 +405,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 804px) {
+    .opposing-dropdown {
+        width: 233px;
+    }
 }
