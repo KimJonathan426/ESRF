@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -11,7 +11,6 @@ const NavBar = () => {
   const leagueState = useSelector(state => state.leagues)
 
   const currentLocation = useLocation();
-  const dispatch = useDispatch();
   const { leagueId } = useParams();
 
   const league = leagueState[leagueId];
@@ -19,6 +18,7 @@ const NavBar = () => {
   const [teamsList, setTeamsList] = useState(false);
   const [teamNumber, setTeamNumber] = useState('');
   const [userTeam, setUserTeam] = useState(false);
+  const [showOpposing, setShowOpposing] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const [teamActive, setTeamActive] = useState(false);
@@ -26,34 +26,33 @@ const NavBar = () => {
   const [playerActive, setPlayerActive] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (league) {
-        setTeamsList(league.teams)
+    if (league) {
+      setTeamsList(league.teams)
 
-        for (let team of league.teams) {
-          if (team.team_owner_id === sessionUser.id) {
+      let found = false;
 
-            const response = await fetch(`/api/leagues/${leagueId}/teams/${team.team_number}`);
-
-            if (response.ok) {
-              const team = await response.json();
-
-              setTeamNumber(team.team_number);
-              setUserTeam(true);
-            }
-
-            break;
-          } else {
-            setUserTeam(false)
-          }
+      for (let team of league.teams) {
+        if (team.team_owner_id === sessionUser.id) {
+          setTeamNumber(team.team_number);
+          setUserTeam(true);
+          found = true;
+          break;
         }
       }
 
-      setLoaded(true);
+      if (!found) {
+        setTeamNumber('');
+        setUserTeam(false);
+      }
+
+      if ((found && teamsList.length > 1) || (!found && teamsList.length > 0)) {
+        setShowOpposing(true);
+      }
+
     }
 
-    fetchData();
-  }, [dispatch, leagueId, league, sessionUser.id, teamsList])
+    setLoaded(true);
+  }, [league, sessionUser.id, teamsList.length])
 
   useEffect(() => {
     switch (currentLocation.pathname) {
@@ -83,8 +82,6 @@ const NavBar = () => {
         setPlayerActive(false);
         break;
     }
-
-
   }, [leagueId, teamNumber, currentLocation])
 
 
@@ -163,7 +160,7 @@ const NavBar = () => {
                   </div>
                 </div>
 
-                {teamsList.length > 1 &&
+                {showOpposing &&
                   <div>
                     <div className='league-links-opposing'>
                       <span className='link-text'>
