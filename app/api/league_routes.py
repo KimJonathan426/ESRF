@@ -301,11 +301,12 @@ def edit_team(leagueId, teamNumber):
 @login_required
 def delete_team(leagueId, teamNumber):
     deleted_team = Team.query.filter_by(league_id=leagueId, team_number=teamNumber).first()
+    team_id = deleted_team.id
 
     db.session.delete(deleted_team)
     db.session.commit()
 
-    return 'Deleted Successfully'
+    return {"id": team_id}
 
 @league_routes.route('/<int:leagueId>/teams/<int:teamNumber>/image', methods=['POST'])
 @login_required

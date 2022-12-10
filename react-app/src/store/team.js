@@ -28,9 +28,9 @@ export const actionAddTeam = (team) => ({
     team
 })
 
-const actionDeleteTeam = (teamNumber) => ({
+const actionDeleteTeam = (teamId) => ({
     type: DELETE_TEAM,
-    teamNumber
+    teamId
 })
 
 export const clearTeams = () => ({
@@ -171,8 +171,9 @@ export const deleteTeam = (leagueId, teamNumber) => async (dispatch) => {
     });
 
     if (response.ok) {
-        dispatch(actionDeleteTeam(teamNumber));
-        return teamNumber;
+        const team = await response.json();
+        dispatch(actionDeleteTeam(team.id));
+        return team.id;
     }
 }
 
@@ -207,7 +208,7 @@ const TeamsReducer = (state = {}, action) => {
             return newState3;
         case DELETE_TEAM:
             const newState4 = { ...state };
-            delete newState4[action.id];
+            delete newState4[action.teamId];
             return newState4;
         case CLEAR_TEAMS:
             const clearState = {};
