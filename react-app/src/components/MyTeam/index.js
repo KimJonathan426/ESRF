@@ -18,7 +18,7 @@ const MyTeam = ({ sessionUser }) => {
     const teamState = useSelector(state => state.teams);
     const leagueState = useSelector(state => state.leagues);
     const league = leagueState[leagueId];
-    const teamFromState = teamState[teamNumber];
+    const teamFromState = Object.values(teamState)[0];
 
     const [playerList, setPlayerList] = useState([]);
     const [team, setTeam] = useState(false);

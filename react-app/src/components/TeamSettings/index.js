@@ -22,7 +22,7 @@ const TeamSettings = ({ sessionUser }) => {
     const [loading, setLoading] = useState(false);
 
     const league = leagueState[leagueId];
-    const team = teamState[teamNumber];
+    const team = Object.values(teamState)[0];
 
     useEffect(() => {
         const fetchData = async () => {
